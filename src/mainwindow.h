@@ -34,9 +34,8 @@
 #include <QXmlStreamWriter>
 #include <QDomDocument>
 #include <QTableWidgetItem>
-#include <QSettings>
 
-#include <QSound>
+#include <QSoundEffect>
 #include <QLocale>
 
 #include "appointment.h"
@@ -67,14 +66,17 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(DbManager &dbm, QWidget *parent = nullptr);
     ~MainWindow();
 
     //Database
-    DbManager dbm;
+    DbManager &dbm;
 
     //Timers
     QTimer *timer;
+
+    //Audio
+    QSoundEffect *soundEffect;
 
     //Reminders
     void checkForReminders();

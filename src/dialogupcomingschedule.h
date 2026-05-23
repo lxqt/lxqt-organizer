@@ -59,7 +59,6 @@ public:
 private:
     Ui::DialogUpcomingSchedule *ui;
     QList<Appointment> appointmentList;
-    DbManager theDbm;
     ScheduleListModel *scheduleListModel;
 };
 

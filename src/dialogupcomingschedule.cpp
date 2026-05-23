@@ -31,7 +31,6 @@ DialogUpcomingSchedule::DialogUpcomingSchedule(QWidget *parent,
      ui->labelSchedule->setText(t_label_upcoming_schedule);
 
      this->appointmentList= theDbm->getAllAppointments();
-     this->theDbm=*theDbm;
 
      QList<Appointment> schedule =QList<Appointment>();
      //QList<Appointment> dayList =QList<Appointment>();

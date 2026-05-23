@@ -1,6 +1,5 @@
 /***************************************************************************
- *   Author Alan Crispin aka. crispina                 *
- *   crispinalan@gmail.com                                                    *
+ *   Author Basil Crow                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -15,11 +14,38 @@
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
-#include "organizerapplication.h"
+#ifndef ORGANIZERAPPLICATION_H
+#define ORGANIZERAPPLICATION_H
 
+#include <LXQt/Application>
 
-int main(int argc, char *argv[])
+#include <QPointer>
+#include <QVector>
+
+#include "dbmanager.h"
+
+class MainWindow;
+
+class OrganizerApplication : public LXQt::Application
 {
-    OrganizerApplication application(argc, argv);
-    return application.init() ? application.exec() : 0;
-}
+    Q_OBJECT
+
+public:
+    OrganizerApplication(int &argc, char **argv);
+    ~OrganizerApplication() override;
+
+    bool init();
+
+public Q_SLOTS:
+    void newWindow();
+    void activateWindow();
+
+private:
+    bool parseCommandLine();
+
+    bool isPrimaryInstance_;
+    DbManager dbm_;
+    QVector<QPointer<MainWindow>> windows_;
+};
+
+#endif // ORGANIZERAPPLICATION_H
