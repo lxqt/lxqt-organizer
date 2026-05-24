@@ -171,7 +171,7 @@ bool DbManager::updateAppointment(Appointment &appointment, int id)
        sql.append(QStringLiteral(", HasReminder = :hasremin"));
        sql.append(QStringLiteral(", ReminderMinutes = :remminsin"));
 
-       sql.append(" WHERE AppointmentId =:idin");
+       sql.append(QStringLiteral(" WHERE AppointmentId =:idin"));
 
        QSqlQuery qry;
        if(qry.prepare(sql))
@@ -186,7 +186,7 @@ bool DbManager::updateAppointment(Appointment &appointment, int id)
          qry.bindValue(QStringLiteral(":hasremin"),appointment.m_hasReminder);
          qry.bindValue(QStringLiteral(":remminsin"),appointment.m_reminderMinutes);
 
-         qry.bindValue(":idin", QString::number(id));
+         qry.bindValue(QStringLiteral(":idin"), QString::number(id));
          success=qry.exec();
          if (success)
          {

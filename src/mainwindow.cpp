@@ -21,6 +21,8 @@
 
 #include <LXQt/Settings>
 
+#include <utility>
+
 MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     QMainWindow(parent),
     dbm(dbm),
@@ -201,7 +203,7 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     soundEffect->play();
     }
 
-    setWindowIcon(QIcon(":/icons/lxqt-organizer.svg"));
+    setWindowIcon(QIcon(QStringLiteral(":/icons/lxqt-organizer.svg")));
     selectedDate = QDate::currentDate();
 
     selectedDateLabel = new QLabel(this);
@@ -262,7 +264,7 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
      QString month_year =locale.toString(selectedDate,QStringLiteral("MMMM yyyy"));
      ui->labelCalendarHeader->setText(month_year);
      ui->labelCalendarHeader->setStyleSheet
-            ("QLabel { background-color : rgb(81, 186, 242); color : black; }");
+            (QStringLiteral("QLabel { background-color : rgb(81, 186, 242); color : black; }"));
     QFont fontCalHeader = ui->labelCalendarHeader->font();
     fontCalHeader.setBold(true);
     ui->labelCalendarHeader->setFont(fontCalHeader);
@@ -352,7 +354,7 @@ void MainWindow::checkForReminders()
     int currentMinute = currentTime.minute();
     int currentSecond =currentTime.second();
 
-    foreach(Appointment a, appointmentList){
+    for (const Appointment &a : std::as_const(appointmentList)) {
 
         if(a.m_hasReminder==1)
         {
@@ -395,9 +397,9 @@ void MainWindow::checkForReminders()
 
                     QString str=a.m_title;
                     //str.append(QStringLiteral(" on "));
-                    str.append(" ");
+                    str.append(QLatin1Char(' '));
                     str.append(t_reminder_message_on);
-                    str.append(" ");
+                    str.append(QLatin1Char(' '));
 
                     //QDate reminderDate= QDate::fromString(a.m_date);
 
@@ -408,9 +410,9 @@ void MainWindow::checkForReminders()
                     str.append(QLatin1Char('\n')); //new line
                     //str.append(QStringLiteral("Starts at "));
                     str.append(t_reminder_message_starts_at);
-                    str.append(" ");
+                    str.append(QLatin1Char(' '));
                     QTime startsAt =QTime::fromString(a.m_startTime);
-                    str.append(startsAt.toString("hh:mm"));
+                    str.append(startsAt.toString(QStringLiteral("hh:mm")));
                     if(playAudio){
                         soundEffect->play();
                     }
@@ -659,7 +661,7 @@ void MainWindow::LoadDatabaseAppointmentsToAppointmentList()
 {
     appointmentList.clear();
     QList<Appointment> tmpList = dbm.getAllAppointments();
-    foreach(Appointment a, tmpList)
+    for (const Appointment &a : std::as_const(tmpList))
     {
         appointmentList.append(a);
 
@@ -726,7 +728,7 @@ bool MainWindow::compare(const Appointment &first, const Appointment &second)
 QList<Appointment> MainWindow::getSortedDayList(QDate theDate)
 {
     QList<Appointment> dayList =QList<Appointment>();
-        foreach(Appointment a, appointmentList)
+        for (const Appointment &a : std::as_const(appointmentList))
         {
             QDate adate = QDate::fromString(a.m_date);
 
@@ -787,7 +789,7 @@ void MainWindow::UpdateCalendar()
         //-----------------------------------------------------
         if(flagShowHolidays){
 
-            foreach (Holiday h, holidayList)
+            for (const Holiday &h : std::as_const(holidayList))
             {
                 QDate d =QDate::fromString(h.m_date);
 
@@ -805,7 +807,7 @@ void MainWindow::UpdateCalendar()
         //-----------------------------------------------------
         if(flagShowBirthdays)
         {
-            foreach (Contact c, contactList)
+            for (const Contact &c : std::as_const(contactList))
             {
                 QDate birth =QDate::fromString(c.m_birthdate);
                 QDate birthday =QDate(selectedYear,birth.month(),birth.day());
@@ -826,7 +828,7 @@ void MainWindow::UpdateCalendar()
 
         if (!sortedDayList.empty())
         {
-            foreach(Appointment a, sortedDayList)
+            for (const Appointment &a : std::as_const(sortedDayList))
             {
                  str.append(QLatin1Char('\n')+a.m_title);
             }
@@ -1181,7 +1183,7 @@ void MainWindow::LoadDatebaseContactsToContactList()
 {
     contactList.clear();
     QList<Contact> tmpList = dbm.getAllContacts();
-    foreach(Contact c, tmpList)
+    for (const Contact &c : std::as_const(tmpList))
     {
         contactList.append(c);
     }
@@ -1339,7 +1341,7 @@ void MainWindow::DisplayContactsOnTableView()
 
     QList<Contact> contactListDb =dbm.getAllContacts();
 
-    foreach(Contact c, contactListDb)
+    for (const Contact &c : std::as_const(contactListDb))
     {
 
         contactModel->AddContact(c);
@@ -1383,7 +1385,7 @@ void MainWindow::ExportContactsXML()
     document.appendChild(root);
 
     QList<Contact> dbContactList =dbm.getAllContacts();
-    foreach(Contact c, dbContactList){
+    for (const Contact &c : std::as_const(dbContactList)) {
         QString firstName=c.m_firstname;
         QString midName =c.m_midnames;
         QString lastName=c.m_lastname;
@@ -1495,7 +1497,7 @@ void MainWindow::ExportAppointmentsXML()
     document.appendChild(root);
 
     QList<Appointment> dbAppointmentList =dbm.getAllAppointments();
-    foreach(Appointment a, dbAppointmentList){
+    for (const Appointment &a : std::as_const(dbAppointmentList)) {
 
         QString title=a.m_title;
         QString location=a.m_location;
@@ -1829,12 +1831,12 @@ void MainWindow::setDarkCalendar(int darkCalendar)
 {
     if (darkCalendar==0){
         //light background
-        ui->tableWidgetCalendar->setStyleSheet( "color: black; background-color: white");
+        ui->tableWidgetCalendar->setStyleSheet(QStringLiteral("color: black; background-color: white"));
 
     }
     else if (darkCalendar==1){
         //dim gray
-        ui->tableWidgetCalendar->setStyleSheet( "color: white; background-color: rgb(105,105,105)");
+        ui->tableWidgetCalendar->setStyleSheet(QStringLiteral("color: white; background-color: rgb(105,105,105)"));
     }
 }
 
