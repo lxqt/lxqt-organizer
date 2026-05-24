@@ -111,7 +111,7 @@ qt6_translation_loader(LXQT_ORGANIZER_QM_LOADER
 
 lxqt_translate_desktop(DESKTOP_FILES
     SOURCES
-        "${CMAKE_SOURCE_DIR}/lxqt-organizer.desktop.in"
+        "${CMAKE_CURRENT_SOURCE_DIR}/lxqt-organizer.desktop.in"
     TRANSLATION_DIR
         src/translations
     USE_YAML
