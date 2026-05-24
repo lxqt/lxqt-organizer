@@ -19,6 +19,8 @@
 #include "dialogupcomingbirthdays.h"
 #include "ui_dialogupcomingbirthdays.h"
 
+#include <utility>
+
 
 DialogUpcomingBirthdays::DialogUpcomingBirthdays(QWidget *parent,
                                                  QList<Contact> *contactList):
@@ -33,7 +35,7 @@ DialogUpcomingBirthdays::DialogUpcomingBirthdays(QWidget *parent,
 
    QDate currentDate =QDate::currentDate();
 
-   foreach(Contact c, dialogContactList)  //use contacts!!
+   for (const Contact &c : std::as_const(dialogContactList))  //use contacts!!
    {
        //qDebug()<<"Contact:"<<c.m_lastname;
        QDate bornDate = QDate::fromString(c.m_birthdate);

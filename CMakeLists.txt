@@ -32,16 +32,6 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-# LXQtCompilerSettings adds these, but lxqt-organizer still uses foreach and
-# implicit Qt string conversions in existing source.
-remove_definitions(
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_TO_ASCII
-    -DQT_NO_URL_CAST_FROM_STRING
-    -DQT_NO_CAST_FROM_BYTEARRAY
-    -DQT_NO_FOREACH
-)
-
 message(STATUS "Building ${PROJECT_NAME} ${LXQT_ORGANIZER_VERSION} with Qt ${Qt6_VERSION}")
 
 set(LXQT_ORGANIZER_HEADERS

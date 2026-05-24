@@ -19,6 +19,8 @@
 #include "dialogupcomingschedule.h"
 #include "ui_dialogupcomingschedule.h"
 
+#include <utility>
+
 
 DialogUpcomingSchedule::DialogUpcomingSchedule(QWidget *parent,
                                                DbManager *theDbm) :
@@ -73,7 +75,7 @@ DialogUpcomingSchedule::DialogUpcomingSchedule(QWidget *parent,
 QList<Appointment> DialogUpcomingSchedule::getSortedDayList(QDate theDate)
 {
     QList<Appointment> dayList =QList<Appointment>();
-    foreach(Appointment a, appointmentList)
+    for (const Appointment &a : std::as_const(appointmentList))
     {
         QDate adate = QDate::fromString(a.m_date);
 

@@ -34,7 +34,7 @@ public:
     ContactModel(const QList<Contact>& contactList,
                  QObject *parent = nullptr);
 
-    void AddContact(Contact &contact);
+    void AddContact(const Contact &contact);
     Contact getContact(int index);
     void clearAllContacts();
     void removeContact(int idx);

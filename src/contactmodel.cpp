@@ -30,7 +30,7 @@ ContactModel::ContactModel(const QList<Contact> &contactList, QObject *parent)
     this->modelContactList=contactList;
 }
 
-void ContactModel::AddContact(Contact &contact)
+void ContactModel::AddContact(const Contact &contact)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     modelContactList.append(contact);
