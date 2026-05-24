@@ -31,7 +31,7 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     QMainWindow::centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
 
 
-    t_title =tr("Organizer");
+    t_title =tr("LXQt Organizer");
     setWindowTitle(t_title);
     //Holidays
     t_holiday_christmas=tr("Christmas");
@@ -80,7 +80,7 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     //Help
     t_help=tr("Help");
     t_help_about=tr("About");
-    t_about_text=tr("Organizer is a Qt lightweight personal information"
+    t_about_text=tr("LXQt Organizer is a Qt lightweight personal information"
                                 " manager developed by Alan Crispin");
     //Contact tab
     t_contact_tab_first_name=tr("First Name");
@@ -201,7 +201,7 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     soundEffect->play();
     }
 
-    setWindowIcon(QIcon(":/icons/organizer.svg"));
+    setWindowIcon(QIcon(":/icons/lxqt-organizer.svg"));
     selectedDate = QDate::currentDate();
 
     selectedDateLabel = new QLabel(this);
@@ -1688,7 +1688,7 @@ void MainWindow::on_actionDelete_All_Contacts_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::information(this, t_title+QStringLiteral(" v0.7.4"),
+    QMessageBox::information(this, t_title + QStringLiteral(" ") + QStringLiteral(LXQT_ORGANIZER_VERSION),
                              t_about_text);
 }
 
@@ -1910,7 +1910,7 @@ void MainWindow::on_actionReset_Font_triggered()
 
 void MainWindow::loadSettings()
 {
-    LXQt::Settings settings(QStringLiteral("organizer"));
+    LXQt::Settings settings(QStringLiteral("lxqt-organizer"));
      settings.beginGroup(QStringLiteral("CoreSettings"));
      currentPreferences.m_playAudio=settings.value(QStringLiteral("PlayAudio"), playAudio).toInt();
      currentPreferences.m_darkCalendar=settings.value(QStringLiteral("DarkCalendar"), darkCalendar).toInt();
@@ -1922,7 +1922,7 @@ void MainWindow::loadSettings()
 
 void MainWindow::saveSettings()
 {
-    LXQt::Settings settings(QStringLiteral("organizer"));
+    LXQt::Settings settings(QStringLiteral("lxqt-organizer"));
     settings.beginGroup(QStringLiteral("CoreSettings"));
     settings.setValue(QStringLiteral("PlayAudio"),currentPreferences.m_playAudio);
     settings.setValue(QStringLiteral("DarkCalendar"),currentPreferences.m_darkCalendar);
@@ -1931,4 +1931,3 @@ void MainWindow::saveSettings()
     settings.endGroup();
     //qDebug()<<"Settings saved";
 }
-

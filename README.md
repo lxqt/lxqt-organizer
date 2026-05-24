@@ -1,13 +1,13 @@
-# Organizer
+# LXQt Organizer
 
 ## Overview
 
-Organizer is a Qt lightweight personal information manager.
+LXQt Organizer is a Qt lightweight personal information manager.
 
 It is maintained by the LXQt project but can be used independently from this
 desktop environment.
 
-![](organizer-070.png)
+![](lxqt-organizer-070.png)
 
 ### Compiling source code
 
@@ -41,5 +41,4 @@ Enhanced features
 
 ### Translation (Weblate)
 
-Translations can be done in [LXQt-Weblate](https://translate.lxqt-project.org/projects/lxqt-desktop/organizer/).
-
+Translations can be done in [LXQt-Weblate](https://translate.lxqt-project.org/projects/lxqt-desktop/lxqt-organizer/).

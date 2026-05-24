@@ -14,8 +14,8 @@
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
-#ifndef ORGANIZERAPPLICATION_H
-#define ORGANIZERAPPLICATION_H
+#ifndef LXQTORGANIZERAPPLICATION_H
+#define LXQTORGANIZERAPPLICATION_H
 
 #include <LXQt/Application>
 
@@ -26,13 +26,13 @@
 
 class MainWindow;
 
-class OrganizerApplication : public LXQt::Application
+class LXQtOrganizerApplication : public LXQt::Application
 {
     Q_OBJECT
 
 public:
-    OrganizerApplication(int &argc, char **argv);
-    ~OrganizerApplication() override;
+    LXQtOrganizerApplication(int &argc, char **argv);
+    ~LXQtOrganizerApplication() override;
 
     bool init();
 
@@ -48,4 +48,4 @@ private:
     QVector<QPointer<MainWindow>> windows_;
 };
 
-#endif // ORGANIZERAPPLICATION_H
+#endif // LXQTORGANIZERAPPLICATION_H
