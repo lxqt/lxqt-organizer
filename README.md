@@ -19,22 +19,10 @@ cmake --build build
 cmake --install build
 ```
 
-### Prerequisites
+### Dependencies
 
-You need the following dependencies to build and run Organizer on Debian, Ubuntu and its derivatives.
-
-```
-build-essential
-cmake
-lxqt2-build-tools
-liblxqt2-dev
-qt6-base-dev
-qt6-svg-dev
-qt6-tools-dev
-qt6-tools-dev-tools
-qt6-l10n-tools
-qt6-multimedia-dev
-```
+Runtime dependencies are [liblxqt](https://github.com/lxqt/liblxqt), qtmultimedia and qtsvg.
+Additional build dependencies are CMake, [lxqt-build-tools](https://github.com/lxqt/lxqt-build-tools), qt6-tools and optionally Git to pull latest VCS checkouts.
 
 ## Versioning
 
