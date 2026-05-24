@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Icon=organizer
+Exec=organizer
+Terminal=false
+Categories=Qt;Office;Calendar;ContactManagement;
+StartupNotify=true
+Keywords=Calendar;Contacts;Appointments;Organizer;PIM;
+Actions=new-window;
+
+[Desktop Action new-window]
+Exec=organizer --win
+Icon=organizer
+
+#TRANSLATIONS_DIR=src/translations

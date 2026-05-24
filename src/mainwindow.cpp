@@ -19,16 +19,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+#include <LXQt/Settings>
+
+MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     QMainWindow(parent),
+    dbm(dbm),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     //set layout first
     QMainWindow::centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
-    //Setup database
-    dbm.openDatabase();
-    dbm.createDatebaseTables();
 
 
     t_title =tr("Organizer");
@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     t_holiday_spring_bank=tr("Spring Bank Holiday");
     t_holiday_summer_bank=tr("Summer Bank Holiday");
     //File
-    t_file=QStringLiteral("File");
+    t_file=tr("File");
     t_file_export_appointments=tr("Export Appointments");
     t_file_import_appointments=tr("Import Appointments");
     t_file_export_contacts=tr("Export Contacts");
@@ -137,7 +137,7 @@ MainWindow::MainWindow(QWidget *parent) :
     t_reminder_message_starts_at=tr("Starts At");
 
     //repeat appointments
-    t_dialog_repeat_title=tr("Generate Repeat Appointments");
+    t_dialog_repeat_title=tr("Generate Repeat Appointments", "Dialog title");
     t_dialog_repeat_date_message=tr("Appointment Start Date: ");
     t_dialog_repeat_repeat_every=tr("Repeat Every");
     t_dialog_repeat_days=tr("Days");
@@ -193,11 +193,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(timerUpdateSlot()));
     timer->start(1000); //check for reminders every 1000ms
 
+    //setup audio
+    soundEffect = new QSoundEffect(this);
+    soundEffect->setSource(QUrl(QStringLiteral("qrc:/sounds/window-attention.wav")));
+
     if(playAudio){
-    QSound::play(":/sounds/window-attention.wav");
+    soundEffect->play();
     }
 
-    setWindowIcon(QIcon(":/icons/icon-calendar.png"));
+    setWindowIcon(QIcon(":/icons/organizer.svg"));
     selectedDate = QDate::currentDate();
 
     selectedDateLabel = new QLabel(this);
@@ -408,7 +412,7 @@ void MainWindow::checkForReminders()
                     QTime startsAt =QTime::fromString(a.m_startTime);
                     str.append(startsAt.toString("hh:mm"));
                     if(playAudio){
-                        QSound::play(":/sounds/window-attention.wav");
+                        soundEffect->play();
                     }
 
                     QMessageBox::information(this,t_dialog_appointment_reminder,str);
@@ -873,11 +877,6 @@ void MainWindow::UpdateCalendar()
 
 void MainWindow::SetApplicationFontSize(int fontsize)
 {
-    //Setting Application Font
-    QFont appfont = QApplication::font();
-    appfont.setPixelSize(fontsize); //DPI
-    QApplication::setFont(appfont);
-
     QFont itemFontSize =ui->tableWidgetCalendar->font();
     itemFontSize.setPixelSize(fontsize);
     ui->tableWidgetCalendar->setFont(itemFontSize);
@@ -1911,26 +1910,25 @@ void MainWindow::on_actionReset_Font_triggered()
 
 void MainWindow::loadSettings()
 {
-    QSettings settings("LXQt", "Organizer");
-     settings.beginGroup("CoreSettings");
-     currentPreferences.m_playAudio=settings.value("PlayAudio").toInt();
-     currentPreferences.m_darkCalendar=settings.value("DarkCalendar").toInt();
-     currentPreferences.m_applicationFontSize=settings.value("ApplicationFontSize").toInt();
-     currentPreferences.m_lineSpacing=settings.value("LineSpacing").toInt();
-     settings.endGroup();
-     //qDebug()<<"Settings loaded";
+    LXQt::Settings settings(QStringLiteral("organizer"));
+     settings.beginGroup(QStringLiteral("CoreSettings"));
+     currentPreferences.m_playAudio=settings.value(QStringLiteral("PlayAudio"), playAudio).toInt();
+     currentPreferences.m_darkCalendar=settings.value(QStringLiteral("DarkCalendar"), darkCalendar).toInt();
+     currentPreferences.m_applicationFontSize=settings.value(QStringLiteral("ApplicationFontSize"), applicationFontSize).toInt();
+     currentPreferences.m_lineSpacing=settings.value(QStringLiteral("LineSpacing"), newLineSpacing).toInt();
+    settings.endGroup();
+    //qDebug()<<"Settings loaded";
 }
 
 void MainWindow::saveSettings()
 {
-    QSettings settings("LXQt", "Organizer");
-    settings.beginGroup("CoreSettings");
-    settings.setValue("PlayAudio",currentPreferences.m_playAudio);
-    settings.setValue("DarkCalendar",currentPreferences.m_darkCalendar);
-    settings.setValue("ApplicationFontSize",currentPreferences.m_applicationFontSize);
-    settings.setValue("LineSpacing",currentPreferences.m_lineSpacing);
+    LXQt::Settings settings(QStringLiteral("organizer"));
+    settings.beginGroup(QStringLiteral("CoreSettings"));
+    settings.setValue(QStringLiteral("PlayAudio"),currentPreferences.m_playAudio);
+    settings.setValue(QStringLiteral("DarkCalendar"),currentPreferences.m_darkCalendar);
+    settings.setValue(QStringLiteral("ApplicationFontSize"),currentPreferences.m_applicationFontSize);
+    settings.setValue(QStringLiteral("LineSpacing"),currentPreferences.m_lineSpacing);
     settings.endGroup();
     //qDebug()<<"Settings saved";
 }
-
 
