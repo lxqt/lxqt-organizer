@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
-#include "organizerapplication.h"
+#include "lxqtorganizerapplication.h"
 #include "mainwindow.h"
-#include "organizerapplicationadaptor.h"
+#include "lxqtorganizerapplicationadaptor.h"
 
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -25,23 +25,26 @@
 
 namespace {
 
-const char serviceName[] = "org.lxqt.Organizer";
-const char ifaceName[] = "org.lxqt.Organizer.Application";
+const char serviceName[] = "org.lxqt.lxqt-organizer";
+const char ifaceName[] = "org.lxqt.LXQtOrganizer.Application";
 const char objectPath[] = "/Application";
 
 } // namespace
 
-OrganizerApplication::OrganizerApplication(int &argc, char **argv) :
+LXQtOrganizerApplication::LXQtOrganizerApplication(int &argc, char **argv) :
     LXQt::Application(argc, argv),
     isPrimaryInstance_(false)
 {
-    const QString versionInfo = QStringLiteral(ORGANIZER_VERSION
+    setApplicationName(QStringLiteral("lxqt-organizer"));
+    setDesktopFileName(QStringLiteral("lxqt-organizer"));
+
+    const QString versionInfo = QStringLiteral(LXQT_ORGANIZER_VERSION
                                                "\nliblxqt   " LXQT_VERSION
                                                "\nQt        " QT_VERSION_STR);
     setApplicationVersion(versionInfo);
 }
 
-OrganizerApplication::~OrganizerApplication()
+LXQtOrganizerApplication::~LXQtOrganizerApplication()
 {
     while (!windows_.isEmpty())
     {
@@ -49,7 +52,7 @@ OrganizerApplication::~OrganizerApplication()
     }
 }
 
-bool OrganizerApplication::init()
+bool LXQtOrganizerApplication::init()
 {
     QDBusConnection dbus = QDBusConnection::sessionBus();
     if (!dbus.isConnected() || dbus.registerService(QLatin1String(serviceName)))
@@ -59,7 +62,7 @@ bool OrganizerApplication::init()
         dbm_.createDatebaseTables();
         if (dbus.isConnected())
         {
-            new OrganizerApplicationAdaptor(this);
+            new LXQtOrganizerApplicationAdaptor(this);
             dbus.registerObject(QLatin1String(objectPath), this);
         }
     }
@@ -67,10 +70,10 @@ bool OrganizerApplication::init()
     return parseCommandLine();
 }
 
-bool OrganizerApplication::parseCommandLine()
+bool LXQtOrganizerApplication::parseCommandLine()
 {
     QCommandLineParser parser;
-    parser.setApplicationDescription(QStringLiteral("Organizer"));
+    parser.setApplicationDescription(QStringLiteral("LXQt Organizer"));
     parser.addVersionOption();
     parser.addHelpOption();
 
@@ -99,7 +102,7 @@ bool OrganizerApplication::parseCommandLine()
     return false;
 }
 
-void OrganizerApplication::newWindow()
+void LXQtOrganizerApplication::newWindow()
 {
     auto *window = new MainWindow(dbm_);
     window->setAttribute(Qt::WA_DeleteOnClose);
@@ -112,7 +115,7 @@ void OrganizerApplication::newWindow()
     window->activateWindow();
 }
 
-void OrganizerApplication::activateWindow()
+void LXQtOrganizerApplication::activateWindow()
 {
     windows_.removeAll(nullptr);
     if (windows_.isEmpty())

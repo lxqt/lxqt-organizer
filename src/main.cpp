@@ -15,11 +15,11 @@
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
-#include "organizerapplication.h"
+#include "lxqtorganizerapplication.h"
 
 
 int main(int argc, char *argv[])
 {
-    OrganizerApplication application(argc, argv);
+    LXQtOrganizerApplication application(argc, argv);
     return application.init() ? application.exec() : 0;
 }

@@ -1,15 +1,15 @@
 [Desktop Entry]
 Type=Application
-Icon=organizer
-Exec=organizer
+Icon=lxqt-organizer
+Exec=lxqt-organizer
 Terminal=false
 Categories=Qt;Office;Calendar;ContactManagement;
 StartupNotify=true
-Keywords=Calendar;Contacts;Appointments;Organizer;PIM;
+Keywords=Calendar;Contacts;Appointments;Organizer;LXQt;PIM;
 Actions=new-window;
 
 [Desktop Action new-window]
-Exec=organizer --win
-Icon=organizer
+Exec=lxqt-organizer --win
+Icon=lxqt-organizer
 
 #TRANSLATIONS_DIR=src/translations

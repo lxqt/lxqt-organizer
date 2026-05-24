@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>DialogAppointment</name>
     <message>
@@ -504,7 +504,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="36"/>
-        <source>Organizer</source>
+        <source>LXQt Organizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -575,7 +575,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="85"/>
-        <source>Organizer is a Qt lightweight personal information manager developed by Alan Crispin</source>
+        <source>LXQt Organizer is a Qt lightweight personal information manager developed by Alan Crispin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -832,9 +832,9 @@
     </message>
 </context>
 <context>
-    <name>OrganizerApplication</name>
+    <name>LXQtOrganizerApplication</name>
     <message>
-        <location filename="../organizerapplication.cpp" line="72"/>
+        <location filename="../lxqtorganizerapplication.cpp" line="81"/>
         <source>Open new window</source>
         <translation type="unfinished"></translation>
     </message>

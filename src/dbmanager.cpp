@@ -33,7 +33,7 @@ void DbManager::openDatabase()
     {
         db = QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"));
 
-        db.setDatabaseName(QStringLiteral("organizerdb.sqlite"));
+        db.setDatabaseName(QStringLiteral("lxqt-organizer.sqlite"));
         if(!db.open())
             qWarning() << "Database connection error: " << db.lastError().text();
     }
@@ -686,7 +686,6 @@ bool DbManager::removeContactById(const int id)
     //qDebug()<< "Remove contact success = "<<success;
     return success;
 }
-
 
 
 
