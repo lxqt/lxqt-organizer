@@ -203,7 +203,7 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     soundEffect->play();
     }
 
-    setWindowIcon(QIcon(QStringLiteral(":/icons/lxqt-organizer.svg")));
+    setWindowIcon(QIcon::fromTheme(QStringLiteral("lxqt-organizer")));
     selectedDate = QDate::currentDate();
 
     selectedDateLabel = new QLabel(this);
