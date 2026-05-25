@@ -30,7 +30,7 @@ DialogAppointment::DialogAppointment(QWidget *parent, QDate *theAppointmentDate)
     this->appointmentDate=*theAppointmentDate;
     //ui->labelDateValue->setText(this->appointmentDate.toString());
 
-    QString date =locale.toString(appointmentDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(appointmentDate,QLocale::LongFormat);
     ui->labelDateValue->setText(date);
     setLabelTranslations();
 
@@ -216,7 +216,7 @@ void DialogAppointment::setLabelTranslations()
 void DialogAppointment::setLocaleDate(QLocale locale)
 {
     this->locale=locale;
-    QString date =locale.toString(appointmentDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(appointmentDate,QLocale::LongFormat);
     ui->labelDateValue->setText(date);
 }
 

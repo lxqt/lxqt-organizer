@@ -163,7 +163,7 @@ void DialogRepeatAppointment::setLabelTranslations()
 void DialogRepeatAppointment::setLocaleDate(QLocale locale)
 {
     this->locale=locale;
-    QString date =locale.toString(appointmentDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(appointmentDate,QLocale::LongFormat);
     ui->labelDate->setText(date);
 }
 

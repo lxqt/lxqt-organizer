@@ -46,11 +46,6 @@ DialogAppointmentUpdate::DialogAppointmentUpdate(QWidget *parent, Appointment *t
 
     this->appointmentDate=QDate::fromString(theAppointment->m_date);
 
-//    QString date =locale.toString(appointmentDate,QStringLiteral("dddd dd MMMM yyyy"));
-//    ui->labelDateValue->setText(date);
-
-
-
     isAllDay=theAppointment->m_isFullDay;
 
     if (isAllDay==1)
@@ -265,7 +260,7 @@ void DialogAppointmentUpdate::setReminder1DayTranslation(QString translation)
 void DialogAppointmentUpdate::setLocaleDate(QLocale locale)
 {
     this->locale=locale;
-    QString date =locale.toString(appointmentDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(appointmentDate,QLocale::LongFormat);
     ui->labelDateValue->setText(date);
 }
 
