@@ -212,7 +212,7 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     selectedDateLabel->setFont(font1);
 
 
-    QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(selectedDate,QLocale::LongFormat);
     selectedDateLabel->setText(date);  
     ui->statusBar->addPermanentWidget(selectedDateLabel);
 
@@ -392,9 +392,6 @@ void MainWindow::checkForReminders()
                 {
                     //Translation needed
 
-                    //QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
-                    //selectedDateLabel->setText(date);
-
                     QString str=a.m_title;
                     //str.append(QStringLiteral(" on "));
                     str.append(QLatin1Char(' '));
@@ -404,7 +401,7 @@ void MainWindow::checkForReminders()
                     //QDate reminderDate= QDate::fromString(a.m_date);
 
                     QString date =locale.toString(QDate::fromString(a.m_date),
-                                                  QStringLiteral("dddd dd MMMM yyyy"));
+                                                  QLocale::LongFormat);
                     str.append(date);
                     //str.append(a.m_date);
                     str.append(QLatin1Char('\n')); //new line
@@ -906,7 +903,7 @@ void MainWindow::SetPreferences()
         playAudio=preferencesDialog->isPlayAudio();
 
         //locale=getLocale(localeStr);
-        QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+        QString date =locale.toString(selectedDate,QLocale::LongFormat);
         selectedDateLabel->setText(date);
 
         //get new default font sizes
@@ -1015,13 +1012,13 @@ void MainWindow::gotoNextMonth()
         AddHolidaysToHolidayList(selectedYear);
         UpdateCalendar();
         selectedDate.setDate(selectedYear,selectedMonth,selectedDay);        
-        QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+        QString date =locale.toString(selectedDate,QLocale::LongFormat);
         selectedDateLabel->setText(date);
     }
     selectedDate.setDate(selectedYear,selectedMonth,selectedDay);
 
     ShowAppointmentsOnListView(selectedDate);    
-    QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(selectedDate,QLocale::LongFormat);
     selectedDateLabel->setText(date);
     UpdateCalendar();
 }
@@ -1039,13 +1036,13 @@ void MainWindow::gotoPreviousMonth()
         AddHolidaysToHolidayList(selectedYear);
         UpdateCalendar();
         selectedDate.setDate(selectedYear,selectedMonth,selectedDay);        
-        QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+        QString date =locale.toString(selectedDate,QLocale::LongFormat);
         selectedDateLabel->setText(date);
     }
     selectedDate.setDate(selectedYear,selectedMonth,selectedDay);
     UpdateCalendar();
     ShowAppointmentsOnListView(selectedDate);   
-    QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(selectedDate,QLocale::LongFormat);
     selectedDateLabel->setText(date);
 }
 
@@ -1058,7 +1055,7 @@ void MainWindow::gotoToday()
     AddHolidaysToHolidayList(selectedYear);
     UpdateCalendar();
     ShowAppointmentsOnListView(selectedDate);   
-    QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(selectedDate,QLocale::LongFormat);
     selectedDateLabel->setText(date);
 }
 
@@ -1877,7 +1874,7 @@ void MainWindow::on_tableWidgetCalendar_cellClicked(int row, int column)
 
     selectedDate =QDate(selectedYear,selectedMonth,day);
 
-    QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(selectedDate,QLocale::LongFormat);
     selectedDateLabel->setText(date);
     ShowAppointmentsOnListView(selectedDate);
 
@@ -1890,7 +1887,7 @@ void MainWindow::on_tableWidgetCalendar_cellDoubleClicked(int row, int column)
     int day =dayArray[(7 * row) + column];
     if((day<1) || (day>selectedDate.daysInMonth()) ) return;
     selectedDate =QDate(selectedYear,selectedMonth,day);    
-    QString date =locale.toString(selectedDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(selectedDate,QLocale::LongFormat);
     selectedDateLabel->setText(date);
     ShowAppointmentsOnListView(selectedDate);
     NewAppointment();

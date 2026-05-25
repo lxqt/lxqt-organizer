@@ -37,7 +37,7 @@ DialogUpcomingSchedule::DialogUpcomingSchedule(QWidget *parent,
      QList<Appointment> schedule =QList<Appointment>();
      //QList<Appointment> dayList =QList<Appointment>();
      QDate currentDate =QDate::currentDate();
-     QString date =locale.toString(currentDate,QStringLiteral("dddd dd MMMM yyyy"));
+     QString date =locale.toString(currentDate,QLocale::LongFormat);
      ui->labelDate->setText(date);
 
      //selectedDateLabel->setText(date);
@@ -129,7 +129,7 @@ void DialogUpcomingSchedule::setLocale(QLocale locale)
 {
     this->locale=locale;
     QDate currentDate =QDate::currentDate();
-    QString date =locale.toString(currentDate,QStringLiteral("dddd dd MMMM yyyy"));
+    QString date =locale.toString(currentDate,QLocale::LongFormat);
     ui->labelDate->setText(date);
 }
 
