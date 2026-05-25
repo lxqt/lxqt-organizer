@@ -404,6 +404,8 @@ private slots:
 
     void on_pushButtonShowQuickFullView_clicked();
 
+    void on_actionQuick_Full_View_triggered();
+
     void on_tableViewContacts_doubleClicked(const QModelIndex &index);
 
     void on_actionNext_Month_triggered();

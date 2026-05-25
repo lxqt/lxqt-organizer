@@ -204,6 +204,41 @@ MainWindow::MainWindow(DbManager &dbm, QWidget *parent) :
     }
 
     setWindowIcon(QIcon::fromTheme(QStringLiteral("lxqt-organizer")));
+    ui->actionNew_Appointment->setIconText(tr("New"));
+    ui->actionToday->setIconText(t_calendar_today);
+    ui->actionExit->setShortcut(QKeySequence::Quit);
+    ui->actionNew_Appointment->setShortcut(QKeySequence::New);
+    ui->actionNew_Contact->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));
+    ui->actionToday->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_T));
+    ui->actionPrevious_Month->setShortcut(QKeySequence(Qt::ALT | Qt::Key_Left));
+    ui->actionNext_Month->setShortcut(QKeySequence(Qt::ALT | Qt::Key_Right));
+    ui->actionPreferences->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Comma));
+    ui->actionIncrease_Font->setShortcuts(QKeySequence::ZoomIn);
+    ui->actionDecrease_Font->setShortcuts(QKeySequence::ZoomOut);
+    ui->actionReset_Font->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_0));
+    ui->actionQuick_Full_View->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_F));
+    ui->actionQuick_Full_View->setChecked(flagQuickView);
+    ui->actionQuick_Full_View->setEnabled(ui->tabWidget->currentWidget() == ui->tabContacts);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, [this]() {
+        ui->actionQuick_Full_View->setEnabled(ui->tabWidget->currentWidget() == ui->tabContacts);
+    });
+    if (QToolButton *newButton = qobject_cast<QToolButton *>(ui->mainToolBar->widgetForAction(ui->actionNew_Appointment))) {
+        QMenu *newMenu = new QMenu(newButton);
+        newMenu->addAction(ui->actionNew_Appointment);
+        newMenu->addAction(ui->actionNew_Contact);
+        newButton->setMenu(newMenu);
+        newButton->setPopupMode(QToolButton::MenuButtonPopup);
+        newButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        newButton->setText(ui->actionNew_Appointment->iconText());
+        newButton->setToolTip(tr("Create an appointment. Use the menu for contacts."));
+    }
+    if (QToolButton *todayButton = qobject_cast<QToolButton *>(ui->mainToolBar->widgetForAction(ui->actionToday))) {
+        todayButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
+        todayButton->setText(ui->actionToday->iconText());
+    }
+    if (QToolButton *quickFullButton = qobject_cast<QToolButton *>(ui->mainToolBar->widgetForAction(ui->actionQuick_Full_View))) {
+        quickFullButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    }
     selectedDate = QDate::currentDate();
 
     selectedDateLabel = new QLabel(this);
@@ -1334,6 +1369,9 @@ void MainWindow::UpdateContact(int dbID)
 
 void MainWindow::DisplayContactsOnTableView()
 {
+    flagQuickView=false;
+    ui->actionQuick_Full_View->setChecked(flagQuickView);
+
     contactModel->clearAllContacts();
 
     QList<Contact> contactListDb =dbm.getAllContacts();
@@ -1732,6 +1770,14 @@ void MainWindow::on_pushButtonShowQuickFullView_clicked()
         ui->tableViewContacts->showColumn(10); //country
         ui->tableViewContacts->showColumn(12); //birthday
         flagQuickView=true;
+    }
+    ui->actionQuick_Full_View->setChecked(flagQuickView);
+}
+
+void MainWindow::on_actionQuick_Full_View_triggered()
+{
+    if (ui->tabWidget->currentWidget() == ui->tabContacts) {
+        on_pushButtonShowQuickFullView_clicked();
     }
 }
 
