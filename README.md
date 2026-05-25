@@ -81,6 +81,7 @@ Additional build dependencies are CMake, [lxqt-build-tools](https://github.com/l
   - [ ] Item title/description
   - [ ] Start time / end time / duration
   - [ ] All-day appointments
+  - [ ] Multi-day appointments
   - [ ] Time zones
   - [ ] Location
   - [ ] Notes/long description
