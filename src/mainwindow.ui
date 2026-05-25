@@ -134,11 +134,11 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionExport_Appointments"/>
     <addaction name="actionImport_Appointments"/>
+    <addaction name="actionExport_Appointments"/>
     <addaction name="separator"/>
-    <addaction name="actionExport_Contacts"/>
     <addaction name="actionImport_Contacts"/>
+    <addaction name="actionExport_Contacts"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -149,24 +149,22 @@
     <addaction name="actionDelete_All_Appointments"/>
     <addaction name="actionDelete_All_Contacts"/>
     <addaction name="separator"/>
-    <addaction name="separator"/>
     <addaction name="actionPreferences"/>
    </widget>
-   <widget class="QMenu" name="menuAppointments">
+   <widget class="QMenu" name="menuActions">
     <property name="title">
-     <string>Appointments</string>
+     <string>Actions</string>
     </property>
     <addaction name="actionNew_Appointment"/>
-    <addaction name="actionGeneerate_Repeat_Appointments"/>
-    <addaction name="separator"/>
-    <addaction name="actionUpcoming_Schedule"/>
-   </widget>
-   <widget class="QMenu" name="menuContacts">
-    <property name="title">
-     <string>Contacts</string>
-    </property>
     <addaction name="actionNew_Contact"/>
     <addaction name="separator"/>
+    <addaction name="actionGeneerate_Repeat_Appointments"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionUpcoming_Schedule"/>
     <addaction name="actionCheck_For_Birthdays"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -175,27 +173,26 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menuCalendar">
+   <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>Calendar</string>
+     <string>View</string>
     </property>
-    <addaction name="actionNext_Month"/>
     <addaction name="actionPrevious_Month"/>
     <addaction name="actionToday"/>
+    <addaction name="actionNext_Month"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_Holidays"/>
+    <addaction name="actionShow_Birthdays"/>
     <addaction name="separator"/>
     <addaction name="actionIncrease_Font"/>
     <addaction name="actionDecrease_Font"/>
     <addaction name="actionReset_Font"/>
-    <addaction name="separator"/>
-    <addaction name="actionShow_Birthdays"/>
-    <addaction name="actionShow_Holidays"/>
-    <addaction name="separator"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
-   <addaction name="menuAppointments"/>
-   <addaction name="menuCalendar"/>
-   <addaction name="menuContacts"/>
+   <addaction name="menuView"/>
+   <addaction name="menuActions"/>
+   <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -208,53 +205,81 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
+   <property name="icon">
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Exit</string>
    </property>
   </action>
   <action name="actionDelete_All_Appointments">
+   <property name="icon">
+    <iconset theme="edit-delete">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Delete All Appointments</string>
    </property>
   </action>
   <action name="actionDelete_All_Contacts">
+   <property name="icon">
+    <iconset theme="edit-delete">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Delete All Contacts</string>
    </property>
   </action>
   <action name="actionNew_Appointment">
+   <property name="icon">
+    <iconset theme="appointment-new">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
-    <string>New Appointment (Double Click)</string>
+    <string>New Appointment</string>
    </property>
   </action>
   <action name="actionGeneerate_Repeat_Appointments">
+   <property name="icon">
+    <iconset theme="view-refresh">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Generate Repeat Appointments</string>
    </property>
   </action>
   <action name="actionUpcoming_Schedule">
+   <property name="icon">
+    <iconset theme="view-calendar-upcoming-events">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Upcoming Schedule</string>
    </property>
   </action>
   <action name="actionNew_Contact">
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/icon-c.svg</normaloff>:/icons/icon-c.svg</iconset>
+    <iconset theme="contact-new">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>New Contact</string>
    </property>
   </action>
   <action name="actionCheck_For_Birthdays">
+   <property name="icon">
+    <iconset theme="view-calendar-birthday">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
-    <string>Check For Birthdays</string>
+    <string>Upcoming Birthdays</string>
    </property>
   </action>
   <action name="actionNext_Month">
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/icon-uparrow.svg</normaloff>:/icons/icon-uparrow.svg</iconset>
+    <iconset theme="go-next">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Next Month</string>
@@ -262,8 +287,8 @@
   </action>
   <action name="actionPrevious_Month">
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/icon-downarrow.svg</normaloff>:/icons/icon-downarrow.svg</iconset>
+    <iconset theme="go-previous">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Previous Month</string>
@@ -271,73 +296,101 @@
   </action>
   <action name="actionToday">
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/icon-spacebar.svg</normaloff>:/icons/icon-spacebar.svg</iconset>
+    <iconset theme="go-jump-today">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Today</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
   </action>
   <action name="actionExport_Appointments">
+   <property name="icon">
+    <iconset theme="document-export">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Export Appointments</string>
    </property>
   </action>
   <action name="actionImport_Appointments">
+   <property name="icon">
+    <iconset theme="document-import">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Import Appointments</string>
    </property>
   </action>
   <action name="actionExport_Contacts">
+   <property name="icon">
+    <iconset theme="document-export">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Export Contacts</string>
    </property>
   </action>
   <action name="actionImport_Contacts">
+   <property name="icon">
+    <iconset theme="document-import">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Import Contacts</string>
    </property>
   </action>
   <action name="actionPreferences">
+   <property name="icon">
+    <iconset theme="preferences-system">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Preferences</string>
    </property>
   </action>
   <action name="actionIncrease_Font">
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/icon-f.svg</normaloff>:/icons/icon-f.svg</iconset>
+    <iconset theme="zoom-in">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Increase Font</string>
+    <string>Increase Font Size</string>
    </property>
   </action>
   <action name="actionDecrease_Font">
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/icon-d.svg</normaloff>:/icons/icon-d.svg</iconset>
+    <iconset theme="zoom-out">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Decrease Font</string>
+    <string>Decrease Font Size</string>
    </property>
   </action>
   <action name="actionReset_Font">
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/icon-r.svg</normaloff>:/icons/icon-r.svg</iconset>
+    <iconset theme="zoom-original">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Reset Font</string>
+    <string>Reset Font Size</string>
    </property>
   </action>
   <action name="actionShow_Birthdays">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="view-calendar-birthday">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Show Birthdays</string>
@@ -353,8 +406,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

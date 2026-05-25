@@ -78,7 +78,6 @@ set(LXQT_ORGANIZER_FORMS
 )
 
 set(LXQT_ORGANIZER_RESOURCES
-    src/icons.qrc
     src/sounds.qrc
 )
 
