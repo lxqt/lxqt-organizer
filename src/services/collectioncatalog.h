@@ -19,6 +19,7 @@
 #ifndef COLLECTIONCATALOG_H
 #define COLLECTIONCATALOG_H
 
+#include "collectionsummary.h"
 #include "collectiontypes.h"
 
 #include <QList>
@@ -45,5 +46,8 @@ private:
     Collection m_calendar;
     Collection m_addressBook;
 };
+
+CollectionSummary
+summarizeCollection(const CollectionCatalog &catalog, CollectionKind kind, const QString &collectionId);
 
 #endif // COLLECTIONCATALOG_H

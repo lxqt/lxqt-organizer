@@ -18,14 +18,6 @@
 
 #include "calendaritemstore.h"
 
-#include "calendarvalidation.h"
-#include "incidenceresolver.h"
-#include "storagelog.h"
-
-#include <QDebug>
-
-#include <KCalendarCore/Todo>
-
 CalendarItemStore::CalendarItemStore(const CollectionResolver &collections, const VdirIo &vdirIo)
     : m_items(collections, vdirIo)
 {}
@@ -67,7 +59,7 @@ StorageStatus CalendarItemStore::writeFailureStatus(const QString &collectionId)
 
 std::shared_ptr<CalendarItemRepository> CalendarItemStore::repositoryForCollection(const Collection &collection) const
 {
-    return m_items.repositoryForCollection(storageCollectionRefForCollection(collection));
+    return m_items.repositoryForCollection(collection);
 }
 
 std::shared_ptr<CalendarItemRepository>
@@ -78,7 +70,7 @@ CalendarItemStore::repositoryForCollection(const StorageCollectionRef &collectio
 
 bool CalendarItemStore::isValidForWrite(const Collection &collection) const
 {
-    return repositoryForCollection(collection)->isValid();
+    return m_items.isValidForWrite(collection);
 }
 
 CalendarItemStore::PrecheckedWrite
@@ -89,14 +81,7 @@ CalendarItemStore::precheckWrite(const QString &collectionId, const QString &hre
 
 CalendarItemRepository::ReadResult CalendarItemStore::readPrechecked(const PrecheckedWrite &checked) const
 {
-    if (!checked.isValid())
-    {
-        CalendarItemRepository::ReadResult result;
-        result.status = checked.status == StorageStatus::Ok ? StorageStatus::IoError : checked.status;
-        return result;
-    }
-
-    return repositoryForCollection(*checked.collection)->readCurrentObject(checked.ref.href, checked.ref.etag);
+    return m_items.readPrechecked(checked);
 }
 
 CalendarItemStore::WritableCalendarItem CalendarItemStore::writableItemForUpdate(const QString &collectionId,
@@ -104,144 +89,32 @@ CalendarItemStore::WritableCalendarItem CalendarItemStore::writableItemForUpdate
                                                                                  const QString &etag,
                                                                                  const QString &fallbackUid) const
 {
-    const PrecheckedWrite checked = precheckWrite(collectionId, href, etag);
-    if (!checked.isValid())
-    {
-        WritableCalendarItem item;
-        item.status = checked.status;
-        return item;
-    }
-
-    const CalendarItemRepository::ReadResult readResult = readPrechecked(checked);
-    if (!readResult.isOk())
-    {
-        WritableCalendarItem item;
-        item.status = readResult.status;
-        return item;
-    }
-
-    const CalendarItem stored = readResult.object;
-    const KCalendarCore::MemoryCalendar::Ptr storedCalendar = CalendarSnapshot::calendarForItem(stored);
-    if (storedCalendar.isNull())
-    {
-        WritableCalendarItem item;
-        item.status = StorageStatus::Unsupported;
-        return item;
-    }
-    const QString uid = IncidenceResolver::inferLocator(storedCalendar, fallbackUid).uid;
-    if (uid.isEmpty())
-    {
-        WritableCalendarItem item;
-        item.status = StorageStatus::NotFound;
-        return item;
-    }
-
-    WritableCalendarItem item;
-    item.collection = calendarForWrite(collectionId);
-    item.object = stored;
-    item.object.ref = checked.ref;
-    item.object.uid = uid;
-    item.status = StorageStatus::Ok;
-    return item;
+    return m_items.writableItemForUpdate(collectionId, href, etag, fallbackUid);
 }
 
 StorageResult<CalendarItem> CalendarItemStore::addObject(CalendarItem object) const
 {
-    StorageResult<CalendarItem> result;
-    result.snapshot = object;
-
-    const std::optional<Collection> collection = calendarForWrite(object.ref.collectionId);
-    if (!CalendarSnapshot::hasCalendarItemPayload(object))
-    {
-        result.status = StorageStatus::Unsupported;
-        return result;
-    }
-    if (!collection)
-    {
-        result.status = calendarWriteFailureStatus(object.ref.collectionId);
-        return result;
-    }
-
-    const std::shared_ptr<CalendarItemRepository> repository = repositoryForCollection(*collection);
-    if (!repository->isValid())
-    {
-        result.status = StorageStatus::IoError;
-        return result;
-    }
-
-    result = repository->addObject(object);
-    if (!result.isOk())
-    {
-        qCWarning(storageLog) << "Could not add calendar item" << storageStatusName(result.status);
-    }
-    return result;
+    return m_items.addObject(std::move(object));
 }
 
 StorageResult<CalendarItem> CalendarItemStore::replaceObject(CalendarItem object) const
 {
-    StorageResult<CalendarItem> result;
-    result.snapshot = object;
-
-    const std::optional<Collection> collection = calendarForWrite(object.ref.collectionId);
-    if (object.ref.href.isEmpty() || !CalendarSnapshot::hasCalendarItemPayload(object))
-    {
-        result.status = StorageStatus::Unsupported;
-        return result;
-    }
-    if (!collection)
-    {
-        result.status = calendarWriteFailureStatus(object.ref.collectionId);
-        return result;
-    }
-
-    const std::shared_ptr<CalendarItemRepository> repository = repositoryForCollection(*collection);
-    if (!repository->isValid())
-    {
-        result.status = StorageStatus::IoError;
-        return result;
-    }
-
-    result = repository->replaceObject(object);
-    if (!result.isOk())
-    {
-        qCWarning(storageLog) << "Could not update calendar item" << object.ref.href
-                              << storageStatusName(result.status);
-    }
-    return result;
+    return m_items.replaceObject(std::move(object));
 }
 
 StorageResult<CalendarItem> CalendarItemStore::replaceWritableItem(WritableCalendarItem item) const
 {
-    StorageResult<CalendarItem> result;
-    result.snapshot = item.object;
-
-    if (!item.isValid())
-    {
-        result.status = item.status;
-        return result;
-    }
-
-    return replaceObject(item.object);
+    return m_items.replaceWritableItem(std::move(item));
 }
 
 StorageStatus CalendarItemStore::commitRemove(const PrecheckedWrite &checked) const
 {
-    if (!checked.isValid())
-    {
-        return checked.status;
-    }
-
     return m_items.commitRemove(checked);
 }
 
 StorageStatus CalendarItemStore::removeWritableItem(const WritableCalendarItem &item) const
 {
-    if (!item.isValid())
-    {
-        return item.status;
-    }
-
-    return repositoryForCollection(*item.collection)->remove(item.object.ref);
+    return m_items.removeWritableItem(item);
 }
 
 StorageStatus CalendarItemStore::rollbackInsertedItem(const std::optional<Collection> &collection,
@@ -271,13 +144,12 @@ MoveOutcome CalendarItemStore::commitCrossCollectionMove(const WritableCalendarI
                                                          const std::optional<Collection> &destinationCollection,
                                                          const ItemRef &inserted) const
 {
-    PrecheckedWrite checked;
-    checked.collection =
-        source.collection ? std::optional<StorageCollectionRef>(storageCollectionRefForCollection(*source.collection))
-                          : std::nullopt;
-    checked.ref = source.object.ref;
-    checked.status = source.status;
-    return commitCrossCollectionMove(checked, destinationCollection, inserted);
+    return m_items.commitCrossCollectionMove(
+        source,
+        destinationCollection
+            ? std::optional<StorageCollectionRef>(storageCollectionRefForCollection(*destinationCollection))
+            : std::nullopt,
+        inserted);
 }
 
 void CalendarItemStore::clearCache() const

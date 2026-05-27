@@ -2,6 +2,7 @@ set(LXQT_ORGANIZER_UI_PANES_HEADERS
     src/ui/panes/calendarpane.h
     src/ui/panes/calendarpanecontroller.h
     src/ui/panes/calendarpaneutils.h
+    src/ui/panes/contactdialogflow.h
     src/ui/panes/contactspane.h
     src/ui/panes/contactspanecontroller.h
     src/ui/panes/eventdialogflow.h
@@ -14,6 +15,7 @@ set(LXQT_ORGANIZER_UI_PANES_SOURCES
     src/ui/panes/calendarpane.cpp
     src/ui/panes/calendarpanecontroller.cpp
     src/ui/panes/calendarpaneutils.cpp
+    src/ui/panes/contactdialogflow.cpp
     src/ui/panes/contactspane.cpp
     src/ui/panes/contactspanecontroller.cpp
     src/ui/panes/eventdialogflow.cpp

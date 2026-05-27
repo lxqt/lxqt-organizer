@@ -22,10 +22,11 @@
 #include "contacteditordata.h"
 
 #include <QDialog>
-#include <QDebug>
 #include <QList>
-#include <QMessageBox>
 #include <QPair>
+#include <QString>
+
+#include <memory>
 
 namespace Ui {
 class ContactDialog;
@@ -36,19 +37,27 @@ class ContactDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ContactDialog(QWidget *parent = nullptr);
-    ~ContactDialog();
+    struct State
+    {
+        ContactFields data;
+        QString windowTitle;
+        QList<QPair<QString, QString>> collectionOptions;
+        int currentCollectionIndex = 0;
+    };
+
+    explicit ContactDialog(QWidget *parent, const State &state);
+    ~ContactDialog() override;
 
     ContactFields data() const;
-    void setData(const ContactFields &data);
-    void setCollectionOptions(const QList<QPair<QString, QString>> &collections, int currentIndex);
 
-
-private Q_SLOTS:
-    void accept();
+protected:
+    void accept() override;
 
 private:
-    Ui::ContactDialog *ui;
+    void setupUi(const State &state);
+    void setData(const ContactFields &data);
+
+    std::unique_ptr<Ui::ContactDialog> ui;
 };
 
 #endif // CONTACTDIALOG_H

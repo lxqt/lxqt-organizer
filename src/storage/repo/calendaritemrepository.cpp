@@ -251,6 +251,7 @@ void CalendarItemRepository::forEachObject(const std::function<bool(const ReadRe
 QList<CalendarItemRepository::ReadResult> CalendarItemRepository::readObjects() const
 {
     QList<ReadResult> result;
+    // Scheduler shutdown skips the traversal, so empty can also mean teardown.
     forEachObject([&result](const ReadResult &readResult) {
         result.append(readResult);
         return true;
@@ -302,10 +303,10 @@ StorageResult<CalendarItem> CalendarItemRepository::createCalendar(const QString
     }
 
     result.status = StorageStatus::Ok;
-    result.snapshot.ref = ItemRef{m_items.collection().id, href, etag};
-    result.snapshot.uid = IncidenceResolver::inferLocator(serialized.calendar, object.uid).uid;
-    result.snapshot = CalendarSnapshot::calendarItem(
-        result.snapshot.ref, result.snapshot.uid, serialized.calendar, CalendarSnapshot::PayloadShape::Auto);
+    const ItemRef ref{m_items.collection().id, href, etag};
+    const QString uid = IncidenceResolver::inferLocator(serialized.calendar, object.uid).uid;
+    result.snapshot =
+        CalendarSnapshot::calendarItem(ref, uid, serialized.calendar, CalendarSnapshot::PayloadShape::Auto);
     return result;
 }
 
@@ -396,10 +397,10 @@ CalendarItemRepository::replaceCalendar(const QString &href, CalendarItem object
     }
 
     result.status = StorageStatus::Ok;
-    result.snapshot.ref = ItemRef{m_items.collection().id, href, newEtag};
-    result.snapshot.uid = IncidenceResolver::inferLocator(serialized.calendar, object.uid).uid;
-    result.snapshot = CalendarSnapshot::calendarItem(
-        result.snapshot.ref, result.snapshot.uid, serialized.calendar, CalendarSnapshot::PayloadShape::Auto);
+    const ItemRef ref{m_items.collection().id, href, newEtag};
+    const QString uid = IncidenceResolver::inferLocator(serialized.calendar, object.uid).uid;
+    result.snapshot =
+        CalendarSnapshot::calendarItem(ref, uid, serialized.calendar, CalendarSnapshot::PayloadShape::Auto);
     return result;
 }
 

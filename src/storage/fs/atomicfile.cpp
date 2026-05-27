@@ -102,13 +102,16 @@ bool syncParentDirectory(const QString &path)
 
 [[nodiscard]] StorageStatus createFailureStatus(const QString &path)
 {
+    const QFileInfo parent(QFileInfo(path).absolutePath());
+    if (!parent.isWritable())
+    {
+        return StorageStatus::ReadOnly;
+    }
     if (QFileInfo::exists(path))
     {
         return StorageStatus::Conflict;
     }
-
-    const QFileInfo parent(QFileInfo(path).absolutePath());
-    return parent.isWritable() ? StorageStatus::IoError : StorageStatus::ReadOnly;
+    return StorageStatus::IoError;
 }
 
 bool writeAll(int fd, const QByteArray &data)
@@ -281,6 +284,7 @@ struct LinuxExchangeCommitResult
 {
     bool available = false;
     StorageStatus status = StorageStatus::IoError;
+    bool preserveReplacement = false;
 };
 
 LinuxExchangeCommitResult
@@ -314,28 +318,79 @@ commitReplacementWithLinuxExchange(const QString &path, const QString &replaceme
         return LinuxExchangeCommitResult{true, StorageStatus::Ok};
     }
 
+    bool restoredReplacement = false;
     if (sameFileInode(path, replacementGuardPath))
     {
         int restoreError = 0;
         const RenameExchangeStatus restoreStatus = renameExchange(replacementPath, path, &restoreError);
         if (restoreStatus != RenameExchangeStatus::Exchanged)
         {
+            // replacementPath now holds the racer's file (their inode was
+            // swapped onto our temp name); signal the caller to leave it alone.
             qCWarning(storageLog) << "Could not restore externally modified file" << path
-                                  << QString::fromLocal8Bit(strerror(restoreError));
+                                  << QString::fromLocal8Bit(strerror(restoreError))
+                                  << "— preserving externally written file at" << replacementPath;
             QFile::remove(replacementGuardPath);
-            return LinuxExchangeCommitResult{true, StorageStatus::IoError};
+            return LinuxExchangeCommitResult{true, StorageStatus::IoError, /*preserveReplacement=*/true};
         }
         if (!syncParentDirectory(path))
         {
             QFile::remove(replacementGuardPath);
             return LinuxExchangeCommitResult{true, StorageStatus::IoError};
         }
+        restoredReplacement = true;
     }
 
     QFile::remove(replacementGuardPath);
-    return LinuxExchangeCommitResult{true, StorageStatus::Conflict};
+    return LinuxExchangeCommitResult{true,
+                                     StorageStatus::Conflict,
+                                     /*preserveReplacement=*/!restoredReplacement};
 }
 #endif
+
+// Capture (etag, size, mtime) from a single fd so the three fields describe a
+// coherent on-disk state — protects the vdir etag cache from binding an etag
+// to a size/mtime taken from a different snapshot when an external writer
+// races after our rename(2).
+CommittedSnapshot captureSnapshot(const QString &path)
+{
+    CommittedSnapshot snapshot;
+    const QByteArray encodedPath = QFile::encodeName(path);
+    int fd = -1;
+    do
+    {
+        fd = ::open(encodedPath.constData(), O_RDONLY | O_CLOEXEC | O_NONBLOCK);
+    } while (fd < 0 && errno == EINTR);
+    if (fd < 0)
+    {
+        return snapshot;
+    }
+
+    struct stat status;
+    if (::fstat(fd, &status) != 0 || !S_ISREG(status.st_mode))
+    {
+        ::close(fd);
+        return snapshot;
+    }
+
+    QFile file;
+    if (!file.open(fd, QFile::ReadOnly, QFileDevice::AutoCloseHandle))
+    {
+        ::close(fd);
+        return snapshot;
+    }
+
+    QCryptographicHash hash(QCryptographicHash::Sha256);
+    if (!hash.addData(&file))
+    {
+        return snapshot;
+    }
+    snapshot.etag = QString::fromLatin1(hash.result().toHex());
+    snapshot.size = static_cast<qint64>(status.st_size);
+    snapshot.mtimeMsecs =
+        static_cast<qint64>(status.st_mtim.tv_sec) * 1000 + static_cast<qint64>(status.st_mtim.tv_nsec) / 1'000'000;
+    return snapshot;
+}
 
 } // namespace
 
@@ -371,7 +426,7 @@ commitReplacementWithLinuxExchange(const QString &path, const QString &replaceme
     return syncParentDirectory(path) ? StorageStatus::Ok : StorageStatus::IoError;
 }
 
-[[nodiscard]] StorageStatus writeNewTextFile(const QString &path, const QString &text)
+[[nodiscard]] StorageStatus writeNewTextFile(const QString &path, const QString &text, CommittedSnapshot *snapshot)
 {
     const QFileInfo target(path);
     QTemporaryFile file(target.dir().filePath(QStringLiteral(".%1.XXXXXX.tmp").arg(target.fileName())));
@@ -409,18 +464,30 @@ commitReplacementWithLinuxExchange(const QString &path, const QString &replaceme
     }
     if (!syncParentDirectory(path))
     {
-        qCWarning(storageLog) << "Removing newly created" << path << "because parent directory sync failed";
-        QFile::remove(path);
-        file.remove();
-        return createFailureStatus(path);
+        // The contents were fsync'd before link(2), so the inode is durable;
+        // only the dirent's durability is unconfirmed. Removing the freshly
+        // committed target would destroy good user data.
+        qCWarning(storageLog) << "Parent directory sync failed for newly created" << path << "— leaving file in place";
+        return StorageStatus::IoError;
     }
 
     file.remove();
+    if (snapshot)
+    {
+        *snapshot = captureSnapshot(path);
+        if (snapshot->etag.isEmpty())
+        {
+            qCWarning(storageLog) << "Could not compute etag after creating" << path;
+            return StorageStatus::IoError;
+        }
+    }
     return StorageStatus::Ok;
 }
 
-[[nodiscard]] StorageStatus
-replaceTextFileIfEtagMatches(const QString &path, const QString &text, const QString &expectedEtag, QString *newEtag)
+[[nodiscard]] StorageStatus replaceTextFileIfEtagMatches(const QString &path,
+                                                         const QString &text,
+                                                         const QString &expectedEtag,
+                                                         CommittedSnapshot *snapshot)
 {
     QString replacementPath;
     StorageStatus status = writeSyncedTemporaryTextFile(path, text, &replacementPath);
@@ -451,7 +518,10 @@ replaceTextFileIfEtagMatches(const QString &path, const QString &text, const QSt
     {
         const bool synced = exchangeResult.status == StorageStatus::Ok && syncParentDirectory(path);
         QFile::remove(guardPath);
-        QFile::remove(replacementPath);
+        if (!exchangeResult.preserveReplacement)
+        {
+            QFile::remove(replacementPath);
+        }
         if (exchangeResult.status != StorageStatus::Ok)
         {
             return exchangeResult.status;
@@ -483,10 +553,10 @@ replaceTextFileIfEtagMatches(const QString &path, const QString &text, const QSt
         }
     }
 
-    if (newEtag)
+    if (snapshot)
     {
-        *newEtag = contentEtag(path);
-        if (newEtag->isEmpty())
+        *snapshot = captureSnapshot(path);
+        if (snapshot->etag.isEmpty())
         {
             qCWarning(storageLog) << "Could not compute etag after committing" << path;
             return StorageStatus::IoError;
@@ -534,37 +604,7 @@ replaceTextFileIfEtagMatches(const QString &path, const QString &text, const QSt
 
 QString contentEtag(const QString &path)
 {
-    const QByteArray encodedPath = QFile::encodeName(path);
-    int fd = -1;
-    do
-    {
-        fd = ::open(encodedPath.constData(), O_RDONLY | O_CLOEXEC | O_NONBLOCK);
-    } while (fd < 0 && errno == EINTR);
-    if (fd < 0)
-    {
-        return QString();
-    }
-
-    struct stat status;
-    if (::fstat(fd, &status) != 0 || !S_ISREG(status.st_mode))
-    {
-        ::close(fd);
-        return QString();
-    }
-
-    QFile file;
-    if (!file.open(fd, QFile::ReadOnly, QFileDevice::AutoCloseHandle))
-    {
-        ::close(fd);
-        return QString();
-    }
-
-    QCryptographicHash hash(QCryptographicHash::Sha256);
-    if (!hash.addData(&file))
-    {
-        return QString();
-    }
-    return QString::fromLatin1(hash.result().toHex());
+    return captureSnapshot(path).etag;
 }
 
 } // namespace AtomicFile

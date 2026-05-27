@@ -26,11 +26,11 @@
 #include <QObject>
 
 class CollectionService;
-class EventReader;
 class EventService;
+class MainWindowServices;
+class PreferencesController;
 class ReloadCoordinator;
 class TaskService;
-struct WindowServices;
 
 class CalendarPaneController : public QObject
 {
@@ -39,12 +39,12 @@ class CalendarPaneController : public QObject
 public:
     struct Deps
     {
-        const EventReader &eventReader;
         EventService &eventService;
         TaskService &taskService;
         CollectionService &collectionService;
         ReloadCoordinator &reloads;
-        const WindowServices &services;
+        PreferencesController &preferences;
+        MainWindowServices &services;
     };
 
     explicit CalendarPaneController(CalendarPane *pane, const Deps &deps, QObject *parent = nullptr);

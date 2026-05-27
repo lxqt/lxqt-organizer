@@ -19,11 +19,12 @@
 #ifndef APPLICATIONCONTEXT_H
 #define APPLICATIONCONTEXT_H
 
+#include "mainwindowservices.h"
+
 #include <QFuture>
 
 #include <memory>
 
-class EventReader;
 class EventService;
 class CollectionCatalog;
 class CollectionService;
@@ -37,7 +38,7 @@ class TaskService;
 // mutex-protected and may be called from any thread. Their signals emit from
 // the GUI thread; connect freely. Do not store the reference past the
 // ApplicationContext lifetime.
-class ApplicationContext
+class ApplicationContext : public MainWindowServices
 {
 public:
     ApplicationContext();
@@ -48,15 +49,14 @@ public:
     ApplicationContext &operator=(ApplicationContext &&) = delete;
 
     bool loadCollections();
-    QFuture<bool> reloadCollections();
+    QFuture<bool> reloadCollections() override;
 
     std::shared_ptr<const CollectionCatalog> catalog() const;
-    std::shared_ptr<const CollectionCatalog> catalogSnapshot() const;
-    CollectionService &collectionService();
-    EventReader &eventReader();
-    EventService &eventService();
-    TaskService &taskService();
-    ContactService &contactService();
+    std::shared_ptr<const CollectionCatalog> catalogSnapshot() const override;
+    CollectionService &collectionService() override;
+    EventService &eventService() override;
+    TaskService &taskService() override;
+    ContactService &contactService() override;
 
 private:
     class Impl;

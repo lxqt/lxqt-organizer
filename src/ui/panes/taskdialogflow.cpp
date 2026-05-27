@@ -21,17 +21,13 @@
 #include "calendareditordata.h"
 #include "calendareditormapper.h"
 #include "calendarsnapshot.h"
+#include "preferencescontroller.h"
 #include "taskdialog.h"
 
 #include <QCoreApplication>
 #include <QDialog>
 
 namespace {
-
-QLocale currentLocale(const WindowServices *services)
-{
-    return services ? services->locale() : QLocale::system();
-}
 
 QString controllerText(const char *sourceText)
 {
@@ -40,9 +36,9 @@ QString controllerText(const char *sourceText)
 
 } // namespace
 
-TaskDialogFlow::TaskDialogFlow(QWidget *parentWidget, const WindowServices &services)
+TaskDialogFlow::TaskDialogFlow(QWidget *parentWidget, const PreferencesController &preferences)
     : m_parent(parentWidget)
-    , m_services(&services)
+    , m_preferences(&preferences)
 {}
 
 std::optional<TaskDialogFlow::EditResult>
@@ -66,7 +62,7 @@ TaskDialogFlow::editTaskInDialog(Task task,
                                  const QDate &selectedDate,
                                  const QList<QPair<QString, QString>> &collectionOptions) const
 {
-    if (!m_parent || task.todo.isNull())
+    if (task.todo.isNull())
     {
         return std::nullopt;
     }
@@ -75,7 +71,7 @@ TaskDialogFlow::editTaskInDialog(Task task,
     dialogState.data = CalendarEditorMapper::fromTask(task, selectedDate);
     dialogState.windowTitle = windowTitle;
     dialogState.collectionOptions = collectionOptions;
-    dialogState.locale = currentLocale(m_services);
+    dialogState.locale = m_preferences->locale();
 
     TaskDialog taskDialog(m_parent, dialogState);
     if (taskDialog.exec() != QDialog::Accepted)

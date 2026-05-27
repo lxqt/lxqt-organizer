@@ -20,7 +20,6 @@
 #define TASKDIALOGFLOW_H
 
 #include "calendaritem.h"
-#include "windowservices.h"
 
 #include <QDate>
 #include <QList>
@@ -29,6 +28,7 @@
 
 #include <optional>
 
+class PreferencesController;
 class QWidget;
 
 // "Flow" = stateless dialog runner that returns a DTO.
@@ -41,7 +41,7 @@ public:
         QString destinationCollectionId;
     };
 
-    TaskDialogFlow(QWidget *parentWidget, const WindowServices &services);
+    TaskDialogFlow(QWidget *parentWidget, const PreferencesController &preferences);
 
     std::optional<EditResult> create(const QDate &selectedDate,
                                      const QList<QPair<QString, QString>> &collectionOptions) const;
@@ -56,7 +56,7 @@ private:
                                                const QList<QPair<QString, QString>> &collectionOptions) const;
 
     QWidget *m_parent = nullptr;
-    const WindowServices *m_services = nullptr;
+    const PreferencesController *m_preferences = nullptr;
 };
 
 #endif // TASKDIALOGFLOW_H

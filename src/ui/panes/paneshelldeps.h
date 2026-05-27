@@ -19,15 +19,15 @@
 #ifndef PANESHELLDEPS_H
 #define PANESHELLDEPS_H
 
+class MainWindowServices;
 class PreferencesController;
 class ReloadCoordinator;
-struct WindowServices;
 
 struct PaneShellDeps
 {
     ReloadCoordinator &reloads;
     PreferencesController &preferences;
-    const WindowServices &services;
+    MainWindowServices &services;
 };
 
 #endif // PANESHELLDEPS_H

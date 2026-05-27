@@ -18,9 +18,10 @@
 
 #include "reloadcoordinator.h"
 
+#include "collectionservice.h"
 #include "completedfuture.h"
-#include "eventreader.h"
 #include "contactservice.h"
+#include "eventservice.h"
 #include "futurewatch.h"
 #include "taskservice.h"
 
@@ -100,12 +101,14 @@ void appendUniqueEventOccurrences(QList<EventOccurrence> &target, const QList<Ev
 
 } // namespace
 
-ReloadCoordinator::ReloadCoordinator(const EventReader &eventReader,
+ReloadCoordinator::ReloadCoordinator(const CollectionService &collectionService,
+                                     const EventService &eventService,
                                      TaskService &taskService,
                                      const ContactService &contactService,
                                      QObject *parent)
     : QObject(parent)
-    , m_eventReader(eventReader)
+    , m_collectionService(collectionService)
+    , m_eventService(eventService)
     , m_taskService(taskService)
     , m_contactService(contactService)
 {
@@ -208,6 +211,10 @@ void ReloadCoordinator::reloadCalendar()
     }
 
     const int generation = m_calendarReloadGeneration;
+    const QList<Collection> collections = m_collectionService.calendarList();
+    m_eventService.retainRepositoriesForCollections(collections);
+    m_taskService.retainRepositoriesForCollections(collections);
+
     const QDate visibleStart = m_visibleStart;
     const QDate visibleEnd = m_visibleEnd;
     const QDate today = m_today.isValid() ? m_today : QDate::currentDate();
@@ -215,10 +222,10 @@ void ReloadCoordinator::reloadCalendar()
 
     const QFuture<EventOccurrenceListResult> visibleRangeFuture =
         (visibleStart.isValid() && visibleEnd.isValid())
-            ? m_eventReader.eventOccurrencesInDateRangeAsync(visibleStart, visibleEnd, cancellation)
+            ? m_eventService.eventOccurrencesInDateRangeAsync(visibleStart, visibleEnd, cancellation)
             : CalendarIoUtils::completedFuture(EventOccurrenceListResult{});
     const QFuture<EventOccurrenceListResult> todayRangeFuture =
-        m_eventReader.eventOccurrencesInDateRangeAsync(today, today.addDays(1), cancellation);
+        m_eventService.eventOccurrencesInDateRangeAsync(today, today.addDays(1), cancellation);
     const QFuture<TaskSnapshotListResult> taskFuture = m_taskService.taskSnapshotsAsync(cancellation);
 
     using CalendarReloadVariant = std::variant<QFuture<EventOccurrenceListResult>,
@@ -257,6 +264,8 @@ void ReloadCoordinator::reloadContacts()
     }
 
     const int generation = m_contactReloadGeneration;
+    m_contactService.retainRepositoriesForCollections(m_collectionService.addressBookList());
+
     const CancellationToken cancellation(m_stopping);
     QFuture<ContactReloadPayload> payloadFuture =
         m_contactService.contactSnapshotsAsync(cancellation)

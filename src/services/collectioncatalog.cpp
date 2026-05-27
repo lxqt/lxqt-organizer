@@ -152,3 +152,18 @@ std::optional<Collection> CollectionCatalog::defaultCollection(CollectionKind ki
     const Collection &collection = kind == CollectionKind::Calendar ? m_calendar : m_addressBook;
     return collection.isWritable() ? std::optional<Collection>(collection) : std::nullopt;
 }
+
+CollectionSummary
+summarizeCollection(const CollectionCatalog &catalog, CollectionKind kind, const QString &collectionId)
+{
+    const QList<Collection> collections =
+        kind == CollectionKind::Calendar ? catalog.calendarList() : catalog.addressBookList();
+    for (const Collection &candidate : collections)
+    {
+        if (candidate.id == collectionId)
+        {
+            return CollectionSummary{candidate.displayName, candidate.color};
+        }
+    }
+    return CollectionSummary{collectionId, {}};
+}

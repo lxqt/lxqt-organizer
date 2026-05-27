@@ -20,11 +20,14 @@
 #include "ui_calendarpane.h"
 
 #include "calendarpaneutils.h"
-#include "daytasklistwidget.h"
+#include "tasklistwidget.h"
 #include "daytimelinewidget.h"
-#include "eventfindbar.h"
+#include "findbar.h"
 #include "monthchromewidget.h"
-#include "windowservices.h"
+
+#include "collectioncatalog.h"
+#include "mainwindowservices.h"
+#include "preferencescontroller.h"
 
 #include <QAction>
 #include <QCoreApplication>
@@ -104,10 +107,10 @@ CalendarPane::CalendarPane(const Deps &deps, QWidget *parent)
     ui->calendarSplitter->setChildrenCollapsible(false);
     ui->calendarSplitter->setStretchFactor(0, 0);
     ui->calendarSplitter->setStretchFactor(1, 1);
-    ui->monthChrome->setLocale(m_deps.services.locale());
+    ui->monthChrome->setLocale(m_deps.preferences.locale());
     ui->taskList->installTaskViewEventFilter(this);
     ui->taskList->setCollectionSummaryProvider([services = &m_deps.services](const QString &collectionId) {
-        return services->summarizeCollection(CollectionKind::Calendar, collectionId);
+        return summarizeCollection(*services->catalogSnapshot(), CollectionKind::Calendar, collectionId);
     });
     ui->dayTimeline->installEventFilter(this);
 
@@ -133,19 +136,19 @@ CalendarPane::CalendarPane(const Deps &deps, QWidget *parent)
         Q_EMIT viewWindowChanged(m_selectedDate);
         newTask();
     });
-    connect(ui->taskList, &DayTaskListWidget::selectionChanged, this, [this]() {
+    connect(ui->taskList, &TaskListWidget::selectionChanged, this, [this]() {
         if (ui->taskList->hasSelectedTask())
         {
             ui->dayTimeline->clearSelection();
         }
         updateActionState();
     });
-    connect(ui->taskList, &DayTaskListWidget::taskActivated, this, &CalendarPane::editTask);
-    connect(ui->taskList, &DayTaskListWidget::quickAddRequested, this, &CalendarPane::quickAddTask);
-    connect(ui->taskList, &DayTaskListWidget::newTaskRequested, this, &CalendarPane::newTask);
-    connect(ui->taskList, &DayTaskListWidget::taskEditRequested, this, &CalendarPane::editTask);
-    connect(ui->taskList, &DayTaskListWidget::taskDeleteRequested, this, &CalendarPane::taskDeleteRequested);
-    connect(ui->taskList, &DayTaskListWidget::inlineEditFinished, this, &CalendarPane::taskInlineEditCommitted);
+    connect(ui->taskList, &TaskListWidget::taskActivated, this, &CalendarPane::editTask);
+    connect(ui->taskList, &TaskListWidget::quickAddRequested, this, &CalendarPane::quickAddTask);
+    connect(ui->taskList, &TaskListWidget::newTaskRequested, this, &CalendarPane::newTask);
+    connect(ui->taskList, &TaskListWidget::taskEditRequested, this, &CalendarPane::editTask);
+    connect(ui->taskList, &TaskListWidget::taskDeleteRequested, this, &CalendarPane::taskDeleteRequested);
+    connect(ui->taskList, &TaskListWidget::inlineEditFinished, this, &CalendarPane::taskInlineEditCommitted);
     connect(ui->dayTimeline, &DayTimelineWidget::eventActivated, this, &CalendarPane::updateEvent);
     connect(ui->dayTimeline, &DayTimelineWidget::eventSelected, this, [this](const EventOccurrence &) {
         ui->taskList->clearSelection();
@@ -170,7 +173,7 @@ CalendarPane::CalendarPane(const Deps &deps, QWidget *parent)
                 [this](const EventOccurrence &event, bool completed) { setEventCompleted(event, completed); },
                 [this](const EventOccurrence &event) { deleteEventWithPrompt(event); });
         });
-    connect(ui->findBar, &EventFindBar::findRequested, this, [this](const QString &needle, bool forward) {
+    connect(ui->findBar, &FindBar::findRequested, this, [this](const QString &needle, bool forward) {
         const QDate startDate = m_selectedDate.isValid() ? m_selectedDate : QDate::currentDate();
         Q_EMIT calendarFindRequested(forward, needle, startDate, ui->dayTimeline->selectedEvent(), selectedTask());
     });
@@ -394,7 +397,7 @@ void CalendarPane::setSelectedDate(const QDate &date)
 
 void CalendarPane::renderMonthView()
 {
-    ui->monthChrome->setLocale(m_deps.services.locale());
+    ui->monthChrome->setLocale(m_deps.preferences.locale());
     ui->monthChrome->renderMonthView();
     if (m_selectedDate.isValid())
     {
@@ -661,23 +664,17 @@ void CalendarPane::handleTodayAdvanced()
 void CalendarPane::updateActionState()
 {
     const bool hasSelection = hasSelectedCalendarItem();
-    if (m_actionEditEvent)
-    {
-        m_actionEditEvent->setEnabled(hasSelection);
-    }
-    if (m_actionDeleteEvent)
-    {
-        m_actionDeleteEvent->setEnabled(hasSelection);
-    }
+    m_actionEditEvent->setEnabled(hasSelection);
+    m_actionDeleteEvent->setEnabled(hasSelection);
     Q_EMIT actionStateChanged();
 }
 
 QString CalendarPane::selectedEventStatusText(const EventOccurrence &event) const
 {
-    const QLocale currentLocale = m_deps.services.locale();
+    const QLocale currentLocale = m_deps.preferences.locale();
     const EventDisplay display = CalendarSnapshot::eventDisplay(event);
     const CollectionSummary collection =
-        m_deps.services.summarizeCollection(CollectionKind::Calendar, event.ref.item.collectionId);
+        summarizeCollection(*m_deps.services.catalogSnapshot(), CollectionKind::Calendar, event.ref.item.collectionId);
     QStringList parts;
     parts.append(tr("Calendar: %1").arg(collection.displayName));
     const QString timeText = eventTimeStatusText(display, currentLocale);
@@ -692,9 +689,9 @@ QString CalendarPane::selectedEventStatusText(const EventOccurrence &event) cons
 
 QString CalendarPane::selectedTaskStatusText(const Task &task) const
 {
-    const QLocale currentLocale = m_deps.services.locale();
+    const QLocale currentLocale = m_deps.preferences.locale();
     const CollectionSummary collection =
-        m_deps.services.summarizeCollection(CollectionKind::Calendar, task.ref.collectionId);
+        summarizeCollection(*m_deps.services.catalogSnapshot(), CollectionKind::Calendar, task.ref.collectionId);
     QStringList parts;
     parts.append(tr("Calendar: %1").arg(collection.displayName));
     const QString dueText = taskDueStatusText(task, currentLocale);

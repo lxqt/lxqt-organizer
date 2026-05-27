@@ -39,14 +39,8 @@ ALLOWED_LAYER_INCLUDES = {
     "domain": {"domain"},
 }
 
-ALLOWED_LAYER_INCLUDE_EXCEPTIONS = {
-    ("src/ui/shell/mainwindow.cpp", "applicationcontext.h"),
-    ("src/ui/shell/mainwindow_composition.cpp", "applicationcontext.h"),
-}
-
 ALLOWED_SNAPSHOT_CAST_FILES = {
     "src/domain/calendarsnapshot.cpp",
-    "src/domain/contactsnapshot.cpp",
 }
 SNAPSHOT_CONST_CAST_RE = re.compile(
     r"qSharedPointerConstCast\s*<[^>]*\b"
@@ -123,8 +117,6 @@ def check_layer_includes():
             if not match:
                 continue
             include = match.group(1)
-            if (source_rel, include) in ALLOWED_LAYER_INCLUDE_EXCEPTIONS:
-                continue
             candidates = includes.get(include, [])
             if not candidates:
                 candidates = includes.get(pathlib.PurePosixPath(include).name, [])

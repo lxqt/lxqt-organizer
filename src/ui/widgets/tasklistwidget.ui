@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DayTaskListWidget</class>
- <widget class="QWidget" name="DayTaskListWidget">
+ <class>TaskListWidget</class>
+ <widget class="QWidget" name="TaskListWidget">
   <layout class="QVBoxLayout" name="verticalLayoutEvents">
    <property name="spacing"><number>0</number></property>
    <property name="leftMargin"><number>0</number></property>
@@ -10,13 +10,13 @@
    <property name="bottomMargin"><number>0</number></property>
    <item>
     <widget class="QLineEdit" name="lineEditQuickTask">
-     <property name="toolTip"><string>Add a task for the selected day. Press Enter to save.</string></property>
+     <property name="toolTip"><string>Add a task. Press Enter to save.</string></property>
      <property name="placeholderText"><string>Add task</string></property>
      <property name="clearButtonEnabled"><bool>true</bool></property>
     </widget>
    </item>
    <item>
-    <widget class="QTableView" name="listViewDay"/>
+    <widget class="QTableView" name="taskView"/>
    </item>
   </layout>
  </widget>

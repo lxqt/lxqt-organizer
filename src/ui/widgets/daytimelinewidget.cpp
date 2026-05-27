@@ -697,11 +697,6 @@ int DayTimelineWidget::headerHeight() const
 
 void DayTimelineWidget::updateHeader()
 {
-    if (!m_headerLabel)
-    {
-        return;
-    }
-
     const int height = headerHeight();
     if (viewportMargins().top() != height)
     {

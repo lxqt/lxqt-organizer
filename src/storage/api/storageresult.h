@@ -24,7 +24,6 @@
 #include <QString>
 #include <QStringList>
 
-#include <optional>
 #include <type_traits>
 #include <utility>
 #include <variant>
@@ -71,7 +70,7 @@ struct [[nodiscard]] MoveDestinationCreateFailed
     ItemRef destinationStorage;
 };
 
-struct [[nodiscard]] MoveSourceRemoveFailed
+struct [[nodiscard]] MoveReverted
 {
     StorageStatus status = StorageStatus::IoError;
     ItemRef sourceStorage;
@@ -88,8 +87,8 @@ struct [[nodiscard]] MoveRollbackFailed
 
 struct [[nodiscard]] MoveOutcome
 {
-    using Outcome = std::
-        variant<UpdateOutcome, MoveSuccess, MoveDestinationCreateFailed, MoveSourceRemoveFailed, MoveRollbackFailed>;
+    using Outcome =
+        std::variant<UpdateOutcome, MoveSuccess, MoveDestinationCreateFailed, MoveReverted, MoveRollbackFailed>;
 
     Outcome outcome = UpdateOutcome{};
 
@@ -117,22 +116,20 @@ struct [[nodiscard]] MoveOutcome
     static MoveOutcome crossCollection(const ItemRef &source,
                                        const ItemRef &destination,
                                        StorageStatus sourceRemoveStatus,
-                                       bool destinationCleanupAttempted = false,
-                                       std::optional<StorageStatus> rollbackStatus = std::nullopt)
+                                       StorageStatus rollbackStatus = StorageStatus::Ok)
     {
         MoveOutcome result;
         if (sourceRemoveStatus == StorageStatus::Ok)
         {
             result.outcome = MoveSuccess{source, destination};
         }
-        else if (destinationCleanupAttempted && rollbackStatus != StorageStatus::Ok)
+        else if (rollbackStatus == StorageStatus::Ok)
         {
-            result.outcome = MoveRollbackFailed{
-                sourceRemoveStatus, rollbackStatus.value_or(StorageStatus::IoError), source, destination};
+            result.outcome = MoveReverted{sourceRemoveStatus, source, destination};
         }
         else
         {
-            result.outcome = MoveSourceRemoveFailed{sourceRemoveStatus, source, destination};
+            result.outcome = MoveRollbackFailed{sourceRemoveStatus, rollbackStatus, source, destination};
         }
         return result;
     }
@@ -167,6 +164,8 @@ struct ReadFailure
 
 template <typename T> struct [[nodiscard]] ReadResult
 {
+    using Object = T;
+
     T object;
     StorageStatus status = StorageStatus::NotFound;
 

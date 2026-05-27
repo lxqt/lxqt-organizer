@@ -16,37 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef EVENTFINDBAR_H
-#define EVENTFINDBAR_H
+#ifndef MAINWINDOWSERVICES_H
+#define MAINWINDOWSERVICES_H
 
-#include <QWidget>
+#include <QFuture>
 
-namespace Ui {
-class EventFindBar;
-}
+#include <memory>
 
-class EventFindBar : public QWidget
+class CollectionCatalog;
+class CollectionService;
+class ContactService;
+class EventService;
+class TaskService;
+
+class MainWindowServices
 {
-    Q_OBJECT
-
 public:
-    explicit EventFindBar(QWidget *parent = nullptr);
-    ~EventFindBar() override;
+    virtual ~MainWindowServices() = default;
 
-    bool isFindActive() const;
-    void showFind();
-    void hideFind();
-    bool requestFind(bool forward);
-    void clearStatus();
-    void showNoMatch();
-
-Q_SIGNALS:
-    void closeRequested();
-    void findRequested(const QString &needle, bool forward);
-
-private:
-    Ui::EventFindBar *ui = nullptr;
-    bool m_findActive = false;
+    virtual QFuture<bool> reloadCollections() = 0;
+    virtual std::shared_ptr<const CollectionCatalog> catalogSnapshot() const = 0;
+    virtual CollectionService &collectionService() = 0;
+    virtual EventService &eventService() = 0;
+    virtual TaskService &taskService() = 0;
+    virtual ContactService &contactService() = 0;
 };
 
-#endif // EVENTFINDBAR_H
+#endif // MAINWINDOWSERVICES_H

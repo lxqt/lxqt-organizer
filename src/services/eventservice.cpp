@@ -19,6 +19,8 @@
 #include "eventservice.h"
 
 #include "asyncsubmit.h"
+#include "completedfuture.h"
+#include "collectionreloadsubscription.h"
 #include "eventoccurrences.h"
 #include "calendarmover.h"
 #include "calendaritemstore.h"
@@ -27,31 +29,65 @@
 #include "calendaritemmutator.h"
 #include "calendaritemrepository.h"
 #include "calendarvalidation.h"
-#include "collectionreloadsubscription.h"
 #include "eventdatetime.h"
 #include "eventpatcher.h"
 #include "incidenceresolver.h"
 #include "moveoutcomelog.h"
 #include "storagelog.h"
 #include "vdirio.h"
+#include "vdiritemrepository.h"
 
 #include <QDateTime>
 #include <QDebug>
+#include <QFuture>
+#include <QHash>
+#include <QMutex>
+#include <QMutexLocker>
+#include <QObject>
 
 #include <KCalendarCore/Todo>
 
+#include <algorithm>
 #include <utility>
+#include <vector>
 
 namespace {
 
 using WritableCalendarItem = CalendarItemStore::WritableCalendarItem;
 
-template <class... Ts> struct Overloaded : Ts...
+ReadFailure readFailureForCalendarItem(const QString &collectionId,
+                                       const CalendarItemRepository::ReadResult &readResult)
 {
-    using Ts::operator()...;
-};
+    ItemRef storage = readResult.object.ref;
+    if (storage.collectionId.isEmpty())
+    {
+        storage.collectionId = collectionId;
+    }
+    return ReadFailure{storage, readResult.status};
+}
 
-template <class... Ts> Overloaded(Ts...) -> Overloaded<Ts...>;
+bool eventStartsBefore(const EventOccurrence &first, const EventOccurrence &second)
+{
+    return first.start.time() < second.start.time();
+}
+
+bool sameOccurrence(const EventOccurrence &first, const EventOccurrence &second)
+{
+    return first.ref.item.collectionId == second.ref.item.collectionId && first.ref.item.href == second.ref.item.href &&
+           first.ref.uid == second.ref.uid && first.start == second.start;
+}
+
+bool calendarItemMatchesText(const CalendarItemDisplay &item, const QString &needleLower)
+{
+    for (const QString &text : item.searchableText)
+    {
+        if (text.toLower().contains(needleLower))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 EventService::EventSaveResult eventAddFailure(StorageStatus status, const EventFields &event)
 {
@@ -107,16 +143,6 @@ QString resolvedEventUid(const KCalendarCore::MemoryCalendar::Ptr &calendar,
     return uid;
 }
 
-StorageStatus storageStatusForMoveOutcome(const MoveOutcome &move)
-{
-    return std::visit(Overloaded{[](const UpdateOutcome &update) { return update.status; },
-                                 [](const MoveSuccess &) { return StorageStatus::Ok; },
-                                 [](const MoveDestinationCreateFailed &failure) { return failure.status; },
-                                 [](const MoveSourceRemoveFailed &failure) { return failure.status; },
-                                 [](const MoveRollbackFailed &failure) { return failure.sourceStatus; }},
-                      move.outcome);
-}
-
 } // namespace
 
 struct EventSaveWriteResult
@@ -131,68 +157,519 @@ struct EventService::EventMoveWriteResult
     bool wroteStorage = false;
 };
 
-// Events mutate incidences inside a calendar file, so this service owns the
-// CalendarItemStore directly instead of using ItemService's one-snapshot flow.
-class EventService::Impl
+struct EventService::OccurrenceCache
 {
-public:
-    explicit Impl(const CollectionService &collections, const VdirIo &scheduler)
-        : m_collections(collections)
-        , m_items(collections, scheduler)
-        , m_collectionReloadSubscription(collections, [this](const QSet<QString> &changedCollectionIds) {
-            clearCacheForCollections(changedCollectionIds);
+    static constexpr qsizetype MaxOccurrenceCacheEntries = 256;
+
+    struct Key
+    {
+        ItemKey item;
+        QString etag;
+        QString uid;
+        QDate rangeStart;
+        QDate rangeEnd;
+
+        bool operator==(const Key &other) const
+        {
+            return item == other.item && etag == other.etag && uid == other.uid && rangeStart == other.rangeStart &&
+                   rangeEnd == other.rangeEnd;
+        }
+
+        friend size_t qHash(const Key &key, size_t seed = 0)
+        {
+            seed = qHash(key.item, seed);
+            seed = qHash(key.etag, seed);
+            seed = qHash(key.uid, seed);
+            seed = qHash(key.rangeStart, seed);
+            return qHash(key.rangeEnd, seed);
+        }
+    };
+
+    explicit OccurrenceCache(const CollectionService &collections)
+        : reloadSubscription(collections, [this](const QSet<QString> &changedCollectionIds) {
+            clearForCollections(changedCollectionIds);
         })
-    {}
-
-    void clearCache() const { m_items.clearCache(); }
-    void clearCacheForCollections(const QSet<QString> &collectionIds) const
     {
-        m_items.clearCacheForCollections(collectionIds);
+        QObject::connect(
+            &collections,
+            &CollectionService::itemWritten,
+            reloadSubscription.context(),
+            [this](const ItemRef &ref) { invalidateItem(ref.key()); },
+            Qt::DirectConnection);
     }
-    void retainRepositoriesForCollections(const QList<Collection> &collections) const
-    {
-        m_items.retainRepositoriesForCollections(collections);
-    }
-    const CollectionService &collections() const { return m_collections; }
-    const VdirIo &scheduler() const { return m_items.vdirIo(); }
-    const CalendarItemStore &store() const { return m_items; }
 
-private:
-    const CollectionService &m_collections;
-    CalendarItemStore m_items;
-    CollectionReloadSubscription m_collectionReloadSubscription;
+    void clear() const
+    {
+        QMutexLocker locker(&mutex);
+        cache.clear();
+        lru.clear();
+    }
+
+    void clearForCollections(const QSet<QString> &collectionIds) const
+    {
+        if (collectionIds.isEmpty())
+        {
+            return;
+        }
+        QMutexLocker locker(&mutex);
+        for (auto it = cache.begin(); it != cache.end();)
+        {
+            if (collectionIds.contains(it.key().item.collectionId))
+            {
+                lru.removeAll(it.key());
+                it = cache.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+    }
+
+    void invalidateItem(const ItemKey &item) const
+    {
+        if (!item.isValid())
+        {
+            return;
+        }
+        QMutexLocker locker(&mutex);
+        for (auto it = cache.begin(); it != cache.end();)
+        {
+            if (it.key().item == item)
+            {
+                lru.removeAll(it.key());
+                it = cache.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+    }
+
+    // Occurrence expansion is memoized from const read methods and guarded so
+    // views can share the cache without racing.
+    mutable QHash<Key, QList<EventOccurrence>> cache;
+    mutable QList<Key> lru;
+    mutable QMutex mutex;
+    // Declared last so destruction disconnects the reload handler before the
+    // cache it captures is torn down.
+    CollectionReloadSubscription reloadSubscription;
 };
 
 EventService::EventService(const CollectionService &collections, const VdirIo &vdirIo)
-    : m_impl(std::make_unique<Impl>(collections, vdirIo))
+    : m_collections(collections)
+    , m_items(collections, vdirIo)
+    , m_occurrenceCache(std::make_unique<OccurrenceCache>(collections))
+    , m_collectionReloadSubscription(collections, [this](const QSet<QString> &changedCollectionIds) {
+        clearCacheForCollections(changedCollectionIds);
+    })
 {}
 
 EventService::~EventService() = default;
 
 void EventService::clearCache() const
 {
-    m_impl->clearCache();
+    m_items.clearCache();
+    m_occurrenceCache->clear();
 }
 
 void EventService::clearCacheForCollections(const QSet<QString> &collectionIds) const
 {
-    m_impl->clearCacheForCollections(collectionIds);
+    m_items.clearCacheForCollections(collectionIds);
+    m_occurrenceCache->clearForCollections(collectionIds);
+}
+
+void EventService::invalidateItem(const ItemKey &item) const
+{
+    m_occurrenceCache->invalidateItem(item);
+}
+
+EventFields EventService::defaultEventEditorData(const QDate &date) const
+{
+    return CalendarEditorMapper::defaultEvent(date);
+}
+
+EventFields EventService::editorDataForOccurrence(const EventOccurrence &event) const
+{
+    return CalendarEditorMapper::fromEventOccurrence(event);
+}
+
+QList<EventOccurrence>
+EventService::occurrencesForItem(const CalendarItem &object, const QDate &rangeStart, const QDate &rangeEnd) const
+{
+    const OccurrenceCache::Key cacheKey{object.ref.key(), object.ref.etag, object.uid, rangeStart, rangeEnd};
+    {
+        QMutexLocker locker(&m_occurrenceCache->mutex);
+        const auto cached = m_occurrenceCache->cache.constFind(cacheKey);
+        if (cached != m_occurrenceCache->cache.constEnd())
+        {
+            m_occurrenceCache->lru.removeAll(cacheKey);
+            m_occurrenceCache->lru.append(cacheKey);
+            return cached.value();
+        }
+    }
+
+    const KCalendarCore::MemoryCalendar::Ptr calendar = CalendarSnapshot::calendarForItem(object);
+    if (calendar.isNull())
+    {
+        return {};
+    }
+    const QList<EventOccurrence> occurrences =
+        EventOccurrences::occurrenceSnapshots(calendar, object.ref, object.uid, rangeStart, rangeEnd);
+    {
+        QMutexLocker locker(&m_occurrenceCache->mutex);
+        while (m_occurrenceCache->cache.size() >= OccurrenceCache::MaxOccurrenceCacheEntries &&
+               !m_occurrenceCache->lru.isEmpty())
+        {
+            m_occurrenceCache->cache.remove(m_occurrenceCache->lru.takeFirst());
+        }
+        m_occurrenceCache->cache.insert(cacheKey, occurrences);
+        m_occurrenceCache->lru.removeAll(cacheKey);
+        m_occurrenceCache->lru.append(cacheKey);
+    }
+    return occurrences;
+}
+
+QList<CalendarItem> EventService::calendarItemSummaries(QList<ReadFailure> *readFailures,
+                                                        const CancellationToken &cancellation) const
+{
+    QList<CalendarItem> items;
+    for (const Collection &collection : m_collections.calendarList())
+    {
+        if (cancellation.isCancellationRequested())
+        {
+            break;
+        }
+        const std::shared_ptr<CalendarItemRepository> repository = m_items.repositoryForCollection(collection);
+        if (!repository->isValid())
+        {
+            continue;
+        }
+        repository->forEachObject(
+            [&](const CalendarItemRepository::ReadResult &readResult) {
+                if (!readResult.isOk())
+                {
+                    qCWarning(storageLog) << "Skipping calendar item" << collection.id << readResult.object.ref.href
+                                          << storageStatusName(readResult.status);
+                    if (readFailures)
+                    {
+                        readFailures->append(readFailureForCalendarItem(collection.id, readResult));
+                    }
+                    return true;
+                }
+                items.append(readResult.object);
+                return true;
+            },
+            [&cancellation]() { return cancellation.isCancellationRequested(); });
+    }
+    return items;
+}
+
+EventOccurrence EventService::eventSeries(const OccurrenceRef &occurrence) const
+{
+    const auto empty = [&occurrence](const char *reason) {
+        qCDebug(storageLog) << "Could not resolve event series" << occurrence.item.href << reason;
+        return EventOccurrence{};
+    };
+
+    if (!occurrence.item.isValid())
+    {
+        return empty("invalid item");
+    }
+
+    const std::optional<Collection> collection = m_collections.calendarForRead(occurrence.item.collectionId);
+    if (!collection)
+    {
+        return empty("collection not readable");
+    }
+
+    const std::shared_ptr<CalendarItemRepository> repository = m_items.repositoryForCollection(*collection);
+    if (!repository->isValid())
+    {
+        return empty("repository invalid");
+    }
+    const CalendarItemRepository::ReadResult readResult =
+        repository->readCurrentObject(occurrence.item.href, occurrence.item.etag);
+    if (!readResult.isOk())
+    {
+        qCDebug(storageLog) << "Could not resolve event series" << occurrence.item.href << "read failed"
+                            << storageStatusName(readResult.status);
+        return {};
+    }
+
+    const CalendarItem storedObject = readResult.object;
+    const KCalendarCore::MemoryCalendar::Ptr calendar = CalendarSnapshot::calendarForItem(storedObject);
+    if (calendar.isNull() || !CalendarValidation::isSupportedCalendar(calendar))
+    {
+        return empty("calendar null or unsupported");
+    }
+
+    const QString uid = IncidenceResolver::inferLocator(calendar, occurrence.uid).uid;
+    if (uid.isEmpty())
+    {
+        return empty("uid empty");
+    }
+
+    const KCalendarCore::Event::Ptr event = IncidenceResolver::findMasterEvent(calendar, {uid, std::nullopt});
+    if (event.isNull())
+    {
+        return empty("master event missing");
+    }
+
+    EventOccurrence series;
+    series.ref.item = storedObject.ref;
+    series.ref.uid = uid;
+    series.start = event->dtStart();
+    series.end = event->dtEnd().isValid() ? event->dtEnd() : event->dtStart();
+    series.display = CalendarSnapshot::eventDisplayFromEvent(event, {}, series.start, series.end);
+    return series;
+}
+
+QFuture<EventOccurrenceListResult> EventService::eventOccurrencesInDateRangeAsync(
+    const QDate &rangeStart, const QDate &rangeEnd, const CancellationToken &cancellation) const
+{
+    if (!rangeStart.isValid() || !rangeEnd.isValid() || rangeEnd < rangeStart)
+    {
+        return CalendarIoUtils::completedFuture(EventOccurrenceListResult{});
+    }
+
+    QList<QFuture<EventOccurrenceListResult>> perCollectionFutures;
+    const VdirIo &scheduler = m_items.vdirIo();
+    for (const Collection &collection : m_collections.calendarList())
+    {
+        if (cancellation.isCancellationRequested())
+        {
+            break;
+        }
+        const std::shared_ptr<CalendarItemRepository> repository = m_items.repositoryForCollection(collection);
+        if (!repository->isValid())
+        {
+            continue;
+        }
+        const VdirPath path = VdirPath::fromCollection(collection);
+        if (!path.isValid())
+        {
+            continue;
+        }
+        perCollectionFutures.append(scheduler.submit(path,
+                                                     QStringLiteral("event occurrences range"),
+                                                     EventOccurrenceListResult{},
+                                                     [this, collection, rangeStart, rangeEnd, cancellation] {
+                                                         return collectOccurrencesInRangeForCollection(
+                                                             collection, rangeStart, rangeEnd, cancellation);
+                                                     }));
+    }
+    if (perCollectionFutures.isEmpty())
+    {
+        return CalendarIoUtils::completedFuture(EventOccurrenceListResult{});
+    }
+    return QtFuture::whenAll(perCollectionFutures.begin(), perCollectionFutures.end())
+        .then(QtFuture::Launch::Sync, [](const QList<QFuture<EventOccurrenceListResult>> &done) {
+            EventOccurrenceListResult aggregate;
+            for (const QFuture<EventOccurrenceListResult> &future : done)
+            {
+                EventOccurrenceListResult perCollection = future.result();
+                aggregate.occurrences.append(std::move(perCollection.occurrences));
+                aggregate.readFailures.append(std::move(perCollection.readFailures));
+            }
+            return aggregate;
+        });
+}
+
+EventOccurrenceListResult
+EventService::collectOccurrencesInRangeForCollection(const Collection &collection,
+                                                     const QDate &rangeStart,
+                                                     const QDate &rangeEnd,
+                                                     const CancellationToken &cancellation) const
+{
+    EventOccurrenceListResult result;
+    const std::shared_ptr<CalendarItemRepository> repository = m_items.repositoryForCollection(collection);
+    if (!repository->isValid())
+    {
+        return result;
+    }
+    repository->forEachObject(
+        [&](const CalendarItemRepository::ReadResult &readResult) {
+            if (!readResult.isOk())
+            {
+                qCWarning(storageLog) << "Skipping calendar item" << collection.id << readResult.object.ref.href
+                                      << storageStatusName(readResult.status);
+                result.readFailures.append(readFailureForCalendarItem(collection.id, readResult));
+                return true;
+            }
+            const CalendarItem &object = readResult.object;
+            const KCalendarCore::MemoryCalendar::Ptr calendar = CalendarSnapshot::calendarForItem(object);
+            if (calendar.isNull() || !CalendarValidation::isSupportedCalendar(calendar))
+            {
+                qCWarning(storageLog) << "Skipping unsupported calendar item" << collection.id << object.ref.href;
+                return true;
+            }
+            result.occurrences.append(occurrencesForItem(object, rangeStart, rangeEnd));
+            return true;
+        },
+        [&cancellation]() { return cancellation.isCancellationRequested(); });
+    return result;
+}
+
+std::optional<EventOccurrence>
+EventService::searchOccurrences(const QString &needle,
+                                const QDate &anchor,
+                                SearchDirection direction,
+                                const EventOccurrence &current,
+                                const std::function<bool(const QString &collectionId)> &isCollectionVisible,
+                                const CancellationToken &cancellation) const
+{
+    const QString needleLower = needle.toLower();
+    if (needleLower.isEmpty() || cancellation.isCancellationRequested())
+    {
+        return std::nullopt;
+    }
+
+    std::vector<CalendarItem> matchingItems;
+    for (const CalendarItem &item : calendarItemSummaries(nullptr, cancellation))
+    {
+        if (cancellation.isCancellationRequested())
+        {
+            return std::nullopt;
+        }
+        const CalendarItemDisplay display = CalendarSnapshot::calendarItemDisplay(item);
+        const bool visible = !isCollectionVisible || isCollectionVisible(item.ref.collectionId);
+        if (visible && calendarItemMatchesText(display, needleLower))
+        {
+            matchingItems.push_back(item);
+        }
+    }
+    if (matchingItems.empty())
+    {
+        return std::nullopt;
+    }
+
+    auto matchingOccurrences = [this, &matchingItems, &cancellation](const QDate &windowStart, const QDate &windowEnd) {
+        QList<EventOccurrence> results;
+        for (const CalendarItem &item : matchingItems)
+        {
+            if (cancellation.isCancellationRequested())
+            {
+                break;
+            }
+            results.append(occurrencesForItem(item, windowStart, windowEnd));
+        }
+        std::sort(results.begin(), results.end(), [](const EventOccurrence &first, const EventOccurrence &second) {
+            const QDate firstDate = first.start.date();
+            const QDate secondDate = second.start.date();
+            if (firstDate != secondDate)
+            {
+                return firstDate < secondDate;
+            }
+            return eventStartsBefore(first, second);
+        });
+        return results;
+    };
+
+    const bool forward = direction == SearchDirection::Forward;
+    const bool haveCurrent = CalendarSnapshot::hasEventRef(current);
+    const QDate startDate = anchor.isValid() ? anchor : QDate::currentDate();
+
+    QList<EventOccurrence> sameDay = matchingOccurrences(startDate, startDate);
+    if (cancellation.isCancellationRequested())
+    {
+        return std::nullopt;
+    }
+    if (!sameDay.isEmpty())
+    {
+        int startIndex = forward ? 0 : sameDay.size() - 1;
+        for (int i = 0; i < sameDay.size(); ++i)
+        {
+            if (haveCurrent && sameOccurrence(sameDay[i], current))
+            {
+                startIndex = forward ? i + 1 : i - 1;
+                break;
+            }
+        }
+
+        const int step = forward ? 1 : -1;
+        for (int i = startIndex; i >= 0 && i < sameDay.size(); i += step)
+        {
+            return sameDay[i];
+        }
+    }
+
+    const QDate scanBoundary = forward ? startDate.addYears(10) : startDate.addYears(-10);
+    QDate cursor = forward ? startDate.addDays(1) : startDate.addDays(-1);
+    int span = 1;
+    while (forward ? cursor <= scanBoundary : cursor >= scanBoundary)
+    {
+        if (cancellation.isCancellationRequested())
+        {
+            return std::nullopt;
+        }
+        QDate windowStart;
+        QDate windowEnd;
+        if (forward)
+        {
+            windowStart = cursor;
+            windowEnd = cursor.addDays(span - 1);
+            if (windowEnd > scanBoundary)
+            {
+                windowEnd = scanBoundary;
+            }
+        }
+        else
+        {
+            windowEnd = cursor;
+            windowStart = cursor.addDays(-(span - 1));
+            if (windowStart < scanBoundary)
+            {
+                windowStart = scanBoundary;
+            }
+        }
+
+        QList<EventOccurrence> windowList = matchingOccurrences(windowStart, windowEnd);
+        if (cancellation.isCancellationRequested())
+        {
+            return std::nullopt;
+        }
+        if (!forward)
+        {
+            std::reverse(windowList.begin(), windowList.end());
+        }
+        if (!windowList.isEmpty())
+        {
+            return windowList.constFirst();
+        }
+
+        if (forward)
+        {
+            cursor = windowEnd.addDays(1);
+        }
+        else
+        {
+            cursor = windowStart.addDays(-1);
+        }
+        if (span < 4096)
+        {
+            span *= 2;
+        }
+    }
+
+    return std::nullopt;
 }
 
 void EventService::retainRepositoriesForCollections(const QList<Collection> &collections) const
 {
-    m_impl->retainRepositoriesForCollections(collections);
+    m_items.retainRepositoriesForCollections(collections);
 }
 
 void EventService::notifyItemWritten(const ItemRef &ref) const
 {
-    m_impl->collections().notifyItemWritten(ref);
+    m_collections.notifyItemWritten(ref);
 }
 
 EventService::EventSaveResult EventService::addEvent(const EventFields &event) const
 {
     CalendarItem object = calendarItemForEvent(createEvent(event), event.collectionId);
-    EventSaveResult result = m_impl->store().addObject(object);
+    EventSaveResult result = m_items.addObject(object);
     if (result.isOk())
     {
         notifyItemWritten(result.snapshot.ref);
@@ -200,14 +677,12 @@ EventService::EventSaveResult EventService::addEvent(const EventFields &event) c
     return result;
 }
 
-EventService::EventSaveResult EventService::updateEvent(const EventOccurrence &currentOccurrence,
-                                                        const EventFields &event) const
+EventService::EventUpdateResult EventService::updateEvent(const EventOccurrence &currentOccurrence,
+                                                          const EventFields &event) const
 {
     const EventMoveWriteResult saveResult =
         moveEventObject(currentOccurrence, event, currentOccurrence.ref.item.collectionId);
-    EventSaveResult result;
-    result.status = storageStatusForMoveOutcome(saveResult.result.move);
-    result.snapshot = saveResult.result.snapshot;
+    EventUpdateResult result = saveResult.result;
     if (saveResult.wroteStorage && result.isOk())
     {
         notifyItemWritten(currentOccurrence.ref.item);
@@ -506,7 +981,7 @@ EventService::EventMoveWriteResult EventService::moveEventObject(const EventOccu
     if (!moving)
     {
         const EventSaveWriteResult updateResult =
-            updateSingleEventItem(m_impl->store(), event, currentOccurrence.ref.item, currentOccurrence.ref.uid);
+            updateSingleEventItem(m_items, event, currentOccurrence.ref.item, currentOccurrence.ref.uid);
         EventMoveWriteResult saveResult =
             updateResultFor(updateResult.result.status, currentOccurrence.ref.item, updateResult.result.snapshot);
         saveResult.wroteStorage = updateResult.wroteStorage;
@@ -517,10 +992,10 @@ EventService::EventMoveWriteResult EventService::moveEventObject(const EventOccu
         return updateResultFor(StorageStatus::Unsupported, currentOccurrence.ref.item);
     }
 
-    const WritableCalendarItem item = m_impl->store().writableItemForUpdate(currentOccurrence.ref.item.collectionId,
-                                                                            currentOccurrence.ref.item.href,
-                                                                            currentOccurrence.ref.item.etag,
-                                                                            currentOccurrence.ref.uid);
+    const WritableCalendarItem item = m_items.writableItemForUpdate(currentOccurrence.ref.item.collectionId,
+                                                                    currentOccurrence.ref.item.href,
+                                                                    currentOccurrence.ref.item.etag,
+                                                                    currentOccurrence.ref.uid);
     if (!item.isValid())
     {
         return updateResultFor(item.status, currentOccurrence.ref.item);
@@ -544,7 +1019,7 @@ EventService::EventMoveWriteResult EventService::moveEventObject(const EventOccu
 
     EventMoveWriteResult saveResult;
     saveResult.result = moveSingleEventItem(
-        m_impl->store(), replacement, currentOccurrence.ref.item, currentOccurrence.ref.uid, targetCollectionId);
+        m_items, replacement, currentOccurrence.ref.item, currentOccurrence.ref.uid, targetCollectionId);
     saveResult.wroteStorage = saveResult.result.isOk();
     return saveResult;
 }
@@ -552,13 +1027,13 @@ EventService::EventMoveWriteResult EventService::moveEventObject(const EventOccu
 StorageStatus EventService::deleteEvent(const OccurrenceRef &occurrence) const
 {
     const CalendarItemStore::PrecheckedWrite checked =
-        m_impl->store().precheckWrite(occurrence.item.collectionId, occurrence.item.href, occurrence.item.etag);
+        m_items.precheckWrite(occurrence.item.collectionId, occurrence.item.href, occurrence.item.etag);
     if (!checked.isValid())
     {
         return checked.status;
     }
 
-    const CalendarItemRepository::ReadResult storedItem = m_impl->store().readPrechecked(checked);
+    const CalendarItemRepository::ReadResult storedItem = m_items.readPrechecked(checked);
     if (!storedItem.isOk())
     {
         return storedItem.status;
@@ -584,7 +1059,7 @@ StorageStatus EventService::deleteEvent(const OccurrenceRef &occurrence) const
     }
     if (!CalendarItemMutator::hasIncidences(calendar))
     {
-        const StorageStatus status = m_impl->store().commitRemove(checked);
+        const StorageStatus status = m_items.commitRemove(checked);
         if (status != StorageStatus::Ok)
         {
             qCWarning(storageLog) << "Could not remove vdir item" << checked.ref.href << storageStatusName(status);
@@ -597,7 +1072,7 @@ StorageStatus EventService::deleteEvent(const OccurrenceRef &occurrence) const
     }
 
     WritableCalendarItem item;
-    item.collection = m_impl->store().calendarForWrite(checked.ref.collectionId);
+    item.collection = m_items.calendarForWrite(checked.ref.collectionId);
     item.object.ref = checked.ref;
     item.object = CalendarSnapshot::calendarItem(
         item.object.ref, item.object.uid, calendar, CalendarSnapshot::PayloadShape::Calendar);
@@ -607,7 +1082,7 @@ StorageStatus EventService::deleteEvent(const OccurrenceRef &occurrence) const
     {
         qCWarning(storageLog) << "Could not rewrite calendar item after partial delete (uid lost)" << checked.ref.href;
     }
-    const StorageResult<CalendarItem> result = m_impl->store().replaceWritableItem(item);
+    const StorageResult<CalendarItem> result = m_items.replaceWritableItem(item);
     if (result.isOk())
     {
         notifyItemWritten(checked.ref);
@@ -619,7 +1094,7 @@ StorageStatus EventService::deleteEvent(const OccurrenceRef &occurrence) const
 OperationCapability EventService::canCreateEvent(const QString &collectionId) const
 {
     return capabilityForWritableCollection(
-        m_impl->collections(), CollectionKind::Calendar, collectionId, OperationCapabilityStatus::DestinationReadOnly);
+        m_collections, CollectionKind::Calendar, collectionId, OperationCapabilityStatus::DestinationReadOnly);
 }
 
 OperationCapability EventService::canEditEvent(const EventOccurrence &event) const
@@ -628,7 +1103,7 @@ OperationCapability EventService::canEditEvent(const EventOccurrence &event) con
     {
         return invalidSelectionCapability(event.ref.item);
     }
-    return capabilityForWritableCollection(m_impl->collections(),
+    return capabilityForWritableCollection(m_collections,
                                            CollectionKind::Calendar,
                                            event.ref.item.collectionId,
                                            OperationCapabilityStatus::SourceReadOnly,
@@ -657,7 +1132,7 @@ OperationCapability EventService::canMoveEvent(const EventOccurrence &event,
             OperationCapabilityStatus::UnsupportedRecurringInstance, event.ref.item, targetCollectionId};
     }
 
-    return capabilityForWritableCollection(m_impl->collections(),
+    return capabilityForWritableCollection(m_collections,
                                            CollectionKind::Calendar,
                                            targetCollectionId,
                                            OperationCapabilityStatus::DestinationReadOnly,
@@ -671,7 +1146,7 @@ OperationCapability EventService::canDeleteEvent(const OccurrenceRef &event) con
     {
         return invalidSelectionCapability(event.item);
     }
-    return capabilityForWritableCollection(m_impl->collections(),
+    return capabilityForWritableCollection(m_collections,
                                            CollectionKind::Calendar,
                                            event.item.collectionId,
                                            OperationCapabilityStatus::SourceReadOnly,
@@ -686,28 +1161,29 @@ OperationCapability EventService::canCompleteEvent(const EventOccurrence &event)
 QFuture<EventService::EventSaveResult> EventService::addEventAsync(const EventFields &event) const
 {
     return AsyncSubmit::submit<EventSaveResult>(
-        m_impl->scheduler(),
+        m_items.vdirIo(),
         QStringLiteral("event add"),
         [this, event] {
-            return AsyncSubmit::ResolvedCollection{m_impl->store().calendarForWrite(event.collectionId),
-                                                   m_impl->store().calendarWriteFailureStatus(event.collectionId)};
+            return AsyncSubmit::ResolvedCollection{m_items.calendarForWrite(event.collectionId),
+                                                   m_items.calendarWriteFailureStatus(event.collectionId)};
         },
         [this, event] { return addEvent(event); },
         [event](StorageStatus status) { return eventAddFailure(status, event); });
 }
 
-QFuture<EventService::EventSaveResult> EventService::updateEventAsync(const EventOccurrence &currentOccurrence,
-                                                                      const EventFields &event) const
+QFuture<EventService::EventUpdateResult> EventService::updateEventAsync(const EventOccurrence &currentOccurrence,
+                                                                        const EventFields &event) const
 {
-    return AsyncSubmit::submit<EventSaveResult>(
-        m_impl->scheduler(),
+    return AsyncSubmit::submit<EventUpdateResult>(
+        m_items.vdirIo(),
         QStringLiteral("event update"),
-        [this, currentOccurrence] { return m_impl->store().calendarForRead(currentOccurrence.ref.item.collectionId); },
+        [this, currentOccurrence] { return m_items.calendarForRead(currentOccurrence.ref.item.collectionId); },
         [this, currentOccurrence, event] { return updateEvent(currentOccurrence, event); },
         [currentOccurrence](StorageStatus status) {
-            EventSaveResult result;
-            result.status = status;
-            result.snapshot.ref = currentOccurrence.ref.item;
+            const ItemRef storage = currentOccurrence.ref.item;
+            EventUpdateResult result;
+            result.move = MoveOutcome::update(UpdateOutcome{status, storage, storage});
+            result.snapshot.ref = storage;
             return result;
         });
 }
@@ -719,13 +1195,13 @@ QFuture<EventService::EventMoveResult> EventService::moveEventAsync(const EventO
     const QString targetCollectionId =
         destinationCollectionId.isEmpty() ? currentOccurrence.ref.item.collectionId : destinationCollectionId;
     return AsyncSubmit::submitMove<EventMoveResult>(
-        m_impl->scheduler(),
+        m_items.vdirIo(),
         QStringLiteral("event move"),
         targetCollectionId,
-        [this, currentOccurrence] { return m_impl->store().calendarForRead(currentOccurrence.ref.item.collectionId); },
+        [this, currentOccurrence] { return m_items.calendarForRead(currentOccurrence.ref.item.collectionId); },
         [this, targetCollectionId] {
-            return AsyncSubmit::ResolvedCollection{m_impl->store().calendarForWrite(targetCollectionId),
-                                                   m_impl->store().calendarWriteFailureStatus(targetCollectionId)};
+            return AsyncSubmit::ResolvedCollection{m_items.calendarForWrite(targetCollectionId),
+                                                   m_items.calendarWriteFailureStatus(targetCollectionId)};
         },
         [this, currentOccurrence, event, destinationCollectionId] {
             return moveEvent(currentOccurrence, event, destinationCollectionId);
@@ -738,9 +1214,9 @@ QFuture<EventService::EventMoveResult> EventService::moveEventAsync(const EventO
 QFuture<StorageStatus> EventService::deleteEventAsync(const OccurrenceRef &occurrence) const
 {
     return AsyncSubmit::submit<StorageStatus>(
-        m_impl->scheduler(),
+        m_items.vdirIo(),
         QStringLiteral("event delete"),
-        [this, occurrence] { return m_impl->store().calendarForRead(occurrence.item.collectionId); },
+        [this, occurrence] { return m_items.calendarForRead(occurrence.item.collectionId); },
         [this, occurrence] { return deleteEvent(occurrence); },
         [](StorageStatus status) { return status; });
 }

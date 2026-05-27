@@ -37,7 +37,7 @@ class CalendarPane;
 }
 
 class DayTimelineWidget;
-class EventFindBar;
+class FindBar;
 class QAction;
 class QEvent;
 class QSplitter;

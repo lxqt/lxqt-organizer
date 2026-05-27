@@ -1,8 +1,8 @@
 set(LXQT_ORGANIZER_UI_WIDGETS_HEADERS
-    src/ui/widgets/daytasklistwidget.h
+    src/ui/widgets/tasklistwidget.h
     src/ui/widgets/daytimelinewidget.h
     src/ui/widgets/editorcombos.h
-    src/ui/widgets/eventfindbar.h
+    src/ui/widgets/findbar.h
     src/ui/widgets/monthcalendarwidget.h
     src/ui/widgets/monthchromewidget.h
     src/ui/widgets/timelinelayout.h
@@ -10,10 +10,10 @@ set(LXQT_ORGANIZER_UI_WIDGETS_HEADERS
 )
 
 set(LXQT_ORGANIZER_UI_WIDGETS_SOURCES
-    src/ui/widgets/daytasklistwidget.cpp
+    src/ui/widgets/tasklistwidget.cpp
     src/ui/widgets/daytimelinewidget.cpp
     src/ui/widgets/editorcombos.cpp
-    src/ui/widgets/eventfindbar.cpp
+    src/ui/widgets/findbar.cpp
     src/ui/widgets/monthcalendarwidget.cpp
     src/ui/widgets/monthchromewidget.cpp
     src/ui/widgets/timelinelayout.cpp
@@ -21,7 +21,7 @@ set(LXQT_ORGANIZER_UI_WIDGETS_SOURCES
 )
 
 set(LXQT_ORGANIZER_UI_WIDGETS_FORMS
-    src/ui/widgets/daytasklistwidget.ui
-    src/ui/widgets/eventfindbar.ui
+    src/ui/widgets/tasklistwidget.ui
+    src/ui/widgets/findbar.ui
     src/ui/widgets/monthchromewidget.ui
 )

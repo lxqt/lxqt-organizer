@@ -36,6 +36,8 @@ struct ContactListRow
 
 class ContactModel : public QAbstractTableModel
 {
+    Q_OBJECT
+
 public:
     ContactModel(QObject *parent = nullptr);
     ContactModel(const QList<Contact> &contactList, QObject *parent = nullptr);

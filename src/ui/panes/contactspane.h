@@ -32,13 +32,9 @@ namespace Ui {
 class ContactsPane;
 }
 
-class QLabel;
 class QAction;
-class QLineEdit;
 class QTableView;
-class QToolButton;
 class ContactModel;
-class PreferencesController;
 class ContactsProxyModel;
 
 class ContactsPane : public QWidget, public IActivePane
@@ -60,11 +56,6 @@ public:
 
     QTableView *tableViewContacts() const;
     QWidget *contactFindBar() const;
-    QLineEdit *contactFindLineEdit() const;
-    QLabel *contactFindStatusLabel() const;
-    QToolButton *closeContactFindButton() const;
-    QToolButton *contactFindNextButton() const;
-    QToolButton *contactFindPrevButton() const;
 
     void setContacts(const QList<Contact> &contacts);
     QList<Contact> contacts() const;
@@ -95,6 +86,7 @@ private:
     void setupUiBehavior();
     void handleContactsReloaded(const ReloadCoordinator::ContactReloadPayload &payload);
     void emitSelectionAndCapabilitiesChanged(const QModelIndex &current);
+    bool findContact(const QString &needle, bool forward);
     void updateContactModel();
     void updateActionState();
     bool contactRowMatches(int sourceRow, const QString &needleLower) const;
@@ -114,7 +106,6 @@ private:
     QList<Contact> m_contacts;
     int m_visibleItemCount = 0;
     bool m_detailsVisible = false;
-    bool m_findVisible = false;
 };
 
 #endif // CONTACTSPANE_H

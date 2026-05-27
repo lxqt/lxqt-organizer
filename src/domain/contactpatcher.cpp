@@ -37,6 +37,13 @@ Options noOptions()
 
 } // namespace
 
+Options editableOptions()
+{
+    Options options;
+    forEachOption(options, [](bool &option) { option = true; });
+    return options;
+}
+
 Options changedOptionsForAddressee(const KContacts::Addressee &addressee, const ContactFields &patch)
 {
     Options options = noOptions();

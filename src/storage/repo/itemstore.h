@@ -22,8 +22,10 @@
 #include "collectionresolver.h"
 #include "storagecollectionref.h"
 #include "storageresult.h"
+#include "storagelog.h"
 #include "vdirio.h"
 
+#include <QDebug>
 #include <QHash>
 #include <QMutex>
 #include <QMutexLocker>
@@ -31,6 +33,24 @@
 
 #include <memory>
 #include <optional>
+
+// Kind-specific helpers used by the templated WritableItem and ItemStore.
+// Specialize in the corresponding Store header so every TU that touches a
+// WritableItem<T> sees the same definition (avoids ODR pitfalls).
+template <typename T> struct ItemTraits;
+
+template <typename T> struct WritableItem
+{
+    std::optional<Collection> collection;
+    T object;
+    StorageStatus status = StorageStatus::IoError;
+
+    bool isValid() const
+    {
+        return status == StorageStatus::Ok && collection.has_value() && object.ref.isValid() &&
+               ItemTraits<T>::hasPayload(object) && !object.uid.isEmpty();
+    }
+};
 
 // @thread any-thread-with-mutex; repository cache mutations are mutex-protected,
 // repository calls are serialized by VdirIo.
@@ -59,6 +79,8 @@ template <typename Repository, CollectionKind Kind> class ItemStore
     }
 
 public:
+    using Item = typename Repository::ReadResult::Object;
+
     struct PrecheckedWrite
     {
         std::optional<StorageCollectionRef> collection;
@@ -129,6 +151,13 @@ public:
         return repository;
     }
 
+    std::shared_ptr<Repository> repositoryForCollection(const Collection &collection) const
+    {
+        return repositoryForCollection(storageCollectionRefForCollection(collection));
+    }
+
+    bool isValidForWrite(const Collection &collection) const { return repositoryForCollection(collection)->isValid(); }
+
     PrecheckedWrite precheckWrite(const QString &collectionId, const QString &href, const QString &etag) const
     {
         PrecheckedWrite checked;
@@ -185,6 +214,137 @@ public:
         return checked;
     }
 
+    typename Repository::ReadResult readPrechecked(const PrecheckedWrite &checked) const
+    {
+        if (!checked.isValid())
+        {
+            typename Repository::ReadResult result;
+            result.status = checked.status == StorageStatus::Ok ? StorageStatus::IoError : checked.status;
+            return result;
+        }
+
+        return repositoryForCollection(*checked.collection)->readCurrentObject(checked.ref.href, checked.ref.etag);
+    }
+
+    WritableItem<Item> writableItemForUpdate(const QString &collectionId,
+                                             const QString &href,
+                                             const QString &etag,
+                                             const QString &fallbackUid) const
+    {
+        const PrecheckedWrite checked = precheckWrite(collectionId, href, etag);
+        if (!checked.isValid())
+        {
+            WritableItem<Item> item;
+            item.status = checked.status;
+            return item;
+        }
+
+        const typename Repository::ReadResult readResult = readPrechecked(checked);
+        if (!readResult.isOk())
+        {
+            WritableItem<Item> item;
+            item.status = readResult.status;
+            return item;
+        }
+
+        const Item stored = readResult.object;
+        const QString uid = ItemTraits<Item>::resolveUid(stored, fallbackUid);
+        if (uid.isEmpty())
+        {
+            WritableItem<Item> item;
+            item.status = ItemTraits<Item>::missingUidStatus(stored);
+            return item;
+        }
+
+        WritableItem<Item> item;
+        item.collection = collectionForWrite(collectionId);
+        item.object = stored;
+        item.object.ref = checked.ref;
+        item.object.uid = uid;
+        item.status = StorageStatus::Ok;
+        return item;
+    }
+
+    StorageResult<Item> addObject(Item object) const
+    {
+        StorageResult<Item> result;
+        result.snapshot = object;
+
+        if (!ItemTraits<Item>::hasPayload(object))
+        {
+            result.status = StorageStatus::Unsupported;
+            return result;
+        }
+        const std::optional<Collection> collection = collectionForWrite(object.ref.collectionId);
+        if (!collection)
+        {
+            result.status = writeFailureStatus(object.ref.collectionId);
+            return result;
+        }
+
+        const std::shared_ptr<Repository> repository = repositoryForCollection(*collection);
+        if (!repository->isValid())
+        {
+            result.status = StorageStatus::IoError;
+            return result;
+        }
+
+        result = repository->addObject(object);
+        if (!result.isOk())
+        {
+            qCWarning(storageLog) << "Could not add" << ItemTraits<Item>::logLabel()
+                                  << storageStatusName(result.status);
+        }
+        return result;
+    }
+
+    StorageResult<Item> replaceObject(Item object) const
+    {
+        StorageResult<Item> result;
+        result.snapshot = object;
+
+        if (object.ref.href.isEmpty() || !ItemTraits<Item>::hasPayload(object))
+        {
+            result.status = StorageStatus::Unsupported;
+            return result;
+        }
+        const std::optional<Collection> collection = collectionForWrite(object.ref.collectionId);
+        if (!collection)
+        {
+            result.status = writeFailureStatus(object.ref.collectionId);
+            return result;
+        }
+
+        const std::shared_ptr<Repository> repository = repositoryForCollection(*collection);
+        if (!repository->isValid())
+        {
+            result.status = StorageStatus::IoError;
+            return result;
+        }
+
+        result = repository->replaceObject(object);
+        if (!result.isOk())
+        {
+            qCWarning(storageLog) << "Could not update" << ItemTraits<Item>::logLabel() << object.ref.href
+                                  << storageStatusName(result.status);
+        }
+        return result;
+    }
+
+    StorageResult<Item> replaceWritableItem(WritableItem<Item> item) const
+    {
+        StorageResult<Item> result;
+        result.snapshot = item.object;
+
+        if (!item.isValid())
+        {
+            result.status = item.status;
+            return result;
+        }
+
+        return replaceObject(item.object);
+    }
+
     StorageStatus commitRemove(const PrecheckedWrite &checked) const
     {
         if (!checked.isValid())
@@ -193,6 +353,16 @@ public:
         }
 
         return repositoryForCollection(*checked.collection)->remove(checked.ref);
+    }
+
+    StorageStatus removeWritableItem(const WritableItem<Item> &item) const
+    {
+        if (!item.isValid())
+        {
+            return item.status;
+        }
+
+        return repositoryForCollection(*item.collection)->remove(item.object.ref);
     }
 
     StorageStatus rollbackInsertedItem(const std::optional<StorageCollectionRef> &collection,
@@ -217,7 +387,21 @@ public:
         }
 
         return MoveOutcome::crossCollection(
-            source.ref, inserted, sourceRemoveStatus, true, rollbackInsertedItem(destinationCollection, inserted));
+            source.ref, inserted, sourceRemoveStatus, rollbackInsertedItem(destinationCollection, inserted));
+    }
+
+    MoveOutcome commitCrossCollectionMove(const WritableItem<Item> &source,
+                                          const std::optional<StorageCollectionRef> &destinationCollection,
+                                          const ItemRef &inserted) const
+    {
+        PrecheckedWrite checked;
+        checked.collection =
+            source.collection
+                ? std::optional<StorageCollectionRef>(storageCollectionRefForCollection(*source.collection))
+                : std::nullopt;
+        checked.ref = source.object.ref;
+        checked.status = source.status;
+        return commitCrossCollectionMove(checked, destinationCollection, inserted);
     }
 
     void clearCache() const

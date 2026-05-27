@@ -18,8 +18,11 @@
 
 #include "contactservice.h"
 
+#include "asyncsubmit.h"
 #include "completedfuture.h"
 #include "contactrepository.h"
+#include "moveoutcomelog.h"
+#include "storagecollectionref.h"
 #include "storagelog.h"
 #include "vdirio.h"
 
@@ -65,24 +68,17 @@ ContactSnapshotListResult collectContactSnapshotsForCollection(const ContactRepo
     return result;
 }
 
-} // namespace
-
-ItemRef ContactServiceTraits::ref(const Contact &contact)
-{
-    return contact.ref;
-}
-
-bool ContactServiceTraits::isValidForWrite(const Contact &contact)
+bool isValidContactForWrite(const Contact &contact)
 {
     return contact.addressee && !contact.addressee->isEmpty();
 }
 
-bool ContactServiceTraits::isUnchanged(const Contact &contact, const Contact &stored)
+bool isUnchangedContact(const Contact &contact, const Contact &stored)
 {
     return contact.addressee && stored.addressee && *contact.addressee == *stored.addressee;
 }
 
-Contact ContactServiceTraits::objectForAdd(const Contact &contact, const QString &collectionId)
+Contact contactForAdd(const Contact &contact, const QString &collectionId)
 {
     Contact object;
     object.ref.collectionId = collectionId;
@@ -91,7 +87,7 @@ Contact ContactServiceTraits::objectForAdd(const Contact &contact, const QString
     return object;
 }
 
-Contact ContactServiceTraits::objectForUpdate(const Contact &contact, const ItemRef &ref)
+Contact contactForUpdate(const Contact &contact, const ItemRef &ref)
 {
     Contact object;
     object.ref = ref;
@@ -100,101 +96,364 @@ Contact ContactServiceTraits::objectForUpdate(const Contact &contact, const Item
     return object;
 }
 
-Contact ContactServiceTraits::objectForMove(const Contact &contact, const QString &destinationCollectionId)
-{
-    return objectForAdd(contact, destinationCollectionId);
-}
-
-Contact ContactServiceTraits::snapshotFromStored(const Contact &stored, const Contact &)
+Contact snapshotFromStoredContact(const Contact &stored)
 {
     return Contact{stored.ref, stored.uid, stored.addressee};
 }
 
-QString ContactServiceTraits::addLabel()
+ContactService::ContactSaveResult saveFailure(StorageStatus status, const Contact &snapshot)
 {
-    return QStringLiteral("contact add");
+    ContactService::ContactSaveResult result;
+    result.status = status;
+    result.snapshot = snapshot;
+    return result;
 }
 
-QString ContactServiceTraits::updateLabel()
+ContactService::ContactSaveResult saveIoFailure()
 {
-    return QStringLiteral("contact update");
+    ContactService::ContactSaveResult result;
+    result.status = StorageStatus::IoError;
+    return result;
 }
 
-QString ContactServiceTraits::sameCollectionMoveLabel()
+ContactService::ContactMoveResult
+moveFailure(StorageStatus status, const Contact &snapshot, const QString &destinationCollectionId)
 {
-    return QStringLiteral("contact same-collection move");
+    ContactService::ContactMoveResult result;
+    result.snapshot = snapshot;
+    ItemRef destination;
+    destination.collectionId = destinationCollectionId;
+    result.move = MoveOutcome::preconditionFailed(status, snapshot.ref, destination);
+    return result;
 }
 
-QString ContactServiceTraits::crossCollectionMoveLabel()
-{
-    return QStringLiteral("contact cross-collection move");
-}
-
-QString ContactServiceTraits::removeLabel()
-{
-    return QStringLiteral("contact remove");
-}
-
-QString ContactServiceTraits::sourceRemoveFailureMessage()
-{
-    return QStringLiteral("Could not remove moved contact item");
-}
-
-QString ContactServiceTraits::rollbackFailureMessage()
-{
-    return QStringLiteral("Could not roll back moved contact item");
-}
-
-void ContactServiceTraits::logAddFailure(StorageStatus status)
-{
-    qCWarning(storageLog) << "Could not add contact item" << storageStatusName(status);
-}
-
-void ContactServiceTraits::logUpdateFailure(StorageStatus status, const ItemRef &ref)
-{
-    qCWarning(storageLog) << "Could not update contact item" << ref.href << storageStatusName(status);
-}
-
-void ContactServiceTraits::logRemoveFailure(StorageStatus status, const ItemRef &ref)
-{
-    qCWarning(storageLog) << "Could not remove contact item" << ref.href << storageStatusName(status);
-}
+} // namespace
 
 ContactService::ContactService(const CollectionService &collections, const VdirIo &vdirIo)
-    : Base(collections, vdirIo)
+    : m_collections(collections)
+    , m_items(collections, vdirIo)
+    , m_collectionReloadSubscription(collections, [this](const QSet<QString> &changedCollectionIds) {
+        clearCacheForCollections(changedCollectionIds);
+    })
 {}
 
 ContactService::~ContactService() = default;
 
+std::shared_ptr<ContactRepository> ContactService::repositoryFor(const QString &collectionId) const
+{
+    const std::optional<Collection> collection = m_items.collectionForRead(collectionId);
+    if (!collection)
+    {
+        return {};
+    }
+    return repositoryFor(*collection);
+}
+
+std::shared_ptr<ContactRepository> ContactService::repositoryFor(const Collection &collection) const
+{
+    return m_items.repositoryForCollection(storageCollectionRefForCollection(collection));
+}
+
+void ContactService::invalidateDownstreamCaches(const ItemRef &ref) const
+{
+    m_collections.notifyItemWritten(ref);
+}
+
 ContactService::ContactSaveResult ContactService::addContact(const Contact &contact, const QString &collectionId) const
 {
-    return addObject(contact, collectionId);
+    ContactSaveResult result;
+    result.snapshot = contact;
+    Contact object = contactForAdd(contact, collectionId);
+
+    const std::optional<Collection> collection = m_items.collectionForWrite(collectionId);
+    if (!isValidContactForWrite(object))
+    {
+        result.status = StorageStatus::Unsupported;
+        return result;
+    }
+    if (!collection)
+    {
+        result.status = m_items.writeFailureStatus(collectionId);
+        return result;
+    }
+
+    const std::shared_ptr<ContactRepository> repository = repositoryFor(*collection);
+    if (!repository->isValid())
+    {
+        result.status = StorageStatus::IoError;
+        return result;
+    }
+
+    const ContactSaveResult createResult = repository->addObject(object);
+    if (!createResult.isOk())
+    {
+        qCWarning(storageLog) << "Could not add contact item" << storageStatusName(createResult.status);
+        result.status = createResult.status;
+        return result;
+    }
+
+    result.status = StorageStatus::Ok;
+    result.snapshot = snapshotFromStoredContact(createResult.snapshot);
+    invalidateDownstreamCaches(result.snapshot.ref);
+    return result;
 }
 
 ContactService::ContactSaveResult ContactService::updateContact(const Contact &contact) const
 {
-    return updateObject(contact);
+    ContactSaveResult result;
+    result.snapshot = contact;
+
+    const ItemRef ref = contact.ref;
+    const ContactStore::PrecheckedWrite checked = m_items.precheckWrite(ref.collectionId, ref.href, ref.etag);
+    if (!checked.isValid())
+    {
+        result.status = checked.status;
+        return result;
+    }
+    if (!isValidContactForWrite(contact))
+    {
+        result.status = StorageStatus::Unsupported;
+        return result;
+    }
+
+    const std::shared_ptr<ContactRepository> repository = m_items.repositoryForCollection(*checked.collection);
+    const ContactRepository::ReadResult current = repository->readCurrentObject(checked.ref.href, checked.ref.etag);
+    if (!current.isOk())
+    {
+        result.status = current.status;
+        return result;
+    }
+    if (isUnchangedContact(contact, current.object))
+    {
+        result.status = StorageStatus::Ok;
+        result.snapshot = snapshotFromStoredContact(current.object);
+        return result;
+    }
+
+    const Contact object = contactForUpdate(contact, checked.ref);
+    const ContactSaveResult updateResult = repository->replaceObject(object);
+    if (!updateResult.isOk())
+    {
+        qCWarning(storageLog) << "Could not update contact item" << checked.ref.href
+                              << storageStatusName(updateResult.status);
+        result.status = updateResult.status;
+        return result;
+    }
+
+    result.status = StorageStatus::Ok;
+    result.snapshot = snapshotFromStoredContact(updateResult.snapshot);
+    invalidateDownstreamCaches(ref);
+    invalidateDownstreamCaches(result.snapshot.ref);
+    return result;
 }
 
 ContactService::ContactMoveResult ContactService::moveContact(const Contact &contact,
                                                               const QString &destinationCollectionId) const
 {
-    return moveObject(contact, destinationCollectionId);
+    const ItemRef sourceRef = contact.ref;
+    const QString targetCollectionId =
+        destinationCollectionId.isEmpty() ? sourceRef.collectionId : destinationCollectionId;
+    if (sourceRef.collectionId == targetCollectionId)
+    {
+        const ContactSaveResult updateResult = updateContact(contact);
+        ContactMoveResult result;
+        result.snapshot = updateResult.snapshot;
+        result.move = MoveOutcome::update(
+            UpdateOutcome{updateResult.status, sourceRef, updateResult.isOk() ? updateResult.snapshot.ref : sourceRef});
+        return result;
+    }
+
+    const auto preconditionFailed = [&contact, &sourceRef, &targetCollectionId](StorageStatus status) {
+        ContactMoveResult result;
+        result.snapshot = contact;
+        ItemRef destination;
+        destination.collectionId = targetCollectionId;
+        result.move = MoveOutcome::preconditionFailed(status, sourceRef, destination);
+        return result;
+    };
+
+    if (!isValidContactForWrite(contact))
+    {
+        return preconditionFailed(StorageStatus::Unsupported);
+    }
+
+    const ContactStore::PrecheckedWrite checkedSource =
+        m_items.precheckWrite(sourceRef.collectionId, sourceRef.href, sourceRef.etag);
+    if (!checkedSource.isValid())
+    {
+        return preconditionFailed(checkedSource.status);
+    }
+
+    const std::optional<Collection> destinationCollection = m_items.collectionForWrite(targetCollectionId);
+    if (!destinationCollection)
+    {
+        return preconditionFailed(m_items.writeFailureStatus(targetCollectionId));
+    }
+    const std::shared_ptr<ContactRepository> destinationRepository = repositoryFor(*destinationCollection);
+    if (!destinationRepository->isValid())
+    {
+        return preconditionFailed(StorageStatus::IoError);
+    }
+
+    const Contact insertedObject = contactForAdd(contact, targetCollectionId);
+    const ContactSaveResult createResult = destinationRepository->addObject(insertedObject);
+    if (!createResult.isOk())
+    {
+        ContactMoveResult result;
+        result.snapshot = contact;
+        result.move =
+            MoveOutcome::destinationCreateFailed(createResult.status, checkedSource.ref, createResult.snapshot.ref);
+        return result;
+    }
+
+    ContactMoveResult result;
+    result.snapshot = contact;
+    result.move = m_items.commitCrossCollectionMove(checkedSource, destinationCollection, createResult.snapshot.ref);
+    MoveOutcomeLog::logCrossVdirFailures(result.move,
+                                         QStringLiteral("Could not remove moved contact item"),
+                                         QStringLiteral("Could not roll back moved contact item"));
+    if (result.move.isOk())
+    {
+        result.snapshot = snapshotFromStoredContact(createResult.snapshot);
+        invalidateDownstreamCaches(sourceRef);
+        invalidateDownstreamCaches(result.snapshot.ref);
+    }
+    return result;
+}
+
+StorageStatus ContactService::deleteContact(const ItemRef &storage) const
+{
+    const ContactStore::PrecheckedWrite checked =
+        m_items.precheckWrite(storage.collectionId, storage.href, storage.etag);
+    if (!checked.isValid())
+    {
+        return checked.status;
+    }
+
+    const StorageStatus removeStatus = m_items.commitRemove(checked);
+    if (removeStatus != StorageStatus::Ok)
+    {
+        qCWarning(storageLog) << "Could not remove contact item" << checked.ref.href << storageStatusName(removeStatus);
+        return removeStatus;
+    }
+    invalidateDownstreamCaches(checked.ref);
+    return StorageStatus::Ok;
+}
+
+StorageStatus ContactService::deleteContact(const Contact &contact) const
+{
+    return deleteContact(contact.ref);
+}
+
+QFuture<ContactService::ContactSaveResult> ContactService::addContactAsync(const Contact &contact,
+                                                                           const QString &collectionId) const
+{
+    if (!isValidContactForWrite(contact))
+    {
+        return CalendarIoUtils::completedFuture(saveFailure(StorageStatus::Unsupported, contact));
+    }
+    const std::optional<Collection> collection = m_items.collectionForWrite(collectionId);
+    if (!collection)
+    {
+        return CalendarIoUtils::completedFuture(saveFailure(m_items.writeFailureStatus(collectionId), contact));
+    }
+    const VdirPath path = VdirPath::fromCollection(*collection);
+    if (!path.isValid())
+    {
+        return CalendarIoUtils::completedFuture(saveFailure(StorageStatus::IoError, contact));
+    }
+    return m_items.vdirIo().submit(path, QStringLiteral("contact add"), saveIoFailure(), [this, contact, collectionId] {
+        return addContact(contact, collectionId);
+    });
+}
+
+QFuture<ContactService::ContactSaveResult> ContactService::updateContactAsync(const Contact &contact) const
+{
+    const ItemRef ref = contact.ref;
+    const std::optional<Collection> collection = m_items.collectionForRead(ref.collectionId);
+    if (!collection)
+    {
+        return CalendarIoUtils::completedFuture(saveFailure(StorageStatus::NotFound, contact));
+    }
+    const VdirPath path = VdirPath::fromCollection(*collection);
+    if (!path.isValid())
+    {
+        return CalendarIoUtils::completedFuture(saveFailure(StorageStatus::IoError, contact));
+    }
+    return m_items.vdirIo().submit(
+        path, QStringLiteral("contact update"), saveIoFailure(), [this, contact] { return updateContact(contact); });
+}
+
+QFuture<ContactService::ContactMoveResult>
+ContactService::moveContactAsync(const Contact &contact, const QString &destinationCollectionId) const
+{
+    const ItemRef ref = contact.ref;
+    const QString targetCollectionId = destinationCollectionId.isEmpty() ? ref.collectionId : destinationCollectionId;
+    return AsyncSubmit::submitMove<ContactMoveResult>(
+        m_items.vdirIo(),
+        QStringLiteral("contact move"),
+        targetCollectionId,
+        [this, ref] { return m_items.collectionForRead(ref.collectionId); },
+        [this, targetCollectionId] {
+            return AsyncSubmit::ResolvedCollection{m_items.collectionForWrite(targetCollectionId),
+                                                   m_items.writeFailureStatus(targetCollectionId)};
+        },
+        [this, contact, targetCollectionId] { return moveContact(contact, targetCollectionId); },
+        [contact, targetCollectionId](StorageStatus status) {
+            return moveFailure(status, contact, targetCollectionId);
+        });
+}
+
+QFuture<StorageStatus> ContactService::deleteContactAsync(const ItemRef &storage) const
+{
+    const std::optional<Collection> collection = m_items.collectionForRead(storage.collectionId);
+    if (!collection)
+    {
+        return CalendarIoUtils::completedFuture(StorageStatus::NotFound);
+    }
+    const VdirPath path = VdirPath::fromCollection(*collection);
+    if (!path.isValid())
+    {
+        return CalendarIoUtils::completedFuture(StorageStatus::IoError);
+    }
+    return m_items.vdirIo().submit(path, QStringLiteral("contact remove"), StorageStatus::IoError, [this, storage] {
+        return deleteContact(storage);
+    });
+}
+
+QFuture<StorageStatus> ContactService::deleteContactAsync(const Contact &contact) const
+{
+    return deleteContactAsync(contact.ref);
+}
+
+void ContactService::clearCache() const
+{
+    m_items.clearCache();
+}
+
+void ContactService::clearCacheForCollections(const QSet<QString> &collectionIds) const
+{
+    m_items.clearCacheForCollections(collectionIds);
+}
+
+void ContactService::retainRepositoriesForCollections(const QList<Collection> &collections) const
+{
+    m_items.retainRepositoriesForCollections(collections);
 }
 
 OperationCapability ContactService::canCreateContact(const QString &collectionId) const
 {
     return capabilityForWritableCollection(
-        collections(), CollectionKind::AddressBook, collectionId, OperationCapabilityStatus::DestinationReadOnly);
+        m_collections, CollectionKind::AddressBook, collectionId, OperationCapabilityStatus::DestinationReadOnly);
 }
 
 OperationCapability ContactService::canEditContact(const Contact &contact) const
 {
-    if (!contact.ref.isValid() || !ContactServiceTraits::isValidForWrite(contact) || contactDisplay(contact).isEmpty)
+    if (!contact.ref.isValid() || !isValidContactForWrite(contact) || contactDisplay(contact).isEmpty)
     {
         return invalidSelectionCapability(contact.ref);
     }
-    return capabilityForWritableCollection(collections(),
+    return capabilityForWritableCollection(m_collections,
                                            CollectionKind::AddressBook,
                                            contact.ref.collectionId,
                                            OperationCapabilityStatus::SourceReadOnly,
@@ -217,7 +476,7 @@ OperationCapability ContactService::canMoveContact(const Contact &contact, const
         return sourceCapability;
     }
 
-    return capabilityForWritableCollection(collections(),
+    return capabilityForWritableCollection(m_collections,
                                            CollectionKind::AddressBook,
                                            targetCollectionId,
                                            OperationCapabilityStatus::DestinationReadOnly,
@@ -233,8 +492,8 @@ OperationCapability ContactService::canDeleteContact(const Contact &contact) con
 QFuture<ContactSnapshotListResult> ContactService::contactSnapshotsAsync(const CancellationToken &cancellation) const
 {
     QList<QFuture<ContactSnapshotListResult>> perCollectionFutures;
-    const VdirIo &vdirIo = scheduler();
-    for (const Collection &collection : collections().addressBookList())
+    const VdirIo &vdirIo = m_items.vdirIo();
+    for (const Collection &collection : m_collections.addressBookList())
     {
         if (cancellation.isCancellationRequested())
         {
@@ -278,82 +537,5 @@ QFuture<ContactSnapshotListResult> ContactService::contactSnapshotsAsync(const C
 
 QList<Collection> ContactService::addressBookCollections() const
 {
-    return collections().addressBookList();
-}
-
-StorageStatus ContactService::deleteContact(const Contact &contact) const
-{
-    return deleteContact(contact.ref);
-}
-
-StorageStatus ContactService::deleteContact(const ItemRef &storage) const
-{
-    return removeObject(storage);
-}
-
-StorageStatus ContactService::removeContact(const Contact &contact) const
-{
-    return deleteContact(contact);
-}
-
-StorageStatus ContactService::removeContact(const ItemRef &storage) const
-{
-    return deleteContact(storage);
-}
-
-QFuture<ContactService::ContactSaveResult> ContactService::addContactAsync(const Contact &contact,
-                                                                           const QString &collectionId) const
-{
-    return addObjectAsync(contact, collectionId);
-}
-
-QFuture<ContactService::ContactSaveResult> ContactService::updateContactAsync(const Contact &contact) const
-{
-    return updateObjectAsync(contact);
-}
-
-QFuture<ContactService::ContactMoveResult>
-ContactService::moveContactAsync(const Contact &contact, const QString &destinationCollectionId) const
-{
-    return moveObjectAsync(contact, destinationCollectionId);
-}
-
-QFuture<StorageStatus> ContactService::deleteContactAsync(const ItemRef &storage) const
-{
-    return removeObjectAsync(storage);
-}
-
-QFuture<StorageStatus> ContactService::deleteContactAsync(const Contact &contact) const
-{
-    return deleteContactAsync(contact.ref);
-}
-
-QFuture<StorageStatus> ContactService::removeContactAsync(const ItemRef &storage) const
-{
-    return deleteContactAsync(storage);
-}
-
-QFuture<StorageStatus> ContactService::removeContactAsync(const Contact &contact) const
-{
-    return deleteContactAsync(contact);
-}
-
-void ContactService::clearCache() const
-{
-    Base::clearCache();
-}
-
-void ContactService::clearCacheForCollections(const QSet<QString> &collectionIds) const
-{
-    Base::clearCacheForCollections(collectionIds);
-}
-
-void ContactService::retainRepositoriesForCollections(const QList<Collection> &collections) const
-{
-    Base::retainRepositoriesForCollections(collections);
-}
-
-void ContactService::invalidateDownstreamCaches(const ItemRef &ref) const
-{
-    collections().notifyItemWritten(ref);
+    return m_collections.addressBookList();
 }

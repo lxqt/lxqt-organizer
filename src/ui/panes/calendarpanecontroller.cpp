@@ -19,13 +19,15 @@
 #include "calendarpanecontroller.h"
 
 #include "calendarpaneutils.h"
-#include "eventreader.h"
-#include "eventservice.h"
 #include "calendareditormapper.h"
+#include "collectioncatalog.h"
 #include "collectionservice.h"
-#include "reloadcoordinator.h"
+#include "eventservice.h"
 #include "futurewatch.h"
+#include "mainwindowservices.h"
 #include "operationcapabilitymessages.h"
+#include "preferencescontroller.h"
+#include "reloadcoordinator.h"
 #include "storageerrormessages.h"
 #include "taskservice.h"
 
@@ -86,13 +88,13 @@ bool eventMatchesText(const EventOccurrence &event, const QString &needle)
     return textListMatches({display.summary, display.location, display.description}, needle);
 }
 
-bool taskMatchesText(const Task &task, const WindowServices &services, const QString &needle)
+bool taskMatchesText(const Task &task, const CollectionCatalog &catalog, const QString &needle)
 {
     if (!CalendarSnapshot::hasTask(task))
     {
         return false;
     }
-    const CollectionSummary collection = services.summarizeCollection(CollectionKind::Calendar, task.ref.collectionId);
+    const CollectionSummary collection = summarizeCollection(catalog, CollectionKind::Calendar, task.ref.collectionId);
     const TaskDisplay display = CalendarSnapshot::taskDisplay(task, collection);
     return textListMatches({display.summary, display.description, display.collection.displayName}, needle);
 }
@@ -190,7 +192,7 @@ currentFindPosition(const EventOccurrence &currentEvent, const Task &currentTask
 }
 
 std::optional<CalendarFindMatch> findTaskMatch(CalendarPane *pane,
-                                               const WindowServices &services,
+                                               const CollectionCatalog &catalog,
                                                bool forward,
                                                const QString &needle,
                                                const QDate &startDate,
@@ -203,7 +205,7 @@ std::optional<CalendarFindMatch> findTaskMatch(CalendarPane *pane,
         {
             continue;
         }
-        if (taskMatchesText(task, services, needle))
+        if (taskMatchesText(task, catalog, needle))
         {
             const QDate dueDate = CalendarSnapshot::taskDueDate(task);
             matches.append(
@@ -259,7 +261,7 @@ std::optional<CalendarFindMatch> findSameDayEventAroundTask(CalendarPane *pane,
 }
 
 std::optional<CalendarFindMatch> findEventMatch(CalendarPane *pane,
-                                                const EventReader &eventReader,
+                                                const EventService &eventService,
                                                 bool forward,
                                                 const QString &needle,
                                                 const QDate &startDate,
@@ -274,10 +276,10 @@ std::optional<CalendarFindMatch> findEventMatch(CalendarPane *pane,
             return sameDay;
         }
         const QDate nextDate = forward ? position->date.addDays(1) : position->date.addDays(-1);
-        const std::optional<EventOccurrence> match = eventReader.searchOccurrences(
+        const std::optional<EventOccurrence> match = eventService.searchOccurrences(
             needle,
             nextDate,
-            forward ? EventReader::SearchDirection::Forward : EventReader::SearchDirection::Backward,
+            forward ? EventService::SearchDirection::Forward : EventService::SearchDirection::Backward,
             {},
             [](const QString &collectionId) { return !collectionId.isEmpty(); });
         return match ? std::optional<CalendarFindMatch>(CalendarFindMatch{
@@ -285,10 +287,10 @@ std::optional<CalendarFindMatch> findEventMatch(CalendarPane *pane,
                      : std::nullopt;
     }
 
-    const std::optional<EventOccurrence> match = eventReader.searchOccurrences(
+    const std::optional<EventOccurrence> match = eventService.searchOccurrences(
         needle,
         startDate,
-        forward ? EventReader::SearchDirection::Forward : EventReader::SearchDirection::Backward,
+        forward ? EventService::SearchDirection::Forward : EventService::SearchDirection::Backward,
         currentEvent,
         [](const QString &collectionId) { return !collectionId.isEmpty(); });
     return match ? std::optional<CalendarFindMatch>(CalendarFindMatch{
@@ -329,8 +331,8 @@ CalendarPaneController::CalendarPaneController(CalendarPane *pane, const Deps &d
     : QObject(parent)
     , m_pane(pane)
     , m_deps(deps)
-    , m_eventFlow(m_pane, &m_deps.eventReader, m_deps.services)
-    , m_taskFlow(m_pane, m_deps.services)
+    , m_eventFlow(m_pane, &m_deps.eventService, m_deps.preferences)
+    , m_taskFlow(m_pane, m_deps.preferences)
 {
     Q_ASSERT(m_pane);
     connect(
@@ -427,8 +429,8 @@ void CalendarPaneController::updateEvent(const EventOccurrence &selectedEvent)
     FutureWatcher::watch(
         this,
         m_deps.eventService.updateEventAsync(currentEvent, eventData),
-        [this](const EventService::EventSaveResult &updateResult) {
-            if (!StorageErrorMessages::presentOutcome(m_pane, tr("save"), tr("event"), {updateResult.status}))
+        [this](const EventService::EventUpdateResult &updateResult) {
+            if (!StorageErrorMessages::presentOutcome(m_pane, tr("save"), tr("event"), {updateResult.move}))
             {
                 return;
             }
@@ -450,15 +452,15 @@ void CalendarPaneController::rescheduleEvent(const EventOccurrence &currentEvent
         return;
     }
 
-    EventFields eventData = m_deps.eventReader.editorDataForOccurrence(currentEvent);
+    EventFields eventData = m_deps.eventService.editorDataForOccurrence(currentEvent);
     eventData.date = currentEvent.start.date();
     eventData.startTime = startTime;
     eventData.endTime = endTime;
     FutureWatcher::watch(
         this,
         m_deps.eventService.updateEventAsync(currentEvent, eventData),
-        [this](const EventService::EventSaveResult &updateResult) {
-            if (!StorageErrorMessages::presentOutcome(m_pane, tr("save"), tr("event"), {updateResult.status}))
+        [this](const EventService::EventUpdateResult &updateResult) {
+            if (!StorageErrorMessages::presentOutcome(m_pane, tr("save"), tr("event"), {updateResult.move}))
             {
                 return;
             }
@@ -653,13 +655,13 @@ void CalendarPaneController::setEventCompleted(const EventOccurrence &event, boo
         return;
     }
 
-    EventFields eventData = m_deps.eventReader.editorDataForOccurrence(event);
+    EventFields eventData = m_deps.eventService.editorDataForOccurrence(event);
     eventData.completed = completed;
     FutureWatcher::watch(
         this,
         m_deps.eventService.updateEventAsync(event, eventData),
-        [this](const EventService::EventSaveResult &updateResult) {
-            if (!StorageErrorMessages::presentOutcome(m_pane, tr("save"), tr("event"), {updateResult.status}))
+        [this](const EventService::EventUpdateResult &updateResult) {
+            if (!StorageErrorMessages::presentOutcome(m_pane, tr("save"), tr("event"), {updateResult.move}))
             {
                 return;
             }
@@ -680,10 +682,7 @@ void CalendarPaneController::saveTaskInlineEdit(int row, const Task &task)
             {
                 return;
             }
-            if (m_pane)
-            {
-                m_pane->replaceInlineEditedTask(row, saveResult.snapshot);
-            }
+            m_pane->replaceInlineEditedTask(row, saveResult.snapshot);
             QTimer::singleShot(0, &m_deps.reloads, &ReloadCoordinator::reloadCalendar);
         });
 }
@@ -697,9 +696,10 @@ void CalendarPaneController::findCalendarItem(bool forward,
     const QString foldedNeedle = normalizedNeedle(needle);
     const std::optional<CalendarFindPosition> position = currentFindPosition(currentEvent, currentTask, startDate);
     const std::optional<CalendarFindMatch> eventMatch =
-        findEventMatch(m_pane, m_deps.eventReader, forward, foldedNeedle, startDate, currentEvent, position);
+        findEventMatch(m_pane, m_deps.eventService, forward, foldedNeedle, startDate, currentEvent, position);
+    const std::shared_ptr<const CollectionCatalog> catalog = m_deps.services.catalogSnapshot();
     const std::optional<CalendarFindMatch> taskMatch =
-        findTaskMatch(m_pane, m_deps.services, forward, foldedNeedle, startDate, position);
+        findTaskMatch(m_pane, *catalog, forward, foldedNeedle, startDate, position);
     const std::optional<CalendarFindMatch> match = nearestMatch(forward, eventMatch, taskMatch);
     if (!match)
     {

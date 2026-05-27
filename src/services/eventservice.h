@@ -19,34 +19,71 @@
 #ifndef EVENTSERVICE_H
 #define EVENTSERVICE_H
 
-#include "calendaritem.h"
 #include "calendareditordata.h"
+#include "calendaritem.h"
+#include "calendaritemstore.h"
+#include "cancellationtoken.h"
+#include "collectionreloadsubscription.h"
 #include "collectionservice.h"
 #include "itemidentity.h"
 #include "operationcapability.h"
 #include "storageresult.h"
 
-#include <QList>
+#include <QDate>
 #include <QFuture>
+#include <QList>
 #include <QSet>
 #include <QString>
 
+#include <functional>
 #include <memory>
+#include <optional>
 
 class VdirIo;
+
+struct EventOccurrenceListResult
+{
+    QList<EventOccurrence> occurrences;
+    QList<ReadFailure> readFailures;
+};
 
 // @thread any-thread; caches live behind store mutexes and writes use VdirIo.
 class EventService
 {
 public:
+    enum class SearchDirection
+    {
+        Forward,
+        Backward
+    };
+
     using EventSaveResult = StorageResult<CalendarItem>;
+    using EventUpdateResult = StorageMoveResult<CalendarItem>;
     using EventMoveResult = StorageMoveResult<CalendarItem>;
 
     explicit EventService(const CollectionService &collections, const VdirIo &vdirIo);
     ~EventService();
 
+    // Read API.
+    EventFields defaultEventEditorData(const QDate &date) const;
+    EventFields editorDataForOccurrence(const EventOccurrence &event) const;
+    QList<CalendarItem> calendarItemSummaries(QList<ReadFailure> *readFailures = nullptr,
+                                              const CancellationToken &cancellation = {}) const;
+    EventOccurrence eventSeries(const OccurrenceRef &occurrence) const;
+    QFuture<EventOccurrenceListResult> eventOccurrencesInDateRangeAsync(
+        const QDate &rangeStart, const QDate &rangeEnd, const CancellationToken &cancellation = {}) const;
+    std::optional<EventOccurrence>
+    searchOccurrences(const QString &needle,
+                      const QDate &anchor,
+                      SearchDirection direction,
+                      const EventOccurrence &current,
+                      const std::function<bool(const QString &collectionId)> &isCollectionVisible,
+                      const CancellationToken &cancellation = {}) const;
+    void invalidateItem(const ItemKey &item) const;
+
+    // Write API.
     EventSaveResult addEvent(const EventFields &event) const;
-    EventSaveResult updateEvent(const EventOccurrence &currentOccurrence, const EventFields &event) const;
+    EventUpdateResult updateEvent(const EventOccurrence &currentOccurrence, const EventFields &event) const;
     EventMoveResult moveEvent(const EventOccurrence &currentOccurrence,
                               const EventFields &event,
                               const QString &destinationCollectionId) const;
@@ -58,7 +95,8 @@ public:
     OperationCapability canCompleteEvent(const EventOccurrence &event) const;
     // Async methods submit storage work directly to VdirIo.
     QFuture<EventSaveResult> addEventAsync(const EventFields &event) const;
-    QFuture<EventSaveResult> updateEventAsync(const EventOccurrence &currentOccurrence, const EventFields &event) const;
+    QFuture<EventUpdateResult> updateEventAsync(const EventOccurrence &currentOccurrence,
+                                                const EventFields &event) const;
     QFuture<EventMoveResult> moveEventAsync(const EventOccurrence &currentOccurrence,
                                             const EventFields &event,
                                             const QString &destinationCollectionId) const;
@@ -68,13 +106,25 @@ public:
     void retainRepositoriesForCollections(const QList<Collection> &collections) const;
 
 private:
-    class Impl;
     struct EventMoveWriteResult;
+    struct OccurrenceCache;
     void notifyItemWritten(const ItemRef &storage) const;
     EventMoveWriteResult moveEventObject(const EventOccurrence &currentOccurrence,
                                          const EventFields &event,
                                          const QString &destinationCollectionId) const;
-    std::unique_ptr<Impl> m_impl;
+    QList<EventOccurrence>
+    occurrencesForItem(const CalendarItem &object, const QDate &rangeStart, const QDate &rangeEnd) const;
+    EventOccurrenceListResult collectOccurrencesInRangeForCollection(const Collection &collection,
+                                                                     const QDate &rangeStart,
+                                                                     const QDate &rangeEnd,
+                                                                     const CancellationToken &cancellation) const;
+
+    const CollectionService &m_collections;
+    CalendarItemStore m_items;
+    std::unique_ptr<OccurrenceCache> m_occurrenceCache;
+    // Declared last so destruction disconnects the reload handler before the
+    // store it captures is torn down.
+    CollectionReloadSubscription m_collectionReloadSubscription;
 };
 
 #endif // EVENTSERVICE_H

@@ -148,7 +148,6 @@ QUrl openableUrlFromText(const QString &text, bool preferLocalFile)
 
 CalendarPaneActions createCalendarPaneActions(QObject *owner)
 {
-    auto tr = [](const char *text) { return QCoreApplication::translate("CalendarPane", text); };
     auto action = [owner](const QString &icon,
                           const QString &text,
                           const QString &objectName,
@@ -171,36 +170,38 @@ CalendarPaneActions createCalendarPaneActions(QObject *owner)
 
     CalendarPaneActions actions;
     actions.newEvent = action(QStringLiteral("view-calendar-day"),
-                              tr("New Event"),
+                              QCoreApplication::translate("CalendarPaneUtils", "New Event"),
                               QStringLiteral("actionNew_Event"),
                               {QStringLiteral("actionNew"), QStringLiteral("actionNew_Event")},
                               QKeySequence::New,
-                              tr("New"));
+                              QCoreApplication::translate("CalendarPaneUtils", "New"));
     actions.newTask = action(QStringLiteral("view-calendar-tasks"),
-                             tr("New Task"),
+                             QCoreApplication::translate("CalendarPaneUtils", "New Task"),
                              QStringLiteral("actionNew_Task"),
                              {QStringLiteral("actionNew_Task")},
                              QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_N),
-                             tr("Task"));
-    actions.editItem = action(
-        QStringLiteral("document-edit"), tr("Edit"), QStringLiteral("actionEdit"), {QStringLiteral("actionEdit")});
+                             QCoreApplication::translate("CalendarPaneUtils", "Task"));
+    actions.editItem = action(QStringLiteral("document-edit"),
+                              QCoreApplication::translate("CalendarPaneUtils", "Edit"),
+                              QStringLiteral("actionEdit"),
+                              {QStringLiteral("actionEdit")});
     actions.deleteItem = action(QStringLiteral("edit-delete"),
-                                tr("Delete"),
+                                QCoreApplication::translate("CalendarPaneUtils", "Delete"),
                                 QStringLiteral("actionDelete"),
                                 {QStringLiteral("actionDelete")},
                                 QKeySequence::Delete);
     actions.find = action(QStringLiteral("edit-find"),
-                          tr("Find"),
+                          QCoreApplication::translate("CalendarPaneUtils", "Find"),
                           QStringLiteral("actionFind"),
                           {QStringLiteral("actionFind")},
                           QKeySequence::Find);
     actions.findNext = action(QStringLiteral("go-down"),
-                              tr("Find Next"),
+                              QCoreApplication::translate("CalendarPaneUtils", "Find Next"),
                               QStringLiteral("actionFindNext"),
                               {QStringLiteral("actionFindNext")},
                               QKeySequence::FindNext);
     actions.findPrevious = action(QStringLiteral("go-up"),
-                                  tr("Find Previous"),
+                                  QCoreApplication::translate("CalendarPaneUtils", "Find Previous"),
                                   QStringLiteral("actionFindPrev"),
                                   {QStringLiteral("actionFindPrev")},
                                   QKeySequence::FindPrevious);
@@ -217,19 +218,23 @@ void showTimelineContextMenu(QWidget *parent,
                              const std::function<void(const EventOccurrence &, bool)> &setEventCompleted,
                              const std::function<void(const EventOccurrence &)> &deleteEvent)
 {
-    auto tr = [](const char *text) { return QCoreApplication::translate("CalendarPane", text); };
     QMenu menu(parent);
-    QAction *newAction = menu.addAction(QIcon::fromTheme(QStringLiteral("view-calendar-day")), tr("New Event"));
+    QAction *newAction = menu.addAction(QIcon::fromTheme(QStringLiteral("view-calendar-day")),
+                                        QCoreApplication::translate("CalendarPaneUtils", "New Event"));
     menu.addSeparator();
-    QAction *editAction = menu.addAction(QIcon::fromTheme(QStringLiteral("document-edit")), tr("Edit Event"));
+    QAction *editAction = menu.addAction(QIcon::fromTheme(QStringLiteral("document-edit")),
+                                         QCoreApplication::translate("CalendarPaneUtils", "Edit Event"));
     const bool eventCompleted = CalendarSnapshot::eventDisplay(occurrence).completed;
-    QAction *completedAction = menu.addAction(eventCompleted ? tr("Mark as Not Completed") : tr("Mark as Completed"));
+    QAction *completedAction =
+        menu.addAction(eventCompleted ? QCoreApplication::translate("CalendarPaneUtils", "Mark as Not Completed")
+                                      : QCoreApplication::translate("CalendarPaneUtils", "Mark as Completed"));
     menu.addSeparator();
-    QAction *openUrlAction = menu.addAction(tr("Open URL"));
-    QAction *openAttachmentAction =
-        menu.addAction(QIcon::fromTheme(QStringLiteral("mail-attachment")), tr("Open Attachment"));
+    QAction *openUrlAction = menu.addAction(QCoreApplication::translate("CalendarPaneUtils", "Open URL"));
+    QAction *openAttachmentAction = menu.addAction(QIcon::fromTheme(QStringLiteral("mail-attachment")),
+                                                   QCoreApplication::translate("CalendarPaneUtils", "Open Attachment"));
     menu.addSeparator();
-    QAction *deleteAction = menu.addAction(QIcon::fromTheme(QStringLiteral("edit-delete")), tr("Delete Event"));
+    QAction *deleteAction = menu.addAction(QIcon::fromTheme(QStringLiteral("edit-delete")),
+                                           QCoreApplication::translate("CalendarPaneUtils", "Delete Event"));
     const bool hasEvent = !occurrence.ref.item.href.isEmpty();
     const EventDisplay display = CalendarSnapshot::eventDisplay(occurrence);
     const QUrl eventUrl = hasEvent ? openableUrlFromText(display.url.toString(), false) : QUrl();
@@ -255,12 +260,16 @@ void showTimelineContextMenu(QWidget *parent,
     }
     else if (selectedAction == openUrlAction && openUrlAction->isEnabled() && !QDesktopServices::openUrl(eventUrl))
     {
-        QMessageBox::warning(parent, tr("Organizer"), tr("Could not open the event URL."));
+        QMessageBox::warning(parent,
+                             QCoreApplication::translate("CalendarPaneUtils", "Organizer"),
+                             QCoreApplication::translate("CalendarPaneUtils", "Could not open the event URL."));
     }
     else if (selectedAction == openAttachmentAction && openAttachmentAction->isEnabled() &&
              !QDesktopServices::openUrl(attachmentUrl))
     {
-        QMessageBox::warning(parent, tr("Organizer"), tr("Could not open the event attachment."));
+        QMessageBox::warning(parent,
+                             QCoreApplication::translate("CalendarPaneUtils", "Organizer"),
+                             QCoreApplication::translate("CalendarPaneUtils", "Could not open the event attachment."));
     }
     else if (selectedAction == deleteAction && hasEvent)
     {

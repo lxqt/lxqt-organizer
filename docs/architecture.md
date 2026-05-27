@@ -8,7 +8,7 @@ UI / window shell / panes / dialogs / models
         |
         | snapshots, display snapshots, editor DTOs, service calls
         v
-Services / readers / collection catalog
+Services / collection catalog
         |
         | repositories, storage results, domain mutators/mappers
         v
@@ -35,10 +35,11 @@ Dependencies flow downward only:
   expressed through `CollectionResolver` (declared in `storage/api/`).
 - `storage/fs/` may depend on `storage/api/` and domain only. It must not
   include from `storage/repo/`.
-- `storage/api/` is an `INTERFACE` library that carries the vocabulary above
-  the storage line: `StorageStatus`, `StorageResult<T>`, `StorageMoveResult<T>`,
-  `MoveOutcome`, the `CollectionResolver` IoC interface, and the storage
-  logging category. It may include from domain only; it must not include from
+- `storage/api/` is an `INTERFACE` library that carries the vocabulary and
+  narrow storage seams above the storage line: `StorageStatus`,
+  `StorageResult<T>`, `StorageMoveResult<T>`, `MoveOutcome`, `VdirPath`, the
+  `VdirIo` and `CollectionResolver` IoC interfaces, and the storage logging
+  category. It may include from domain only; it must not include from
   `storage/fs/` or `storage/repo/`.
 - Domain may depend on Qt and KF6 preservation types only. Domain must not
   include `storage/`, `services/`, or UI headers.
@@ -76,17 +77,19 @@ Storage exposes filesystem and repository APIs:
 - `VdirItemRepository` is the `ItemRef` contract above `Vdir`.
 - `CalendarItemRepository` and `ContactRepository` encode/decode
   `CalendarItemSnapshot` and `ContactSnapshot`.
-- `ItemStore` and `CalendarItemStore` cache repositories and enforce collection
-  resolution through `CollectionResolver`.
+- `ItemStore`, `CalendarItemStore`, and `ContactStore` cache repositories and
+  enforce collection resolution through `CollectionResolver`.
 - Storage outcomes are typed: `StorageStatus`, `StorageResult<T>`,
   `StorageMoveResult<T>`, and `MoveOutcome`.
+- `VdirPath` identifies a canonical vdir path for scheduling, and `VdirIo` is
+  the scheduler interface implemented by `VdirIoScheduler`.
 
 Services expose user operations and read projections:
 
 - `EventService`, `TaskService`, and `ContactService` validate
-  collection capabilities, orchestrate writes/moves/deletes, and return typed
-  storage outcomes with committed etags.
-- `EventReader` is read-only and owns occurrence projection/cache logic.
+  collection capabilities, provide read APIs, orchestrate
+  writes/moves/deletes, and return typed storage outcomes with committed etags.
+- `EventService::OccurrenceCache` owns event occurrence projection cache state.
 - `CollectionService` implements `CollectionResolver` and is the read/write
   facade over `CollectionCatalog`.
 - `CollectionCatalog` exposes the fixed local personal calendar and contact
@@ -98,7 +101,7 @@ formatters stay in their narrower `src/ui/*` packages:
 
 - Models consume display/storage snapshots only. They must not open
   repositories or vdirs.
-- Panes and dialogs call services/readers and map user input through editor
+- Panes and dialogs call services and map user input through editor
   DTOs. UI may translate errors, but services and storage do not produce UI
   strings.
 - `StorageErrorMessages` lives under `ui/messages` and formats typed storage
@@ -208,9 +211,9 @@ Successful add, update, save, and move results return snapshots with the
 committed `ItemRef`. In particular, `snapshot.ref.etag` is the new etag
 from storage, not the caller's input precondition etag.
 
-Readers own read-side projection. `EventReader` expands occurrences and
-returns snapshots for UI use. UI code should use snapshots and editor data
-instead of inspecting `KCalendarCore` objects.
+Services own read-side projection. `EventService` expands occurrences and
+returns snapshots for UI use through its read API. UI code should use snapshots
+and editor data instead of inspecting `KCalendarCore` objects.
 
 Cross-collection moves are best-effort. The destination item is created first;
 if source removal fails, the destination copy is removed. A failed cleanup is
@@ -232,8 +235,8 @@ private scheduler in a service.
 ## Ownership and Cache Rules
 
 `ApplicationContext` owns the process-wide `VdirIoScheduler`,
-`CollectionService`, readers, and write services. `MainWindow` receives those
-services from the context. Do not add by-value service ownership back to
+`CollectionService`, and domain services. `MainWindow` receives those services
+from the context. Do not add by-value service ownership back to
 `MainWindow`; service lifetime belongs to the application context so references
 stay stable across windows and catalog reloads.
 
@@ -243,13 +246,13 @@ vdir etag cache. Normal application access to a `Vdir` is serialized by the
 path's scheduler worker; standalone callers without a scheduler must still avoid
 concurrent operations on the same instance. `Vdir`'s `m_etagCacheMutex` is a
 leaf guard for mutable const-method cache and targeted invalidation, not operation
-locks. `CalendarItemStore`, `ContactItemStore`, and
-`EventReader` guard their mutable caches with mutexes. Catalog reloads
-must go through `ApplicationContext::reloadCollections()` or
+locks. `CalendarItemStore`, `ContactStore`, and
+`EventService::OccurrenceCache` guard their mutable caches with mutexes.
+Catalog reloads must go through `ApplicationContext::reloadCollections()` or
 `loadCollections()`. Those methods install the new catalog snapshot, compute
 the changed collection ids by comparing the old and new catalog, and then call
-`CollectionService::notifyReloaded()`. Services, readers, and UI coordinators that
-cache collection-derived data must subscribe to
+`CollectionService::notifyReloaded()`. Services and UI coordinators that cache
+collection-derived data must subscribe to
 `CollectionService::collectionsReloaded` in their constructor and invalidate
 only the entries covered by the changed ids. Because calendar and address-book
 collections can share an id, subscribers may receive an id for another
@@ -258,7 +261,7 @@ sets as a no-op.
 
 Cache mutexes are leaf locks. `Vdir::m_etagCacheMutex`,
 `ItemStore::m_repositoriesMutex`, and
-`EventReader::m_occurrenceCacheMutex` must not be held while taking another
-cache mutex or while calling a user-supplied callback. Const reads and writes are
-reentrant; repositories are cached as `std::shared_ptr` so a worker may keep a
-repository alive across a catalog reload intentionally.
+`EventService::OccurrenceCache::mutex` must not be held while taking another
+cache mutex or while calling a user-supplied callback. Const reads and writes
+are reentrant; repositories are cached as `std::shared_ptr` so a worker may keep
+a repository alive across a catalog reload intentionally.

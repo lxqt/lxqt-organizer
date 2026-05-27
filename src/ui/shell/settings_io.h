@@ -16,37 +16,31 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef WINDOWSETTINGSSTORE_H
-#define WINDOWSETTINGSSTORE_H
+#ifndef SETTINGS_IO_H
+#define SETTINGS_IO_H
 
 #include "preferences.h"
 
 #include <QByteArray>
-#include <QObject>
 
 class QMainWindow;
-class QSplitter;
 
-class WindowSettingsStore : public QObject
+namespace settings_io {
+
+struct Snapshot
 {
-    Q_OBJECT
-
-public:
-    struct Snapshot
-    {
-        Preferences preferences;
-        QByteArray geometry;
-        QByteArray calendarSplitterState;
-        bool contactDetailsVisible = false;
-        bool taskPaneVisible = true;
-    };
-
-    explicit WindowSettingsStore(QObject *parent = nullptr);
-
-    Snapshot load(const Preferences &fallbackPreferences = Preferences()) const;
-    void save(const Snapshot &snapshot) const;
-    void restoreWindowGeometry(QMainWindow *window, const QByteArray &geometry) const;
-    void saveWindowGeometry(QMainWindow *window, Snapshot *snapshot) const;
+    Preferences preferences;
+    QByteArray geometry;
+    QByteArray calendarSplitterState;
+    bool contactDetailsVisible = false;
+    bool taskPaneVisible = true;
 };
 
-#endif // WINDOWSETTINGSSTORE_H
+Snapshot load(const Preferences &fallbackPreferences = Preferences());
+void save(const Snapshot &snapshot);
+void restoreWindowGeometry(QMainWindow *window, const QByteArray &geometry);
+void saveWindowGeometry(QMainWindow *window, Snapshot *snapshot);
+
+} // namespace settings_io
+
+#endif // SETTINGS_IO_H

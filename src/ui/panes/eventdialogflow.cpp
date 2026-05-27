@@ -19,23 +19,17 @@
 #include "eventdialogflow.h"
 
 #include "eventdialog.h"
-#include "eventreader.h"
+#include "eventservice.h"
+#include "preferencescontroller.h"
 
 #include <QDialog>
 
-namespace {
-
-QLocale currentLocale(const WindowServices *services)
-{
-    return services ? services->locale() : QLocale::system();
-}
-
-} // namespace
-
-EventDialogFlow::EventDialogFlow(QWidget *parentWidget, const EventReader *reader, const WindowServices &services)
+EventDialogFlow::EventDialogFlow(QWidget *parentWidget,
+                                 const EventService *eventService,
+                                 const PreferencesController &preferences)
     : m_parent(parentWidget)
-    , m_reader(reader)
-    , m_services(&services)
+    , m_eventService(eventService)
+    , m_preferences(&preferences)
 {}
 
 std::optional<EventDialogFlow::EditResult>
@@ -44,15 +38,10 @@ EventDialogFlow::create(const QDate &on,
                         const QTime &initialStart,
                         const QTime &initialEnd) const
 {
-    if (!m_parent || !m_reader)
-    {
-        return std::nullopt;
-    }
-
     EventDialog::State dialogState;
-    dialogState.data = m_reader->defaultEventEditorData(on);
+    dialogState.data = m_eventService->defaultEventEditorData(on);
     dialogState.collectionOptions = collectionOptions;
-    dialogState.locale = currentLocale(m_services);
+    dialogState.locale = m_preferences->locale();
     if (initialStart.isValid() && initialEnd.isValid() && initialStart < initialEnd)
     {
         dialogState.data.startTime = initialStart;
@@ -73,15 +62,10 @@ EventDialogFlow::create(const QDate &on,
 std::optional<EventDialogFlow::EditResult>
 EventDialogFlow::edit(const EventOccurrence &occurrence, const QList<QPair<QString, QString>> &collectionOptions) const
 {
-    if (!m_parent || !m_reader)
-    {
-        return std::nullopt;
-    }
-
     EventDialog::State dialogState;
-    dialogState.data = m_reader->editorDataForOccurrence(occurrence);
+    dialogState.data = m_eventService->editorDataForOccurrence(occurrence);
     dialogState.collectionOptions = collectionOptions;
-    dialogState.locale = currentLocale(m_services);
+    dialogState.locale = m_preferences->locale();
     dialogState.mode = EventDialog::Mode::Edit;
 
     EventDialog eventDialog(m_parent, dialogState);

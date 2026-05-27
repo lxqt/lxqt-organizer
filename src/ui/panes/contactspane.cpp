@@ -22,7 +22,10 @@
 #include "contactmodel.h"
 #include "reloadcoordinator.h"
 #include "contactsproxymodel.h"
-#include "windowservices.h"
+#include "findbar.h"
+
+#include "collectioncatalog.h"
+#include "mainwindowservices.h"
 
 #include <QAbstractItemView>
 #include <QAction>
@@ -30,12 +33,9 @@
 #include <QIcon>
 #include <QItemSelectionModel>
 #include <QKeySequence>
-#include <QLabel>
-#include <QLineEdit>
 #include <QMenu>
 #include <QStringList>
 #include <QTableView>
-#include <QToolButton>
 
 ContactsPane::ContactsPane(const Deps &deps, QWidget *parent)
     : QWidget(parent)
@@ -45,12 +45,9 @@ ContactsPane::ContactsPane(const Deps &deps, QWidget *parent)
     ui->setupUi(this);
     setupActions();
     setupUiBehavior();
-    if (m_contactModel)
-    {
-        m_contactModel->setCollectionSummaryProvider([services = &m_deps.services](const QString &collectionId) {
-            return services->summarizeCollection(CollectionKind::AddressBook, collectionId);
-        });
-    }
+    m_contactModel->setCollectionSummaryProvider([services = &m_deps.services](const QString &collectionId) {
+        return summarizeCollection(*services->catalogSnapshot(), CollectionKind::AddressBook, collectionId);
+    });
     connect(&m_deps.reloads,
             &ReloadCoordinator::contactsReloaded,
             this,
@@ -137,8 +134,10 @@ QString ContactsPane::selectionStatusText() const
     const Contact contact = selectedContact(&hasSelection);
     if (hasSelection && contact.addressee && !contactDisplay(contact).isEmpty)
     {
-        const QString collectionName =
-            m_deps.services.summarizeCollection(CollectionKind::AddressBook, contact.ref.collectionId).displayName;
+        const QString collectionName = summarizeCollection(*m_deps.services.catalogSnapshot(),
+                                                           CollectionKind::AddressBook,
+                                                           contact.ref.collectionId)
+                                           .displayName;
         return tr("Address Book: %1").arg(collectionName);
     }
     return tr("%n contact(s)", nullptr, m_visibleItemCount);
@@ -156,32 +155,7 @@ QTableView *ContactsPane::tableViewContacts() const
 
 QWidget *ContactsPane::contactFindBar() const
 {
-    return ui->widgetContactFindBar;
-}
-
-QLineEdit *ContactsPane::contactFindLineEdit() const
-{
-    return ui->lineEditContactFind;
-}
-
-QLabel *ContactsPane::contactFindStatusLabel() const
-{
-    return ui->labelContactFindStatus;
-}
-
-QToolButton *ContactsPane::closeContactFindButton() const
-{
-    return ui->toolButtonCloseContactFind;
-}
-
-QToolButton *ContactsPane::contactFindNextButton() const
-{
-    return ui->toolButtonContactFindNext;
-}
-
-QToolButton *ContactsPane::contactFindPrevButton() const
-{
-    return ui->toolButtonContactFindPrev;
+    return ui->findBar;
 }
 
 void ContactsPane::setContacts(const QList<Contact> &contacts)
@@ -201,7 +175,7 @@ Contact ContactsPane::selectedContact(bool *hasSelection) const
     {
         *hasSelection = false;
     }
-    if (!ui->tableViewContacts || !ui->tableViewContacts->selectionModel() || !m_proxyModelContacts || !m_contactModel)
+    if (!ui->tableViewContacts->selectionModel())
     {
         return {};
     }
@@ -239,35 +213,28 @@ bool ContactsPane::contactDetailsVisible() const
 
 void ContactsPane::showFindBar()
 {
-    m_findVisible = true;
-    ui->widgetContactFindBar->show();
-    ui->lineEditContactFind->setFocus(Qt::ShortcutFocusReason);
-    ui->lineEditContactFind->selectAll();
+    ui->findBar->showFind();
 }
 
 void ContactsPane::hideFindBar()
 {
-    m_findVisible = false;
-    ui->labelContactFindStatus->clear();
-    ui->widgetContactFindBar->hide();
+    ui->findBar->hideFind();
 }
 
 bool ContactsPane::findContact(bool forward)
 {
-    if (!m_findVisible)
+    if (!ui->findBar->isFindActive())
     {
         showFindBar();
     }
-    const QString needle = ui->lineEditContactFind->text();
-    if (needle.isEmpty())
-    {
-        ui->lineEditContactFind->setFocus(Qt::ShortcutFocusReason);
-        return false;
-    }
+    return ui->findBar->requestFind(forward);
+}
 
-    if (!m_proxyModelContacts || m_proxyModelContacts->rowCount() == 0)
+bool ContactsPane::findContact(const QString &needle, bool forward)
+{
+    if (m_proxyModelContacts->rowCount() == 0)
     {
-        ui->labelContactFindStatus->setText(tr("No more items"));
+        ui->findBar->showNoMatch();
         return false;
     }
     const QString needleLower = needle.toLower();
@@ -285,11 +252,11 @@ bool ContactsPane::findContact(bool forward)
         {
             ui->tableViewContacts->setCurrentIndex(proxyIdx);
             ui->tableViewContacts->scrollTo(proxyIdx, QAbstractItemView::PositionAtCenter);
-            ui->labelContactFindStatus->clear();
+            ui->findBar->clearStatus();
             return true;
         }
     }
-    ui->labelContactFindStatus->setText(tr("No more items"));
+    ui->findBar->showNoMatch();
     return false;
 }
 
@@ -297,7 +264,7 @@ void ContactsPane::setupUiBehavior()
 {
     m_contactModel = new ContactModel(this);
     m_contactModel->setCollectionSummaryProvider([services = &m_deps.services](const QString &collectionId) {
-        return services->summarizeCollection(CollectionKind::AddressBook, collectionId);
+        return summarizeCollection(*services->catalogSnapshot(), CollectionKind::AddressBook, collectionId);
     });
     m_proxyModelContacts = new ContactsProxyModel(this);
     m_proxyModelContacts->setSourceModel(m_contactModel);
@@ -321,17 +288,9 @@ void ContactsPane::setupUiBehavior()
     ui->tableViewContacts->setModel(m_proxyModelContacts);
     ui->tableViewContacts->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    ui->widgetContactFindBar->hide();
-    ui->toolButtonCloseContactFind->setIcon(QIcon::fromTheme(QStringLiteral("window-close")));
-    ui->lineEditContactFind->setPlaceholderText(tr("Find"));
-    ui->lineEditContactFind->addAction(QIcon::fromTheme(QStringLiteral("edit-find")), QLineEdit::LeadingPosition);
-    ui->toolButtonContactFindPrev->setIcon(QIcon::fromTheme(QStringLiteral("go-up")));
-    ui->toolButtonContactFindNext->setIcon(QIcon::fromTheme(QStringLiteral("go-down")));
-    connect(ui->toolButtonCloseContactFind, &QToolButton::clicked, this, &ContactsPane::hideFindBar);
-    connect(ui->toolButtonContactFindNext, &QToolButton::clicked, this, [this]() { findContact(true); });
-    connect(ui->toolButtonContactFindPrev, &QToolButton::clicked, this, [this]() { findContact(false); });
-    connect(ui->lineEditContactFind, &QLineEdit::returnPressed, this, [this]() { findContact(true); });
-    connect(ui->lineEditContactFind, &QLineEdit::textChanged, ui->labelContactFindStatus, &QLabel::clear);
+    connect(ui->findBar, &FindBar::findRequested, this, [this](const QString &needle, bool forward) {
+        findContact(needle, forward);
+    });
     connect(ui->tableViewContacts, &QTableView::doubleClicked, this, [this](const QModelIndex &) {
         editSelectedContact();
     });
@@ -376,11 +335,6 @@ void ContactsPane::setupUiBehavior()
 
 void ContactsPane::updateContactModel()
 {
-    if (!m_contactModel || !m_proxyModelContacts)
-    {
-        return;
-    }
-
     QList<Contact> filtered;
     filtered.reserve(m_contacts.size());
     for (const Contact &contact : m_contacts)
@@ -438,24 +392,15 @@ void ContactsPane::updateContactModel()
 void ContactsPane::updateActionState()
 {
     const bool hasSelection = selectedContact().ref.isValid();
-    if (m_actionEditContact)
-    {
-        m_actionEditContact->setEnabled(hasSelection);
-    }
-    if (m_actionDeleteContact)
-    {
-        m_actionDeleteContact->setEnabled(hasSelection);
-    }
-    if (m_actionMailContact)
-    {
-        m_actionMailContact->setEnabled(hasSelection);
-    }
+    m_actionEditContact->setEnabled(hasSelection);
+    m_actionDeleteContact->setEnabled(hasSelection);
+    m_actionMailContact->setEnabled(hasSelection);
     Q_EMIT actionStateChanged();
 }
 
 bool ContactsPane::contactRowMatches(int sourceRow, const QString &needleLower) const
 {
-    if (sourceRow < 0 || !m_contactModel || sourceRow >= m_contactModel->rowCount())
+    if (sourceRow < 0 || sourceRow >= m_contactModel->rowCount())
     {
         return false;
     }

@@ -16,47 +16,43 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef EVENTDIALOGFLOW_H
-#define EVENTDIALOGFLOW_H
+#ifndef CONTACTDIALOGFLOW_H
+#define CONTACTDIALOGFLOW_H
 
-#include "calendareditordata.h"
-#include "calendaritem.h"
+#include "contacteditordata.h"
+#include "contactsnapshot.h"
 
-#include <QDate>
 #include <QList>
 #include <QPair>
 #include <QString>
-#include <QTime>
 
 #include <optional>
 
-class EventService;
-class PreferencesController;
 class QWidget;
 
 // "Flow" = stateless dialog runner that returns a DTO.
-class EventDialogFlow
+class ContactDialogFlow
 {
 public:
     struct EditResult
     {
-        EventFields fields;
+        Contact contact;
         QString destinationCollectionId;
     };
 
-    EventDialogFlow(QWidget *parentWidget, const EventService *eventService, const PreferencesController &preferences);
+    explicit ContactDialogFlow(QWidget *parentWidget);
 
-    std::optional<EditResult> create(const QDate &on,
-                                     const QList<QPair<QString, QString>> &collectionOptions,
-                                     const QTime &initialStart = {},
-                                     const QTime &initialEnd = {}) const;
-    std::optional<EditResult> edit(const EventOccurrence &occurrence,
+    std::optional<EditResult> create(const QList<QPair<QString, QString>> &collectionOptions) const;
+    std::optional<EditResult> edit(const Contact &existing,
                                    const QList<QPair<QString, QString>> &collectionOptions) const;
 
 private:
+    std::optional<EditResult> editContactInDialog(const ContactFields &initial,
+                                                  const QString &windowTitle,
+                                                  const std::optional<Contact> &existing,
+                                                  const QList<QPair<QString, QString>> &collectionOptions) const;
+
     QWidget *m_parent = nullptr;
-    const EventService *m_eventService = nullptr;
-    const PreferencesController *m_preferences = nullptr;
 };
 
-#endif // EVENTDIALOGFLOW_H
+#endif // CONTACTDIALOGFLOW_H

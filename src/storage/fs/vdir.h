@@ -59,7 +59,6 @@ public:
     StorageStatus ensure();
     StorageStatus ensureDirectory();
     QString path() const;
-    QString readMetadata(const QString &name) const;
     [[nodiscard]] StorageStatus writeMetadata(const QString &name, const QString &value) const;
     QList<ItemState> itemStates() const;
     QString hrefForUid(const QString &uid) const;
@@ -101,7 +100,9 @@ private:
     QString etagForFile(const QString &href, const QFileInfo &file) const;
     EtagReadResult etagForFileResult(const QString &href, const QFileInfo &file) const;
     void rememberEtag(const QString &href, const QFileInfo &file, const QString &etag) const;
+    void rememberEtag(const QString &href, qint64 size, qint64 lastModifiedMsecs, const QString &etag) const;
     void rememberEtagLocked(const QString &href, const QFileInfo &file, const QString &etag) const;
+    void rememberEtagLocked(const QString &href, qint64 size, qint64 lastModifiedMsecs, const QString &etag) const;
     void forgetEtag(const QString &href) const;
     void forgetEtagLocked(const QString &href) const;
     void forgetItemCaches(const QString &href) const;

@@ -16,28 +16,37 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef WINDOWSERVICES_H
-#define WINDOWSERVICES_H
+#ifndef FINDBAR_H
+#define FINDBAR_H
 
-#include "collectionsummary.h"
-#include "collectiontypes.h"
+#include <QWidget>
 
-#include <QLocale>
-#include <QString>
+namespace Ui {
+class FindBar;
+}
 
-#include <functional>
-
-struct WindowServices
+class FindBar : public QWidget
 {
-    std::function<QLocale()> currentLocale;
-    std::function<CollectionSummary(CollectionKind, const QString &)> collectionSummary;
+    Q_OBJECT
 
-    QLocale locale() const { return currentLocale ? currentLocale() : QLocale::system(); }
+public:
+    explicit FindBar(QWidget *parent = nullptr);
+    ~FindBar() override;
 
-    CollectionSummary summarizeCollection(CollectionKind kind, const QString &collectionId) const
-    {
-        return collectionSummary ? collectionSummary(kind, collectionId) : CollectionSummary{collectionId, {}};
-    }
+    bool isFindActive() const;
+    void showFind();
+    void hideFind();
+    bool requestFind(bool forward);
+    void clearStatus();
+    void showNoMatch();
+
+Q_SIGNALS:
+    void closeRequested();
+    void findRequested(const QString &needle, bool forward);
+
+private:
+    Ui::FindBar *ui = nullptr;
+    bool m_findActive = false;
 };
 
-#endif // WINDOWSERVICES_H
+#endif // FINDBAR_H

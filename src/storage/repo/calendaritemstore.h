@@ -21,35 +21,48 @@
 
 #include "calendaritem.h"
 #include "calendaritemrepository.h"
+#include "calendarsnapshot.h"
 #include "collectionresolver.h"
+#include "incidenceresolver.h"
 #include "itemstore.h"
 #include "storageresult.h"
 
 #include <QSet>
 
-#include <optional>
 #include <memory>
+#include <optional>
 
 class VdirIo;
+
+template <> struct ItemTraits<CalendarItem>
+{
+    static bool hasPayload(const CalendarItem &object) { return CalendarSnapshot::hasCalendarItemPayload(object); }
+
+    static QString resolveUid(const CalendarItem &stored, const QString &fallback)
+    {
+        const KCalendarCore::MemoryCalendar::Ptr storedCalendar = CalendarSnapshot::calendarForItem(stored);
+        if (storedCalendar.isNull())
+        {
+            return {};
+        }
+        return IncidenceResolver::inferLocator(storedCalendar, fallback).uid;
+    }
+
+    static StorageStatus missingUidStatus(const CalendarItem &stored)
+    {
+        return CalendarSnapshot::calendarForItem(stored).isNull() ? StorageStatus::Unsupported
+                                                                  : StorageStatus::NotFound;
+    }
+
+    static const char *logLabel() { return "calendar item"; }
+};
 
 // @thread any-thread-with-mutex; cache state is mutex-protected by ItemStore.
 class CalendarItemStore
 {
 public:
     using PrecheckedWrite = ItemStore<CalendarItemRepository, CollectionKind::Calendar>::PrecheckedWrite;
-
-    struct WritableCalendarItem
-    {
-        std::optional<Collection> collection;
-        CalendarItem object;
-        StorageStatus status = StorageStatus::IoError;
-
-        bool isValid() const
-        {
-            return status == StorageStatus::Ok && collection.has_value() && object.ref.isValid() &&
-                   CalendarSnapshot::hasCalendarItemPayload(object) && !object.uid.isEmpty();
-        }
-    };
+    using WritableCalendarItem = WritableItem<CalendarItem>;
 
     explicit CalendarItemStore(const CollectionResolver &collections, const VdirIo &vdirIo);
 

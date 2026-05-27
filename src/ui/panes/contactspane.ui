@@ -16,51 +16,17 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widgetContactFindBar" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayoutContactFind">
-      <property name="spacing"><number>0</number></property>
-      <property name="leftMargin"><number>0</number></property>
-      <property name="topMargin"><number>0</number></property>
-      <property name="rightMargin"><number>0</number></property>
-      <property name="bottomMargin"><number>0</number></property>
-      <item>
-       <widget class="QToolButton" name="toolButtonCloseContactFind">
-        <property name="toolTip"><string>Close Find Bar</string></property>
-        <property name="icon">
-         <iconset theme="window-close">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-        <property name="autoRaise"><bool>true</bool></property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEditContactFind">
-        <property name="clearButtonEnabled"><bool>true</bool></property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButtonContactFindPrev">
-        <property name="toolTip"><string>Find Previous</string></property>
-        <property name="autoRaise"><bool>true</bool></property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButtonContactFindNext">
-        <property name="toolTip"><string>Find Next</string></property>
-        <property name="autoRaise"><bool>true</bool></property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelContactFindStatus">
-        <property name="text"><string/></property>
-        <property name="margin"><number>4</number></property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+    <widget class="FindBar" name="findBar"/>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FindBar</class>
+   <extends>QWidget</extends>
+   <header>findbar.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

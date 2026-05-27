@@ -18,7 +18,6 @@
 
 #include "applicationcontext.h"
 
-#include "eventreader.h"
 #include "eventservice.h"
 #include "collectioncatalog.h"
 #include "collectionservice.h"
@@ -103,7 +102,6 @@ public:
     // references, so the scheduler must be constructed first and destroyed last.
     VdirIoScheduler vdirIoScheduler;
     CollectionService collectionService;
-    EventReader eventReader;
     EventService eventService;
     TaskService taskService;
     ContactService contactService;
@@ -112,7 +110,6 @@ public:
 ApplicationContext::Impl::Impl()
     : catalog(std::make_shared<CollectionCatalog>())
     , collectionService([this]() { return loadCatalog(); })
-    , eventReader(collectionService, vdirIoScheduler)
     , eventService(collectionService, vdirIoScheduler)
     , taskService(collectionService, vdirIoScheduler)
     , contactService(collectionService, vdirIoScheduler)
@@ -207,11 +204,6 @@ std::shared_ptr<const CollectionCatalog> ApplicationContext::catalogSnapshot() c
 CollectionService &ApplicationContext::collectionService()
 {
     return m_impl->collectionService;
-}
-
-EventReader &ApplicationContext::eventReader()
-{
-    return m_impl->eventReader;
 }
 
 EventService &ApplicationContext::eventService()

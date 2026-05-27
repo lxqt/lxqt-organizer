@@ -95,7 +95,8 @@ void VdirIoScheduler::Worker::wait(unsigned long timeoutMsecs)
 
 bool VdirIoScheduler::submitJob(const VdirPath &path, const QString &label, std::function<void()> job) const
 {
-    std::shared_ptr<Worker> worker = workerForPath(path.path());
+    QMutexLocker locker(&m_mutex);
+    std::shared_ptr<Worker> worker = workerForPathLocked(path.path());
     if (!worker || worker->receiver.isNull())
     {
         return false;
@@ -151,7 +152,7 @@ std::optional<QStringList> VdirIoScheduler::normalizedCompositePaths(const QList
     normalizedPaths.reserve(paths.size());
     for (const VdirPath &path : paths)
     {
-        const QString key = VdirPath::normalizedPath(path.path());
+        const QString &key = path.path();
         if (key.isEmpty())
         {
             qCWarning(storageLog) << "VdirIoScheduler composite job has an invalid path" << label;
@@ -175,36 +176,34 @@ std::optional<QStringList> VdirIoScheduler::normalizedCompositePaths(const QList
     return uniquePaths;
 }
 
-std::shared_ptr<VdirIoScheduler::Worker> VdirIoScheduler::workerForPath(const QString &path) const
+std::shared_ptr<VdirIoScheduler::Worker> VdirIoScheduler::workerForPathLocked(const QString &path) const
 {
-    const QString key = VdirPath::normalizedPath(path);
-    if (key.isEmpty())
+    if (path.isEmpty())
     {
         qCWarning(storageLog) << "VdirIoScheduler cannot schedule IO for an empty path";
         return {};
     }
 
-    QMutexLocker locker(&m_mutex);
     if (m_shuttingDown)
     {
         qCWarning(storageLog) << "VdirIoScheduler cannot submit vdir IO after shutdown";
         return {};
     }
 
-    const auto cached = m_workers.constFind(key);
+    const auto cached = m_workers.constFind(path);
     if (cached != m_workers.constEnd())
     {
         return *cached;
     }
 
     auto worker = std::make_shared<Worker>();
-    worker->path = key;
+    worker->path = path;
     worker->thread = new QThread;
     worker->receiver = new QObject;
     worker->receiver->moveToThread(worker->thread);
-    worker->thread->setObjectName(QStringLiteral("vdir-io:%1").arg(QFileInfo(key).fileName()));
+    worker->thread->setObjectName(QStringLiteral("vdir-io:%1").arg(QFileInfo(path).fileName()));
     worker->thread->start();
-    m_workers.insert(key, worker);
+    m_workers.insert(path, worker);
     return worker;
 }
 
@@ -247,14 +246,13 @@ bool VdirIoScheduler::isWorkerThread() const
 
 bool VdirIoScheduler::isWorkerThreadForPath(const VdirPath &path) const
 {
-    const QString key = VdirPath::normalizedPath(path.path());
-    if (key.isEmpty())
+    if (!path.isValid())
     {
         return false;
     }
 
     const QThread *current = QThread::currentThread();
     QMutexLocker locker(&m_mutex);
-    const auto worker = m_workers.constFind(key);
+    const auto worker = m_workers.constFind(path.path());
     return worker != m_workers.constEnd() && worker.value() && worker.value()->thread == current;
 }

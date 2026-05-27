@@ -22,16 +22,27 @@
 #include "storageresult.h"
 
 #include <QString>
+#include <QtGlobal>
 
 // Atomic file-replacement primitives shared by vdir storage. Writes go through
 // a synced temporary file in the target's directory and are committed by
 // rename(2) or, on Linux, renameat2(RENAME_EXCHANGE) for compare-and-swap
 // against an etag captured under a hardlink guard.
 namespace AtomicFile {
+struct CommittedSnapshot
+{
+    QString etag;
+    qint64 size = 0;
+    qint64 mtimeMsecs = 0;
+};
+
 [[nodiscard]] StorageStatus writeTextFile(const QString &path, const QString &text);
-[[nodiscard]] StorageStatus writeNewTextFile(const QString &path, const QString &text);
 [[nodiscard]] StorageStatus
-replaceTextFileIfEtagMatches(const QString &path, const QString &text, const QString &expectedEtag, QString *newEtag);
+writeNewTextFile(const QString &path, const QString &text, CommittedSnapshot *snapshot = nullptr);
+[[nodiscard]] StorageStatus replaceTextFileIfEtagMatches(const QString &path,
+                                                         const QString &text,
+                                                         const QString &expectedEtag,
+                                                         CommittedSnapshot *snapshot);
 [[nodiscard]] StorageStatus removeFileIfEtagMatches(const QString &path, const QString &expectedEtag);
 QString contentEtag(const QString &path);
 } // namespace AtomicFile

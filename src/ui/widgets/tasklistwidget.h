@@ -16,8 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef DAYTASKLISTWIDGET_H
-#define DAYTASKLISTWIDGET_H
+#ifndef TASKLISTWIDGET_H
+#define TASKLISTWIDGET_H
 
 #include "calendaritem.h"
 #include "collectionsummary.h"
@@ -25,19 +25,19 @@
 #include <QWidget>
 
 namespace Ui {
-class DayTaskListWidget;
+class TaskListWidget;
 }
 
 class TaskListModel;
 class QSortFilterProxyModel;
 
-class DayTaskListWidget : public QWidget
+class TaskListWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DayTaskListWidget(QWidget *parent = nullptr);
-    ~DayTaskListWidget() override;
+    explicit TaskListWidget(QWidget *parent = nullptr);
+    ~TaskListWidget() override;
 
     void setCollectionSummaryProvider(CollectionSummaryProvider provider);
     void setTasks(const QList<Task> &tasks);
@@ -68,9 +68,9 @@ private:
     Task taskForProxyIndex(const QModelIndex &index) const;
     bool sameTask(const Task &first, const Task &second) const;
 
-    Ui::DayTaskListWidget *ui = nullptr;
+    Ui::TaskListWidget *ui = nullptr;
     TaskListModel *m_taskListModel = nullptr;
     QSortFilterProxyModel *m_proxyModelTasks = nullptr;
 };
 
-#endif // DAYTASKLISTWIDGET_H
+#endif // TASKLISTWIDGET_H

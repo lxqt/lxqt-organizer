@@ -19,12 +19,10 @@
 #include "contactspanecontroller.h"
 
 #include "collectionservice.h"
-#include "contacteditormapper.h"
 #include "contactservice.h"
-#include "reloadcoordinator.h"
-#include "contactdialog.h"
 #include "futurewatch.h"
 #include "operationcapabilitymessages.h"
+#include "reloadcoordinator.h"
 #include "storageerrormessages.h"
 
 #include <QDesktopServices>
@@ -36,6 +34,7 @@ ContactsPaneController::ContactsPaneController(ContactsPane *pane, const Deps &d
     : QObject(parent)
     , m_pane(pane)
     , m_deps(deps)
+    , m_contactFlow(m_pane)
 {
     Q_ASSERT(m_pane);
     connect(m_pane, &ContactsPane::newContactRequested, this, &ContactsPaneController::newContact);
@@ -53,17 +52,14 @@ void ContactsPaneController::newContact()
         return;
     }
 
-    ContactDialog contactDialog(m_pane);
-    configureContactDialog(contactDialog, tr("New Contact"), collectionOptions);
-
-    if (contactDialog.exec() != QDialog::Accepted)
+    const auto result = m_contactFlow.create(collectionOptions);
+    if (!result)
     {
         return;
     }
 
-    const ContactFields contactData = contactDialog.data();
-    Contact item = ContactEditorMapper::createContact(contactData);
-    const QString collectionId = contactData.collectionId;
+    const Contact item = result->contact;
+    const QString collectionId = result->destinationCollectionId;
     const OperationCapability capability = m_deps.contactService.canCreateContact(collectionId);
     if (!OperationCapabilityMessages::presentCapability(m_pane, capability, tr("save"), tr("contact")))
     {
@@ -91,21 +87,14 @@ void ContactsPaneController::editContact(const Contact &contact)
     }
 
     const QList<QPair<QString, QString>> collectionOptions = writableCollectionOptions();
-    ContactFields initialData = ContactEditorMapper::fromContact(currentContact);
-
-    ContactDialog contactDialog(m_pane);
-    configureContactDialog(contactDialog, tr("Edit Contact"), collectionOptions);
-    contactDialog.setData(initialData);
-
-    if (contactDialog.exec() != QDialog::Accepted)
+    const auto result = m_contactFlow.edit(currentContact, collectionOptions);
+    if (!result)
     {
         return;
     }
 
-    const ContactFields contactData = contactDialog.data();
-    currentContact = ContactEditorMapper::applyToContact(currentContact, contactData);
-    const QString destinationCollectionId =
-        contactData.collectionId.isEmpty() ? currentContact.ref.collectionId : contactData.collectionId;
+    currentContact = result->contact;
+    const QString destinationCollectionId = result->destinationCollectionId;
     const bool moving = destinationCollectionId != currentContact.ref.collectionId;
     const OperationCapability saveCapability =
         moving ? m_deps.contactService.canMoveContact(currentContact, destinationCollectionId)
@@ -174,7 +163,7 @@ void ContactsPaneController::deleteContactWithPrompt(const Contact &contact)
 
 void ContactsPaneController::mailContact(const Contact &contact)
 {
-    if (!m_pane || !contact.ref.isValid())
+    if (!contact.ref.isValid())
     {
         QMessageBox::information(m_pane, tr("Organizer"), tr("Select a contact to email."));
         return;
@@ -214,15 +203,6 @@ QList<QPair<QString, QString>> ContactsPaneController::writableCollectionOptions
         return {};
     }
     return {qMakePair(collection->displayName, collection->id)};
-}
-
-void ContactsPaneController::configureContactDialog(ContactDialog &contactDialog,
-                                                    const QString &title,
-                                                    const QList<QPair<QString, QString>> &collectionOptions) const
-{
-    contactDialog.setWindowTitle(title);
-    contactDialog.setCollectionOptions(collectionOptions, 0);
-    contactDialog.setModal(true);
 }
 
 void ContactsPaneController::reloadContacts()

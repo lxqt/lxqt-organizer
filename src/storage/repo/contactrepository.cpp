@@ -113,8 +113,8 @@ ContactRepository::ReadResult ContactRepository::readCurrentObject(const QString
         return result;
     }
 
-    result.object = Contact{result.object.ref, result.object.uid, addresseeSnapshot(*parsedAddressee)};
-    result.object.uid = ContactValidation::contactUid(*parsedAddressee);
+    const QString uid = ContactValidation::contactUid(*parsedAddressee);
+    result.object = Contact{result.object.ref, uid, addresseeSnapshot(*parsedAddressee)};
     result.status = StorageStatus::Ok;
     return result;
 }
@@ -154,6 +154,7 @@ void ContactRepository::forEachObject(const std::function<bool(const ReadResult 
 QList<ContactRepository::ReadResult> ContactRepository::readObjects() const
 {
     QList<ReadResult> result;
+    // Scheduler shutdown skips the traversal, so empty can also mean teardown.
     forEachObject([&result](const ReadResult &readResult) {
         result.append(readResult);
         return true;

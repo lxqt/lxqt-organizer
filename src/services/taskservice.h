@@ -20,7 +20,9 @@
 #define TASKSERVICE_H
 
 #include "calendaritem.h"
+#include "calendaritemstore.h"
 #include "cancellationtoken.h"
+#include "collectionreloadsubscription.h"
 #include "collectionservice.h"
 #include "itemidentity.h"
 #include "operationcapability.h"
@@ -75,9 +77,13 @@ public:
     static bool rollForwardTaskTo(Task *task, const QDate &today);
 
 private:
-    class Impl;
     void notifyItemWritten(const ItemRef &storage) const;
-    std::unique_ptr<Impl> m_impl;
+
+    const CollectionService &m_collections;
+    CalendarItemStore m_items;
+    // Declared last so destruction disconnects the reload handler before the
+    // store it captures is torn down.
+    CollectionReloadSubscription m_collectionReloadSubscription;
 };
 
 #endif // TASKSERVICE_H

@@ -19,12 +19,12 @@
 #ifndef CONTACTSPANECONTROLLER_H
 #define CONTACTSPANECONTROLLER_H
 
+#include "contactdialogflow.h"
 #include "contactspane.h"
 
 #include <QObject>
 
 class CollectionService;
-class ContactDialog;
 class ContactService;
 class ReloadCoordinator;
 
@@ -48,13 +48,11 @@ private:
     void deleteContactWithPrompt(const Contact &contact);
     void mailContact(const Contact &contact);
     QList<QPair<QString, QString>> writableCollectionOptions() const;
-    void configureContactDialog(ContactDialog &contactDialog,
-                                const QString &title,
-                                const QList<QPair<QString, QString>> &collectionOptions) const;
     void reloadContacts();
 
     ContactsPane *m_pane = nullptr;
     Deps m_deps;
+    ContactDialogFlow m_contactFlow;
 };
 
 #endif // CONTACTSPANECONTROLLER_H

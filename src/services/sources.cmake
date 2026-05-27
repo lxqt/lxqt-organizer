@@ -2,10 +2,8 @@ set(LXQT_ORGANIZER_SERVICES_HEADERS
     src/services/asyncsubmit.h
     src/services/calendarmover.h
     src/services/cancellationtoken.h
-    src/services/eventreader.h
     src/services/eventservice.h
     src/services/futurewatch.h
-    src/services/itemservice.h
     src/services/completedfuture.h
     src/services/collectioncatalog.h
     src/services/collectionreloadsubscription.h
@@ -17,7 +15,6 @@ set(LXQT_ORGANIZER_SERVICES_HEADERS
 )
 
 set(LXQT_ORGANIZER_SERVICES_SOURCES
-    src/services/eventreader.cpp
     src/services/eventservice.cpp
     src/services/collectioncatalog.cpp
     src/services/collectionreloadsubscription.cpp

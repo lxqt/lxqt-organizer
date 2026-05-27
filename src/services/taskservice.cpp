@@ -25,7 +25,6 @@
 #include "calendaritemmutator.h"
 #include "calendaritemrepository.h"
 #include "calendarvalidation.h"
-#include "collectionreloadsubscription.h"
 #include "completedfuture.h"
 #include "incidencefields.h"
 #include "incidenceresolver.h"
@@ -146,66 +145,34 @@ void sortTasks(QList<Task> *tasks)
 
 } // namespace
 
-// Tasks mutate incidences inside a calendar file, so this service owns the
-// CalendarItemStore directly instead of using ItemService's one-snapshot flow.
-class TaskService::Impl
-{
-public:
-    explicit Impl(const CollectionService &collections, const VdirIo &scheduler)
-        : m_collections(collections)
-        , m_items(collections, scheduler)
-        , m_collectionReloadSubscription(collections, [this](const QSet<QString> &changedCollectionIds) {
-            clearCacheForCollections(changedCollectionIds);
-        })
-    {}
-
-    void clearCache() const { m_items.clearCache(); }
-    void clearCacheForCollections(const QSet<QString> &collectionIds) const
-    {
-        m_items.clearCacheForCollections(collectionIds);
-    }
-    void retainRepositoriesForCollections(const QList<Collection> &collections) const
-    {
-        m_items.retainRepositoriesForCollections(collections);
-    }
-    const CollectionService &collections() const { return m_collections; }
-    const VdirIo &scheduler() const { return m_items.vdirIo(); }
-    std::shared_ptr<CalendarItemRepository> repositoryFor(const Collection &collection) const
-    {
-        return m_items.repositoryForCollection(collection);
-    }
-    const CalendarItemStore &store() const { return m_items; }
-
-private:
-    const CollectionService &m_collections;
-    CalendarItemStore m_items;
-    CollectionReloadSubscription m_collectionReloadSubscription;
-};
-
 TaskService::TaskService(const CollectionService &collections, const VdirIo &vdirIo)
-    : m_impl(std::make_unique<Impl>(collections, vdirIo))
+    : m_collections(collections)
+    , m_items(collections, vdirIo)
+    , m_collectionReloadSubscription(collections, [this](const QSet<QString> &changedCollectionIds) {
+        clearCacheForCollections(changedCollectionIds);
+    })
 {}
 
 TaskService::~TaskService() = default;
 
 void TaskService::clearCache() const
 {
-    m_impl->clearCache();
+    m_items.clearCache();
 }
 
 void TaskService::clearCacheForCollections(const QSet<QString> &collectionIds) const
 {
-    m_impl->clearCacheForCollections(collectionIds);
+    m_items.clearCacheForCollections(collectionIds);
 }
 
 void TaskService::retainRepositoriesForCollections(const QList<Collection> &collections) const
 {
-    m_impl->retainRepositoriesForCollections(collections);
+    m_items.retainRepositoriesForCollections(collections);
 }
 
 void TaskService::notifyItemWritten(const ItemRef &ref) const
 {
-    m_impl->collections().notifyItemWritten(ref);
+    m_collections.notifyItemWritten(ref);
 }
 
 bool TaskService::rollForwardTaskTo(Task *task, const QDate &today)
@@ -240,14 +207,14 @@ bool TaskService::rollForwardTaskTo(Task *task, const QDate &today)
 QFuture<TaskSnapshotListResult> TaskService::taskSnapshotsAsync(const CancellationToken &cancellation) const
 {
     QList<QFuture<TaskSnapshotListResult>> perCollectionFutures;
-    const VdirIo &scheduler = m_impl->scheduler();
-    for (const Collection &collection : m_impl->collections().calendarList())
+    const VdirIo &scheduler = m_items.vdirIo();
+    for (const Collection &collection : m_collections.calendarList())
     {
         if (cancellation.isCancellationRequested())
         {
             break;
         }
-        const std::shared_ptr<CalendarItemRepository> repository = m_impl->repositoryFor(collection);
+        const std::shared_ptr<CalendarItemRepository> repository = m_items.repositoryForCollection(collection);
         if (!repository->isValid())
         {
             continue;
@@ -315,7 +282,7 @@ TaskService::TaskSaveResult TaskService::addTask(const Task &task, const QString
         object.ref.collectionId = collectionId;
         object.uid = uid;
         object.payload = CalendarSnapshot::todoSnapshot(CalendarSnapshot::cloneTodo(storedTodo));
-        const StorageResult<CalendarItem> createResult = m_impl->store().addObject(object);
+        const StorageResult<CalendarItem> createResult = m_items.addObject(object);
         if (createResult.isOk())
         {
             object = createResult.snapshot;
@@ -349,7 +316,7 @@ TaskService::TaskSaveResult TaskService::updateTask(const Task &task) const
     }
 
     WritableCalendarItem item =
-        m_impl->store().writableItemForUpdate(task.ref.collectionId, task.ref.href, task.ref.etag, task.uid);
+        m_items.writableItemForUpdate(task.ref.collectionId, task.ref.href, task.ref.etag, task.uid);
     if (!item.isValid())
     {
         result.status = item.status;
@@ -395,7 +362,7 @@ TaskService::TaskSaveResult TaskService::updateTask(const Task &task) const
     }
     item.object = CalendarSnapshot::calendarItem(
         item.object.ref, item.object.uid, calendar, CalendarSnapshot::PayloadShape::Todo);
-    const StorageResult<CalendarItem> updateResult = m_impl->store().replaceWritableItem(item);
+    const StorageResult<CalendarItem> updateResult = m_items.replaceWritableItem(item);
     if (!updateResult.isOk())
     {
         result.status = updateResult.status;
@@ -451,18 +418,18 @@ TaskService::TaskMoveResult TaskService::moveTask(const Task &task, const QStrin
     }
 
     const WritableCalendarItem source =
-        m_impl->store().writableItemForUpdate(task.ref.collectionId, task.ref.href, task.ref.etag, task.uid);
+        m_items.writableItemForUpdate(task.ref.collectionId, task.ref.href, task.ref.etag, task.uid);
     if (!source.isValid())
     {
         return preconditionFailed(source.status);
     }
 
-    const std::optional<Collection> destinationCollection = m_impl->store().calendarForWrite(targetCollectionId);
+    const std::optional<Collection> destinationCollection = m_items.calendarForWrite(targetCollectionId);
     if (!destinationCollection)
     {
-        return preconditionFailed(m_impl->store().calendarWriteFailureStatus(targetCollectionId));
+        return preconditionFailed(m_items.calendarWriteFailureStatus(targetCollectionId));
     }
-    if (!m_impl->store().isValidForWrite(*destinationCollection))
+    if (!m_items.isValidForWrite(*destinationCollection))
     {
         return preconditionFailed(StorageStatus::IoError);
     }
@@ -495,7 +462,7 @@ TaskService::TaskMoveResult TaskService::moveTask(const Task &task, const QStrin
     inserted = CalendarSnapshot::calendarItem(
         inserted.ref, inserted.uid, sourceCalendar, CalendarSnapshot::PayloadShape::Todo);
     TaskMoveResult result = CalendarMover::moveObject<TaskMoveResult>(
-        m_impl->store(),
+        m_items,
         source,
         source.object.ref,
         destinationCollection,
@@ -530,8 +497,7 @@ StorageStatus TaskService::deleteTask(const Task &task) const
 
 StorageStatus TaskService::deleteTask(const ItemRef &storage, const QString &uid) const
 {
-    WritableCalendarItem item =
-        m_impl->store().writableItemForUpdate(storage.collectionId, storage.href, storage.etag, uid);
+    WritableCalendarItem item = m_items.writableItemForUpdate(storage.collectionId, storage.href, storage.etag, uid);
     if (!item.isValid())
     {
         return item.status;
@@ -550,7 +516,7 @@ StorageStatus TaskService::deleteTask(const ItemRef &storage, const QString &uid
     }
     if (!CalendarItemMutator::hasIncidences(calendar))
     {
-        const StorageStatus removeStatus = m_impl->store().removeWritableItem(item);
+        const StorageStatus removeStatus = m_items.removeWritableItem(item);
         if (removeStatus != StorageStatus::Ok)
         {
             qCWarning(storageLog) << "Could not remove task item" << item.object.ref.href
@@ -564,7 +530,7 @@ StorageStatus TaskService::deleteTask(const ItemRef &storage, const QString &uid
     item.object.uid = IncidenceResolver::inferLocator(calendar).uid;
     item.object = CalendarSnapshot::calendarItem(
         item.object.ref, item.object.uid, calendar, CalendarSnapshot::PayloadShape::Todo);
-    const StorageResult<CalendarItem> result = m_impl->store().replaceWritableItem(item);
+    const StorageResult<CalendarItem> result = m_items.replaceWritableItem(item);
     if (result.isOk())
     {
         notifyItemWritten(storage);
@@ -576,7 +542,7 @@ StorageStatus TaskService::deleteTask(const ItemRef &storage, const QString &uid
 OperationCapability TaskService::canCreateTask(const QString &collectionId) const
 {
     return capabilityForWritableCollection(
-        m_impl->collections(), CollectionKind::Calendar, collectionId, OperationCapabilityStatus::DestinationReadOnly);
+        m_collections, CollectionKind::Calendar, collectionId, OperationCapabilityStatus::DestinationReadOnly);
 }
 
 OperationCapability TaskService::canEditTask(const Task &task) const
@@ -585,7 +551,7 @@ OperationCapability TaskService::canEditTask(const Task &task) const
     {
         return invalidSelectionCapability(task.ref);
     }
-    return capabilityForWritableCollection(m_impl->collections(),
+    return capabilityForWritableCollection(m_collections,
                                            CollectionKind::Calendar,
                                            task.ref.collectionId,
                                            OperationCapabilityStatus::SourceReadOnly,
@@ -608,7 +574,7 @@ OperationCapability TaskService::canMoveTask(const Task &task, const QString &de
         return sourceCapability;
     }
 
-    return capabilityForWritableCollection(m_impl->collections(),
+    return capabilityForWritableCollection(m_collections,
                                            CollectionKind::Calendar,
                                            targetCollectionId,
                                            OperationCapabilityStatus::DestinationReadOnly,
@@ -624,11 +590,11 @@ OperationCapability TaskService::canDeleteTask(const Task &task) const
 QFuture<TaskService::TaskSaveResult> TaskService::addTaskAsync(const Task &task, const QString &collectionId) const
 {
     return AsyncSubmit::submit<TaskSaveResult>(
-        m_impl->scheduler(),
+        m_items.vdirIo(),
         QStringLiteral("task add"),
         [this, collectionId] {
-            return AsyncSubmit::ResolvedCollection{m_impl->collections().calendarForWrite(collectionId),
-                                                   m_impl->store().calendarWriteFailureStatus(collectionId)};
+            return AsyncSubmit::ResolvedCollection{m_collections.calendarForWrite(collectionId),
+                                                   m_items.calendarWriteFailureStatus(collectionId)};
         },
         [this, task, collectionId] { return addTask(task, collectionId); },
         [task](StorageStatus status) { return taskSaveFailure(status, task); });
@@ -637,9 +603,9 @@ QFuture<TaskService::TaskSaveResult> TaskService::addTaskAsync(const Task &task,
 QFuture<TaskService::TaskSaveResult> TaskService::updateTaskAsync(const Task &task) const
 {
     return AsyncSubmit::submit<TaskSaveResult>(
-        m_impl->scheduler(),
+        m_items.vdirIo(),
         QStringLiteral("task update"),
-        [this, task] { return m_impl->collections().calendarForRead(task.ref.collectionId); },
+        [this, task] { return m_collections.calendarForRead(task.ref.collectionId); },
         [this, task] { return updateTask(task); },
         [task](StorageStatus status) { return taskSaveFailure(status, task); });
 }
@@ -650,13 +616,13 @@ QFuture<TaskService::TaskMoveResult> TaskService::moveTaskAsync(const Task &task
     const QString targetCollectionId =
         destinationCollectionId.isEmpty() ? task.ref.collectionId : destinationCollectionId;
     return AsyncSubmit::submitMove<TaskMoveResult>(
-        m_impl->scheduler(),
+        m_items.vdirIo(),
         QStringLiteral("task move"),
         targetCollectionId,
-        [this, task] { return m_impl->collections().calendarForRead(task.ref.collectionId); },
+        [this, task] { return m_collections.calendarForRead(task.ref.collectionId); },
         [this, targetCollectionId] {
-            return AsyncSubmit::ResolvedCollection{m_impl->collections().calendarForWrite(targetCollectionId),
-                                                   m_impl->store().calendarWriteFailureStatus(targetCollectionId)};
+            return AsyncSubmit::ResolvedCollection{m_collections.calendarForWrite(targetCollectionId),
+                                                   m_items.calendarWriteFailureStatus(targetCollectionId)};
         },
         [this, task, targetCollectionId] { return moveTask(task, targetCollectionId); },
         [task, targetCollectionId](StorageStatus status) { return taskMoveFailure(status, task, targetCollectionId); });
@@ -670,9 +636,9 @@ QFuture<StorageStatus> TaskService::deleteTaskAsync(const Task &task) const
 QFuture<StorageStatus> TaskService::deleteTaskAsync(const ItemRef &storage, const QString &uid) const
 {
     return AsyncSubmit::submit<StorageStatus>(
-        m_impl->scheduler(),
+        m_items.vdirIo(),
         QStringLiteral("task delete"),
-        [this, storage] { return m_impl->collections().calendarForRead(storage.collectionId); },
+        [this, storage] { return m_collections.calendarForRead(storage.collectionId); },
         [this, storage, uid] { return deleteTask(storage, uid); },
         [](StorageStatus status) { return status; });
 }
@@ -684,8 +650,7 @@ QList<QFuture<TaskService::TaskSaveResult>> TaskService::rollForwardOverdueTasks
     for (const Task &snapshot : tasks)
     {
         Task updatedTask = snapshot;
-        if (!rollForwardTaskTo(&updatedTask, today) ||
-            !m_impl->collections().isCalendarWritable(snapshot.ref.collectionId))
+        if (!rollForwardTaskTo(&updatedTask, today) || !m_collections.isCalendarWritable(snapshot.ref.collectionId))
         {
             continue;
         }

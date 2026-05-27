@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "windowsettingsstore.h"
+#include "settings_io.h"
 
 #include <LXQt/Settings>
 
@@ -27,11 +27,9 @@ constexpr auto kSettingsGroup = "lxqt-organizer";
 constexpr auto kTaskPaneVisibleKey = "TaskPaneVisible";
 } // namespace
 
-WindowSettingsStore::WindowSettingsStore(QObject *parent)
-    : QObject(parent)
-{}
+namespace settings_io {
 
-WindowSettingsStore::Snapshot WindowSettingsStore::load(const Preferences &fallbackPreferences) const
+Snapshot load(const Preferences &fallbackPreferences)
 {
     LXQt::Settings settings(QString::fromLatin1(kSettingsGroup));
     settings.beginGroup(QStringLiteral("CoreSettings"));
@@ -56,7 +54,7 @@ WindowSettingsStore::Snapshot WindowSettingsStore::load(const Preferences &fallb
     return snapshot;
 }
 
-void WindowSettingsStore::save(const Snapshot &snapshot) const
+void save(const Snapshot &snapshot)
 {
     LXQt::Settings settings(QString::fromLatin1(kSettingsGroup));
     settings.beginGroup(QStringLiteral("CoreSettings"));
@@ -73,7 +71,7 @@ void WindowSettingsStore::save(const Snapshot &snapshot) const
     settings.endGroup();
 }
 
-void WindowSettingsStore::restoreWindowGeometry(QMainWindow *window, const QByteArray &geometry) const
+void restoreWindowGeometry(QMainWindow *window, const QByteArray &geometry)
 {
     if (window && !geometry.isEmpty())
     {
@@ -81,10 +79,12 @@ void WindowSettingsStore::restoreWindowGeometry(QMainWindow *window, const QByte
     }
 }
 
-void WindowSettingsStore::saveWindowGeometry(QMainWindow *window, Snapshot *snapshot) const
+void saveWindowGeometry(QMainWindow *window, Snapshot *snapshot)
 {
     if (window && snapshot)
     {
         snapshot->geometry = window->saveGeometry();
     }
 }
+
+} // namespace settings_io

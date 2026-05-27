@@ -69,7 +69,7 @@ private:
     bool submitJob(const VdirPath &path, const QString &label, std::function<void()> job) const override;
     bool
     submitCompositeJob(const QList<VdirPath> &paths, const QString &label, std::function<void()> job) const override;
-    std::shared_ptr<Worker> workerForPath(const QString &path) const;
+    std::shared_ptr<Worker> workerForPathLocked(const QString &path) const;
     static std::optional<QStringList> normalizedCompositePaths(const QList<VdirPath> &paths, const QString &label);
 
     mutable QMutex m_mutex;

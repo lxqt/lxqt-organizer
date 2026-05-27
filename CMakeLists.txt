@@ -235,6 +235,7 @@ target_include_directories(lxqt_organizer_ui_core
 target_link_libraries(lxqt_organizer_ui_core
     INTERFACE
         lxqt_organizer_domain
+        lxqt_organizer_services
 )
 
 add_library(lxqt_organizer_ui_messages STATIC
@@ -348,6 +349,7 @@ target_include_directories(lxqt_organizer_context
 
 target_link_libraries(lxqt_organizer_context
     PUBLIC
+        lxqt_organizer_ui_core
         lxqt_organizer_services
     PRIVATE
         lxqt_organizer_storage_fs
@@ -371,7 +373,6 @@ target_compile_definitions(lxqt_organizer_ui_shell
 
 target_link_libraries(lxqt_organizer_ui_shell
     PUBLIC
-        lxqt_organizer_context
         lxqt_organizer_ui_panes
         lxqt_organizer_ui_core
         lxqt_organizer_ui_models
@@ -424,6 +425,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
+        lxqt_organizer_context
         lxqt_organizer_ui_shell
         Qt6::Widgets
         Qt6::Concurrent

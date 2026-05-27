@@ -53,16 +53,11 @@ ContactFields fromContact(const Contact &contact)
     return data;
 }
 
-void applyToAddressee(KContacts::Addressee &addressee, const ContactFields &data)
-{
-    const ContactPatcher::Options changedOptions = ContactPatcher::changedOptionsForAddressee(addressee, data);
-    ContactPatcher::applyToAddressee(addressee, data, changedOptions);
-}
-
 Contact createContact(const ContactFields &data)
 {
     KContacts::Addressee addressee;
-    applyToAddressee(addressee, data);
+    const ContactPatcher::Options options = ContactPatcher::changedOptionsForAddressee(addressee, data);
+    ContactPatcher::applyToAddressee(addressee, data, options);
     Contact contact;
     contact.uid = addressee.uid();
     contact.addressee = addresseeSnapshot(addressee);
@@ -76,7 +71,8 @@ Contact applyToContact(Contact contact, const ContactFields &data)
         return contact;
     }
     KContacts::Addressee addressee = *contact.addressee;
-    applyToAddressee(addressee, data);
+    const ContactPatcher::Options changedOptions = ContactPatcher::changedOptionsForAddressee(addressee, data);
+    ContactPatcher::applyToAddressee(addressee, data, changedOptions);
     return Contact{contact.ref, contact.uid, addresseeSnapshot(addressee)};
 }
 

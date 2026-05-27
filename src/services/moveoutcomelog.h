@@ -33,10 +33,10 @@ inline void logCrossVdirFailures(const MoveOutcome &move,
                                  const QString &removeFailureMessage,
                                  const QString &rollbackFailureMessage)
 {
-    if (const auto *sourceRemove = std::get_if<MoveSourceRemoveFailed>(&move.outcome))
+    if (const auto *reverted = std::get_if<MoveReverted>(&move.outcome))
     {
         qCWarning(storageLog) << removeFailureMessage << itemRefDescription(move.sourceStorage())
-                              << storageStatusName(sourceRemove->status);
+                              << storageStatusName(reverted->status);
     }
     if (const auto *rollback = std::get_if<MoveRollbackFailed>(&move.outcome))
     {

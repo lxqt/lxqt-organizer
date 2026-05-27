@@ -61,6 +61,7 @@ template <typename Visitor> void forEachOption(const Options &options, Visitor v
 
 #undef CONTACT_PATCHER_OPTION_FIELDS
 
+Options editableOptions();
 Options changedOptionsForAddressee(const KContacts::Addressee &addressee, const ContactFields &patch);
 bool hasChanges(const Options &options);
 void applyToAddressee(KContacts::Addressee &addressee, const ContactFields &patch, Options options = {});

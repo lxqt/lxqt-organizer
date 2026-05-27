@@ -89,7 +89,7 @@ QString moveFailureMessage(const QString &item, const MoveOutcome &result)
                 return QObject::tr("Could not save %1 in the destination collection. %2", "StorageErrorMessages")
                     .arg(item, storageFailureDetail(failure.status));
             },
-            [&](const MoveSourceRemoveFailed &failure) {
+            [&](const MoveReverted &failure) {
                 QString message =
                     QObject::tr("Could not remove the original %1 after copying it to the destination collection. %2",
                                 "StorageErrorMessages")

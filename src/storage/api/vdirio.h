@@ -21,7 +21,6 @@
 
 #include "collectiontypes.h"
 
-#include <QFileInfo>
 #include <QFuture>
 #include <QList>
 #include <QPromise>
@@ -36,31 +35,12 @@
 class VdirPath
 {
 public:
-    static VdirPath fromCanonicalPath(const QString &path) { return VdirPath(normalizedPath(path)); }
+    static VdirPath fromCanonicalPath(QString path) { return VdirPath(std::move(path)); }
 
-    static VdirPath fromCollection(const Collection &collection)
-    {
-        return fromCanonicalPath(collection.canonicalPath.isEmpty() ? collection.path : collection.canonicalPath);
-    }
-
-    static QString normalizedPath(const QString &path)
-    {
-        if (path.isEmpty())
-        {
-            return QString();
-        }
-
-        const QFileInfo info(path);
-        const QString canonical = info.canonicalFilePath();
-        if (!canonical.isEmpty() && info.isDir())
-        {
-            return canonical;
-        }
-        return QString();
-    }
+    static VdirPath fromCollection(const Collection &collection) { return fromCanonicalPath(collection.canonicalPath); }
 
     bool isValid() const { return !m_path.isEmpty(); }
-    QString path() const { return m_path; }
+    const QString &path() const { return m_path; }
 
 private:
     explicit VdirPath(QString path)

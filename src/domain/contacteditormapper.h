@@ -30,7 +30,6 @@ namespace ContactEditorMapper {
 
 ContactFields fromAddressee(const KContacts::Addressee &addressee);
 ContactFields fromContact(const Contact &contact);
-void applyToAddressee(KContacts::Addressee &addressee, const ContactFields &data);
 Contact createContact(const ContactFields &data);
 Contact applyToContact(Contact contact, const ContactFields &data);
 

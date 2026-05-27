@@ -34,7 +34,7 @@ class Todo;
 //   *Ptr (CalendarPtr/EventPtr/TodoPtr) are QSharedPointer<const T>. The
 //   pointed-to KCalendarCore object is conceptually immutable. The shared
 //   instance is reachable from any cached payload (CalendarItem::payload,
-//   EventReader occurrence cache, etc.) and from any UI snapshot that has
+//   EventService occurrence cache, etc.) and from any UI snapshot that has
 //   been handed out. Mutating it observably tears those caches.
 //
 //   - Never qSharedPointerConstCast a *Ptr.

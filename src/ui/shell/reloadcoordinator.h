@@ -32,8 +32,9 @@
 
 #include <atomic>
 
-class EventReader;
+class EventService;
 class ContactService;
+class CollectionService;
 class TaskService;
 
 class ReloadCoordinator : public QObject
@@ -56,7 +57,8 @@ public:
         QList<ReadFailure> readFailures;
     };
 
-    ReloadCoordinator(const EventReader &eventReader,
+    ReloadCoordinator(const CollectionService &collectionService,
+                      const EventService &eventService,
                       TaskService &taskService,
                       const ContactService &contactService,
                       QObject *parent = nullptr);
@@ -77,7 +79,8 @@ private:
     void rollForwardTasks(const QList<Task> &tasks);
     bool stopping() const;
 
-    const EventReader &m_eventReader;
+    const CollectionService &m_collectionService;
+    const EventService &m_eventService;
     TaskService &m_taskService;
     const ContactService &m_contactService;
     QFutureWatcher<CalendarReloadPayload> m_calendarReloadWatcher;
