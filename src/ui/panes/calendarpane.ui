@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CalendarPane</class>
+ <widget class="QWidget" name="CalendarPane">
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin"><number>0</number></property>
+   <property name="topMargin"><number>0</number></property>
+   <property name="rightMargin"><number>0</number></property>
+   <property name="bottomMargin"><number>0</number></property>
+   <property name="spacing"><number>0</number></property>
+   <item row="0" column="0">
+    <widget class="QSplitter" name="calendarSplitter">
+     <property name="orientation"><enum>Qt::Horizontal</enum></property>
+     <widget class="QWidget" name="calendarListPane" native="true">
+      <property name="minimumSize">
+       <size><width>300</width><height>0</height></size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutCalendarListPane">
+       <property name="spacing"><number>0</number></property>
+       <property name="leftMargin"><number>0</number></property>
+       <property name="topMargin"><number>0</number></property>
+       <property name="rightMargin"><number>0</number></property>
+       <property name="bottomMargin"><number>0</number></property>
+       <item>
+        <widget class="MonthChromeWidget" name="monthChrome"/>
+       </item>
+       <item>
+        <widget class="TaskListWidget" name="taskList"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="DayTimelineWidget" name="dayTimeline"/>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="FindBar" name="findBar"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MonthChromeWidget</class>
+   <extends>QWidget</extends>
+   <header>monthchromewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TaskListWidget</class>
+   <extends>QWidget</extends>
+   <header>tasklistwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DayTimelineWidget</class>
+   <extends>QAbstractScrollArea</extends>
+   <header>daytimelinewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FindBar</class>
+   <extends>QWidget</extends>
+   <header>findbar.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

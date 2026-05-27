@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ContactDialog</class>
+ <widget class="QDialog" name="ContactDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>620</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Contact</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="documentMode">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="tabIdentity">
+      <attribute name="title">
+       <string>Identity</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="identityLayout">
+       <item>
+        <widget class="QGroupBox" name="nameGroupBox">
+         <property name="title">
+          <string>Name</string>
+         </property>
+         <layout class="QFormLayout" name="nameFormLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFirstName">
+            <property name="text">
+             <string>&amp;First name</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditFirstName</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditFirstName"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelMidNames">
+            <property name="text">
+             <string>&amp;Middle names</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditMiddleNames</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditMiddleNames"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelLastName">
+            <property name="text">
+             <string>&amp;Last name</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditLastName</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lineEditLastName"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="contactGroupBox">
+         <property name="title">
+          <string>Contact</string>
+         </property>
+         <layout class="QFormLayout" name="contactFormLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelEmail">
+            <property name="text">
+             <string>&amp;Email</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditEmail</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditEmail"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelPhone">
+            <property name="text">
+             <string>&amp;Phone</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditTelephone</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditTelephone"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelCollection">
+            <property name="text">
+             <string>&amp;Collection</string>
+            </property>
+            <property name="buddy">
+             <cstring>comboBoxCollection</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QWidget" name="collectionFieldWidget" native="true">
+            <layout class="QHBoxLayout" name="collectionFieldLayout">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="lineEditCollection">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBoxCollection"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="identitySpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabAddress">
+      <attribute name="title">
+       <string>Address</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="addressLayout">
+       <item>
+        <widget class="QGroupBox" name="addressGroupBox">
+         <property name="title">
+          <string>Postal Address</string>
+         </property>
+         <layout class="QFormLayout" name="addressFormLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelStreet">
+            <property name="text">
+             <string>&amp;Street</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditStreet</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditStreet"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelDistrict">
+            <property name="text">
+             <string>&amp;District</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditDistrict</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditDistrict"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelCity">
+            <property name="text">
+             <string>&amp;City</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditCity</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lineEditCity"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelCounty">
+            <property name="text">
+             <string>C&amp;ounty</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditCounty</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEditCounty"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelPostcode">
+            <property name="text">
+             <string>Post&amp;code</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditPostcode</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="lineEditPostcode"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelCountry">
+            <property name="text">
+             <string>Co&amp;untry</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditCountry</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="lineEditCountry"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="addressSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>lineEditFirstName</tabstop>
+  <tabstop>lineEditMiddleNames</tabstop>
+  <tabstop>lineEditLastName</tabstop>
+  <tabstop>lineEditEmail</tabstop>
+  <tabstop>lineEditTelephone</tabstop>
+  <tabstop>comboBoxCollection</tabstop>
+  <tabstop>lineEditStreet</tabstop>
+  <tabstop>lineEditDistrict</tabstop>
+  <tabstop>lineEditCity</tabstop>
+  <tabstop>lineEditCounty</tabstop>
+  <tabstop>lineEditPostcode</tabstop>
+  <tabstop>lineEditCountry</tabstop>
+ </tabstops>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ContactDialog</receiver>
+   <slot>accept()</slot>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ContactDialog</receiver>
+   <slot>reject()</slot>
+  </connection>
+ </connections>
+</ui>

@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>sounds/window-attention.wav</file>
-    </qresource>
-</RCC>

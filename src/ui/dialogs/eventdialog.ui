@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EventDialog</class>
+ <widget class="QDialog" name="EventDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>560</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Event</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupDetails">
+     <property name="title">
+      <string>Details</string>
+     </property>
+     <layout class="QFormLayout" name="detailsForm">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelTitle">
+        <property name="text">
+         <string>&amp;Title</string>
+        </property>
+        <property name="buddy">
+         <cstring>lineEditTitle</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEditTitle"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelLocation">
+        <property name="text">
+         <string>&amp;Location</string>
+        </property>
+        <property name="buddy">
+         <cstring>lineEditLocation</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEditLocation"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupTime">
+     <property name="title">
+      <string>Time</string>
+     </property>
+     <layout class="QFormLayout" name="timeLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelDate">
+        <property name="text">
+         <string>&amp;Date</string>
+        </property>
+        <property name="buddy">
+         <cstring>dateEditDate</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="dateEditDate">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="checkBoxAllDay">
+        <property name="text">
+         <string>All &amp;day</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelStartTime">
+        <property name="text">
+         <string>&amp;Start time</string>
+        </property>
+        <property name="buddy">
+         <cstring>timeEditStart</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QTimeEdit" name="timeEditStart"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelEndTime">
+        <property name="text">
+         <string>&amp;End time</string>
+        </property>
+        <property name="buddy">
+         <cstring>timeEditEnd</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QTimeEdit" name="timeEditEnd"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelTimeZone">
+        <property name="text">
+         <string>Time &amp;zone</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboTimeZone</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="TimeZoneComboBox" name="comboTimeZone"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupCalendar">
+     <property name="title">
+      <string>Calendar</string>
+     </property>
+     <layout class="QFormLayout" name="calendarLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCollection">
+        <property name="text">
+         <string>&amp;Calendar</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboCollection</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboCollection"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelScope">
+        <property name="text">
+         <string>Scope</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelScopeValue">
+        <property name="text">
+         <string>All occurrences</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelPriority">
+        <property name="text">
+         <string>&amp;Priority</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboPriority</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="PriorityComboBox" name="comboPriority"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelHighlight">
+        <property name="text">
+         <string>&amp;Highlight</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboHighlight</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="HighlightComboBox" name="comboHighlight"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="checkBoxDone">
+        <property name="text">
+         <string>&amp;Completed</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupLinks">
+     <property name="title">
+      <string>Links</string>
+     </property>
+     <layout class="QFormLayout" name="linksLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelAttachment">
+        <property name="text">
+         <string>&amp;Attachment</string>
+        </property>
+        <property name="buddy">
+         <cstring>lineEditAttachment</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="attachmentLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLineEdit" name="lineEditAttachment"/>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButtonAttachment">
+          <property name="toolTip">
+           <string>Choose attachment file</string>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset theme="document-open"/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelUrl">
+        <property name="text">
+         <string>&amp;URL</string>
+        </property>
+        <property name="buddy">
+         <cstring>lineEditUrl</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEditUrl"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupNotes">
+     <property name="title">
+      <string>Notes</string>
+     </property>
+     <layout class="QVBoxLayout" name="notesLayout">
+      <item>
+       <widget class="QTextEdit" name="textEditNotes">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>120</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HighlightComboBox</class>
+   <extends>QComboBox</extends>
+   <header>editorcombos.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TimeZoneComboBox</class>
+   <extends>QComboBox</extends>
+   <header>editorcombos.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PriorityComboBox</class>
+   <extends>QComboBox</extends>
+   <header>editorcombos.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <tabstops>
+  <tabstop>lineEditTitle</tabstop>
+  <tabstop>lineEditLocation</tabstop>
+  <tabstop>dateEditDate</tabstop>
+  <tabstop>checkBoxAllDay</tabstop>
+  <tabstop>timeEditStart</tabstop>
+  <tabstop>timeEditEnd</tabstop>
+  <tabstop>comboTimeZone</tabstop>
+  <tabstop>comboCollection</tabstop>
+  <tabstop>comboPriority</tabstop>
+  <tabstop>comboHighlight</tabstop>
+  <tabstop>checkBoxDone</tabstop>
+  <tabstop>lineEditAttachment</tabstop>
+  <tabstop>toolButtonAttachment</tabstop>
+  <tabstop>lineEditUrl</tabstop>
+  <tabstop>textEditNotes</tabstop>
+ </tabstops>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>EventDialog</receiver>
+   <slot>accept()</slot>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>EventDialog</receiver>
+   <slot>reject()</slot>
+  </connection>
+ </connections>
+</ui>

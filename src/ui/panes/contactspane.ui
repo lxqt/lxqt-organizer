@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ContactsPane</class>
+ <widget class="QWidget" name="ContactsPane">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin"><number>0</number></property>
+   <property name="topMargin"><number>0</number></property>
+   <property name="rightMargin"><number>0</number></property>
+   <property name="bottomMargin"><number>0</number></property>
+   <property name="spacing"><number>0</number></property>
+   <item>
+    <widget class="QTableView" name="tableViewContacts">
+     <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+     <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+     <property name="lineWidth"><number>0</number></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="FindBar" name="findBar"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FindBar</class>
+   <extends>QWidget</extends>
+   <header>findbar.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

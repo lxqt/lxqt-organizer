@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TaskDialog</class>
+ <widget class="QDialog" name="TaskDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>560</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>520</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Task</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupDetails">
+     <property name="title">
+      <string>Details</string>
+     </property>
+     <layout class="QFormLayout" name="detailsFormLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelTitle">
+        <property name="text">
+         <string>&amp;Title</string>
+        </property>
+        <property name="buddy">
+         <cstring>lineEditTitle</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEditTitle"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupDue">
+     <property name="title">
+      <string>Due</string>
+     </property>
+     <layout class="QVBoxLayout" name="dueGroupLayout">
+      <item>
+       <layout class="QFormLayout" name="dueFormLayout">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBoxDue">
+          <property name="text">
+           <string>Set &amp;due date</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelDueDate">
+          <property name="text">
+           <string>&amp;Date</string>
+          </property>
+          <property name="buddy">
+           <cstring>dateEditDue</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDateEdit" name="dateEditDue">
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelDueTime">
+          <property name="text">
+           <string>&amp;Time</string>
+          </property>
+          <property name="buddy">
+           <cstring>timeEditDue</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QTimeEdit" name="timeEditDue"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupProperties">
+     <property name="title">
+      <string>Properties</string>
+     </property>
+     <layout class="QFormLayout" name="propertiesFormLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCollection">
+        <property name="text">
+         <string>&amp;List</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboCollection</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboCollection"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelPriority">
+        <property name="text">
+         <string>&amp;Priority</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboPriority</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="PriorityComboBox" name="comboPriority"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelHighlight">
+        <property name="text">
+         <string>&amp;Highlight</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboHighlight</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="HighlightComboBox" name="comboHighlight"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QCheckBox" name="checkBoxCompleted">
+        <property name="text">
+         <string>&amp;Completed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="checkBoxRollForward">
+        <property name="toolTip">
+         <string>If the due date passes before completion, move it to today. Stored with the task.</string>
+        </property>
+        <property name="text">
+         <string>&amp;Roll forward when overdue</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupNotes">
+     <property name="title">
+      <string>Notes</string>
+     </property>
+     <layout class="QVBoxLayout" name="notesLayout">
+      <item>
+       <widget class="QTextEdit" name="textEditNotes">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>120</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HighlightComboBox</class>
+   <extends>QComboBox</extends>
+   <header>editorcombos.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PriorityComboBox</class>
+   <extends>QComboBox</extends>
+   <header>editorcombos.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <tabstops>
+  <tabstop>lineEditTitle</tabstop>
+  <tabstop>checkBoxDue</tabstop>
+  <tabstop>dateEditDue</tabstop>
+  <tabstop>timeEditDue</tabstop>
+  <tabstop>comboCollection</tabstop>
+  <tabstop>comboPriority</tabstop>
+  <tabstop>comboHighlight</tabstop>
+  <tabstop>checkBoxCompleted</tabstop>
+  <tabstop>checkBoxRollForward</tabstop>
+  <tabstop>textEditNotes</tabstop>
+ </tabstops>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>TaskDialog</receiver>
+   <slot>accept()</slot>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>TaskDialog</receiver>
+   <slot>reject()</slot>
+  </connection>
+ </connections>
+</ui>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MonthChromeWidget</class>
+ <widget class="QWidget" name="MonthChromeWidget">
+  <layout class="QVBoxLayout" name="verticalLayoutMonthChrome">
+   <property name="spacing"><number>0</number></property>
+   <property name="leftMargin"><number>0</number></property>
+   <property name="topMargin"><number>0</number></property>
+   <property name="rightMargin"><number>0</number></property>
+   <property name="bottomMargin"><number>0</number></property>
+   <item>
+    <widget class="MonthCalendarWidget" name="tableWidgetCalendar">
+     <property name="minimumSize">
+      <size><width>300</width><height>220</height></size>
+     </property>
+     <property name="maximumSize">
+      <size><width>16777215</width><height>260</height></size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="calendarNavigationBar" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayoutCalendarNavigation">
+      <property name="spacing"><number>0</number></property>
+      <property name="leftMargin"><number>0</number></property>
+      <property name="topMargin"><number>0</number></property>
+      <property name="rightMargin"><number>0</number></property>
+      <property name="bottomMargin"><number>0</number></property>
+      <item>
+       <widget class="QToolButton" name="pushButtonPreviousCalendar">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch><verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text"><string>Prev</string></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="pushButtonTodayCalendar">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch><verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text"><string>Today</string></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="pushButtonNextCalendar">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch><verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text"><string>Next</string></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MonthCalendarWidget</class>
+   <extends>QCalendarWidget</extends>
+   <header>monthcalendarwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

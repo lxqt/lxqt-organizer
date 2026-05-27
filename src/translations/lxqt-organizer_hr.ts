@@ -2,840 +2,2100 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hr_HR">
 <context>
-    <name>DialogAppointment</name>
+    <name>AboutDialog</name>
     <message>
-        <location filename="../dialogappointment.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="20"/>
+        <source>About LXQt Organizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="24"/>
-        <source>Appointment Date:</source>
-        <translation>Termin</translation>
-    </message>
-    <message>
-        <location filename="../dialogappointment.ui" line="37"/>
-        <source>theDate</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="42"/>
+        <source>&lt;center&gt;&lt;span style=&quot;font-size:16pt; font-weight:600;&quot;&gt;LXQt Organizer %1&lt;/span&gt;&lt;/center&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="61"/>
-        <source>Title:</source>
-        <translation>Naslov</translation>
+        <location filename="../ui/shell/aboutdialog.ui" line="55"/>
+        <source>Lightweight personal information manager</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="78"/>
-        <source>Location:</source>
-        <translation>Mjesto</translation>
+        <location filename="../ui/shell/aboutdialog.ui" line="68"/>
+        <source>&lt;center&gt;&lt;a href=&quot;https://github.com/lxqt/organizer&quot;&gt;https://github.com/lxqt/organizer&lt;/a&gt;&lt;br/&gt;LXQt Project: &lt;a href=&quot;https://lxqt-project.org&quot;&gt;https://lxqt-project.org&lt;/a&gt;&lt;/center&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="95"/>
-        <source>Notes:</source>
-        <translation>Napomene</translation>
+        <location filename="../ui/shell/aboutdialog.ui" line="85"/>
+        <source>About</source>
+        <translation>Informacije</translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="125"/>
-        <source>All Day</source>
-        <translation>Cijeli dan</translation>
+        <location filename="../ui/shell/aboutdialog.ui" line="114"/>
+        <source>Authors</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="145"/>
-        <source>Start Time:</source>
-        <translation>Počinje</translation>
+        <location filename="../ui/shell/aboutdialog.ui" line="143"/>
+        <source>License</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="168"/>
-        <source>End Time: </source>
-        <translation>Završava</translation>
+        <location filename="../ui/shell/aboutdialog.cpp" line="54"/>
+        <source>LXQt Organizer is a Qt lightweight personal information manager developed by Basil Crow</source>
+        <translation>LXQt Organizer je lagani Qt upravljač osobnim podacima koji je razvio Basil Crow</translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="195"/>
-        <source>Reminder: </source>
-        <translation>Podsjetnik</translation>
+        <location filename="../ui/shell/aboutdialog.cpp" line="56"/>
+        <source>Built with Qt and LXQt libraries.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/aboutdialog.cpp" line="65"/>
+        <source>Programming:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/aboutdialog.cpp" line="65"/>
+        <source>Maintained by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/aboutdialog.cpp" line="71"/>
+        <source>is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 2 or later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/aboutdialog.cpp" line="73"/>
+        <source>It is distributed in the hope that it will be useful, but without any warranty.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>DialogAppointmentUpdate</name>
+    <name>CalendarPane</name>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="126"/>
+        <source>Priority: High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="24"/>
-        <source>Appointment Date:</source>
-        <translation>Termin</translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="38"/>
-        <source>theDate</source>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="128"/>
+        <source>Priority: Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="62"/>
-        <source>Title:         </source>
-        <translation>Naslov</translation>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="130"/>
+        <source>Priority: Medium</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="79"/>
-        <source>Location: </source>
-        <translation>Mjesto</translation>
+        <location filename="../ui/panes/calendarpane.cpp" line="47"/>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="96"/>
-        <source>Notes: </source>
-        <translation>Napomene</translation>
+        <location filename="../ui/panes/calendarpane.cpp" line="48"/>
+        <source>Not Completed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="120"/>
-        <source>All Day</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="61"/>
+        <source>All day</source>
         <translation>Cijeli dan</translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="140"/>
-        <source>Start Time:</source>
-        <translation>Počinje</translation>
+        <location filename="../ui/panes/calendarpane.cpp" line="71"/>
+        <source>Time: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="163"/>
-        <source>End Time:</source>
-        <translation>Završava</translation>
+        <location filename="../ui/panes/calendarpane.cpp" line="77"/>
+        <source>Time: %1 - %2</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="177"/>
-        <source>Reminder: </source>
-        <translation>Podsjetnik</translation>
+        <location filename="../ui/panes/calendarpane.cpp" line="93"/>
+        <source>Due: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointmentupdate.ui" line="207"/>
-        <source>Delete Appointment</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="275"/>
+        <source>Calendar</source>
+        <translation>Kalendar</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpane.cpp" line="325"/>
+        <source>%1 event(s), %2 task(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpane.cpp" line="685"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="702"/>
+        <source>Calendar: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CalendarPaneController</name>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="372"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="378"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="409"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="420"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="433"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="450"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="463"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="489"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="498"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="521"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="530"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="558"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="579"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="653"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="664"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="675"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="681"/>
+        <source>save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="372"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="378"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="390"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="409"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="420"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="433"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="450"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="463"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="622"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="642"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="653"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="664"/>
+        <source>event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="390"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="541"/>
+        <source>edit</source>
+        <translation>uredi</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="489"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="498"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="521"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="530"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="541"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="558"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="569"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="579"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="590"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="611"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="675"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="681"/>
+        <source>task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="569"/>
+        <source>move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="590"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="611"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="622"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="642"/>
+        <source>delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="598"/>
+        <source>selected task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="601"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="634"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <source>Organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="602"/>
+        <source>Delete task &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="630"/>
+        <source>selected event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="632"/>
+        <source>Delete event &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <source>No writable calendar collection is available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CalendarPaneUtils</name>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="173"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="223"/>
+        <source>New Event</source>
+        <translation>Novi termin</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="177"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="179"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="183"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="185"/>
+        <source>Edit</source>
+        <translation>Uredi</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="189"/>
+        <source>Delete</source>
         <translation>Ukloni</translation>
     </message>
-</context>
-<context>
-    <name>DialogContact</name>
     <message>
-        <location filename="../dialogcontact.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="194"/>
+        <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogcontact.ui" line="24"/>
-        <source>First Name:     </source>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="199"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="204"/>
+        <source>Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="226"/>
+        <source>Edit Event</source>
+        <translation>Uredi termin</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="229"/>
+        <source>Mark as Not Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="230"/>
+        <source>Mark as Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="232"/>
+        <source>Open URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="235"/>
+        <source>Open Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="238"/>
+        <source>Delete Event</source>
+        <translation>Ukloni termin</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="265"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="273"/>
+        <source>Organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="266"/>
+        <source>Could not open the event URL.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="274"/>
+        <source>Could not open the event attachment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactDialog</name>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="14"/>
+        <location filename="../ui/dialogs/contactdialog.ui" line="87"/>
+        <source>Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="30"/>
+        <source>Identity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="36"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="45"/>
+        <source>&amp;First name</source>
+        <translation>&amp;Ime</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="58"/>
+        <source>&amp;Middle names</source>
+        <translation>&amp;Drugo ime</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="71"/>
+        <source>&amp;Last name</source>
+        <translation>&amp;Prezime</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="96"/>
+        <source>&amp;Email</source>
+        <translation>&amp;E-mail</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="109"/>
+        <source>&amp;Phone</source>
+        <translation>&amp;Telefon</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="122"/>
+        <source>&amp;Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="177"/>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="183"/>
+        <source>Postal Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="192"/>
+        <source>&amp;Street</source>
+        <translation>&amp;Ulica</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="205"/>
+        <source>&amp;District</source>
+        <translation>&amp;Gradska četvrt</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="218"/>
+        <source>&amp;City</source>
+        <translation>&amp;Grad</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="231"/>
+        <source>C&amp;ounty</source>
+        <translation>&amp;Županija</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="244"/>
+        <source>Post&amp;code</source>
+        <translation>&amp;Poštanski broj</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="257"/>
+        <source>Co&amp;untry</source>
+        <translation>&amp;Država</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="40"/>
+        <source>First Name</source>
         <translation>Ime</translation>
     </message>
     <message>
-        <location filename="../dialogcontact.ui" line="41"/>
-        <source>Middle Names:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="41"/>
+        <source>Middle Names</source>
+        <translation>Drugo ime</translation>
     </message>
     <message>
-        <location filename="../dialogcontact.ui" line="58"/>
-        <source>Last Name:     </source>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="42"/>
+        <source>Last Name</source>
         <translation>Prezime</translation>
     </message>
     <message>
-        <location filename="../dialogcontact.ui" line="75"/>
-        <source>Email:             </source>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="43"/>
+        <source>Email</source>
         <translation>E-mail</translation>
     </message>
     <message>
-        <location filename="../dialogcontact.ui" line="96"/>
-        <source>Birthday Unknown </source>
-        <translation>Rođendan nepoznat</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="116"/>
-        <source>Born On:</source>
-        <translation>Rođendan</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="126"/>
-        <source>Add To Calendar</source>
-        <translation>Dodaj u kalendar</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="137"/>
-        <source>Street:     </source>
-        <translation>Ulica</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="154"/>
-        <source>District:   </source>
-        <translation>Gradska četvrt</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="171"/>
-        <source>City:        </source>
-        <translation>Grad</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="188"/>
-        <source>County:   </source>
-        <translation>Županija</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="205"/>
-        <source>Postcode:</source>
-        <translation>Poštanski broj</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="222"/>
-        <source>Country:  </source>
-        <translation>Država</translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="239"/>
-        <source>Phone:    </source>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="44"/>
+        <source>Collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogcontact.ui" line="266"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="45"/>
+        <source>Street</source>
+        <translation>Ulica</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="46"/>
+        <source>District</source>
+        <translation>Gradska četvrt</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="47"/>
+        <source>City</source>
+        <translation>Grad</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="48"/>
+        <source>County</source>
+        <translation>Županija</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="49"/>
+        <source>Postcode</source>
+        <translation>Poštanski broj</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="50"/>
+        <source>Country</source>
+        <translation>Država</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="51"/>
+        <source>Phone</source>
+        <translation>Telefon</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="112"/>
+        <source>Empty Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactFields</name>
+    <message>
+        <location filename="../domain/contactvalidation.cpp" line="29"/>
+        <source>Must enter first and last name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactModel</name>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="209"/>
+        <source>First Name</source>
+        <translation>Ime</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="211"/>
+        <source>Middle Names</source>
+        <translation>Drugo ime</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="213"/>
+        <source>Last Name</source>
+        <translation>Prezime</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="215"/>
+        <source>Email</source>
+        <translation>E-mail</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="217"/>
+        <source>Street</source>
+        <translation>Ulica</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="219"/>
+        <source>District</source>
+        <translation>Gradska četvrt</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="221"/>
+        <source>City</source>
+        <translation>Grad</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="223"/>
+        <source>County</source>
+        <translation>Županija</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="225"/>
+        <source>Postcode</source>
+        <translation>Poštanski broj</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="227"/>
+        <source>Country</source>
+        <translation>Država</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="229"/>
+        <source>Telephone</source>
+        <translation>Telefon</translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="231"/>
+        <source>Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactsPane</name>
+    <message>
+        <location filename="../ui/panes/contactspane.ui" line="28"/>
+        <source>Close Find Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.ui" line="43"/>
+        <location filename="../ui/panes/contactspane.cpp" line="103"/>
+        <source>Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.ui" line="49"/>
+        <location filename="../ui/panes/contactspane.cpp" line="97"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="67"/>
+        <location filename="../ui/panes/contactspane.cpp" line="348"/>
+        <source>New Contact</source>
+        <translation>Novi kontakt</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="69"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="75"/>
+        <source>Edit</source>
+        <translation>Uredi</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="80"/>
+        <source>Delete</source>
+        <translation>Ukloni</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="86"/>
+        <location filename="../ui/panes/contactspane.cpp" line="351"/>
+        <source>Mail To...</source>
+        <translation>E-mail za...</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="91"/>
+        <location filename="../ui/panes/contactspane.cpp" line="327"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="114"/>
+        <source>Contacts</source>
+        <translation>Kontakti</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="143"/>
+        <source>Address Book: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../ui/panes/contactspane.cpp" line="145"/>
+        <source>%n contact(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="271"/>
+        <location filename="../ui/panes/contactspane.cpp" line="293"/>
+        <source>No more items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="350"/>
+        <source>Edit Contact</source>
+        <translation>Uredi kontakt</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="353"/>
         <source>Delete Contact</source>
         <translation>Ukloni kontakt</translation>
     </message>
 </context>
 <context>
-    <name>DialogPreferences</name>
+    <name>ContactsPaneController</name>
     <message>
-        <location filename="../dialogpreferences.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="51"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="149"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="168"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="174"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="180"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="194"/>
+        <source>Organizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogpreferences.ui" line="24"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="51"/>
+        <source>No writable address book collection is available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Contact</source>
+        <translation type="vanished">Novi kontakt</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="64"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="72"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="102"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="124"/>
+        <source>save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="64"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="72"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="83"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="102"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="114"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="124"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="132"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="159"/>
+        <source>contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="83"/>
+        <source>edit</source>
+        <translation>uredi</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="114"/>
+        <source>move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="132"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="159"/>
+        <source>delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="146"/>
+        <source>selected contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="150"/>
+        <source>Delete contact &quot;%1&quot;?</source>
+        <translation>Ukloniti kontakt &quot;%1&quot;?</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="168"/>
+        <source>Select a contact to email.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="174"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="180"/>
+        <source>The selected contact does not have an email address.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="188"/>
+        <source>Enter the subject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="189"/>
+        <source>Enter message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="194"/>
+        <source>Could not open the default mail application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DayTimelineWidget</name>
+    <message>
+        <location filename="../ui/widgets/daytimelinewidget.cpp" line="548"/>
+        <source>New event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytimelinewidget.cpp" line="659"/>
+        <source>Untitled</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DialogAppointment</name>
+    <message>
+        <source>Appointment Date:</source>
+        <translation type="vanished">Termin</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="vanished">Naslov</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="vanished">Mjesto</translation>
+    </message>
+    <message>
+        <source>Notes:</source>
+        <translation type="vanished">Napomene</translation>
+    </message>
+    <message>
+        <source>All Day</source>
+        <translation type="vanished">Cijeli dan</translation>
+    </message>
+    <message>
+        <source>Start Time:</source>
+        <translation type="vanished">Počinje</translation>
+    </message>
+    <message>
+        <source>End Time: </source>
+        <translation type="vanished">Završava</translation>
+    </message>
+    <message>
+        <source>Reminder: </source>
+        <translation type="vanished">Podsjetnik</translation>
+    </message>
+</context>
+<context>
+    <name>DialogAppointmentUpdate</name>
+    <message>
+        <source>Appointment Date:</source>
+        <translation type="vanished">Termin</translation>
+    </message>
+    <message>
+        <source>Title:         </source>
+        <translation type="vanished">Naslov</translation>
+    </message>
+    <message>
+        <source>Location: </source>
+        <translation type="vanished">Mjesto</translation>
+    </message>
+    <message>
+        <source>Notes: </source>
+        <translation type="vanished">Napomene</translation>
+    </message>
+    <message>
+        <source>All Day</source>
+        <translation type="vanished">Cijeli dan</translation>
+    </message>
+    <message>
+        <source>Start Time:</source>
+        <translation type="vanished">Počinje</translation>
+    </message>
+    <message>
+        <source>End Time:</source>
+        <translation type="vanished">Završava</translation>
+    </message>
+    <message>
+        <source>Reminder: </source>
+        <translation type="vanished">Podsjetnik</translation>
+    </message>
+    <message>
+        <source>Delete Appointment</source>
+        <translation type="vanished">Ukloni</translation>
+    </message>
+</context>
+<context>
+    <name>DialogContact</name>
+    <message>
+        <source>First Name:     </source>
+        <translation type="vanished">Ime</translation>
+    </message>
+    <message>
+        <source>Last Name:     </source>
+        <translation type="vanished">Prezime</translation>
+    </message>
+    <message>
+        <source>Email:             </source>
+        <translation type="vanished">E-mail</translation>
+    </message>
+    <message>
+        <source>Birthday Unknown </source>
+        <translation type="vanished">Rođendan nepoznat</translation>
+    </message>
+    <message>
+        <source>Born On:</source>
+        <translation type="vanished">Rođendan</translation>
+    </message>
+    <message>
+        <source>Add To Calendar</source>
+        <translation type="vanished">Dodaj u kalendar</translation>
+    </message>
+    <message>
+        <source>Street:     </source>
+        <translation type="vanished">Ulica</translation>
+    </message>
+    <message>
+        <source>District:   </source>
+        <translation type="vanished">Gradska četvrt</translation>
+    </message>
+    <message>
+        <source>City:        </source>
+        <translation type="vanished">Grad</translation>
+    </message>
+    <message>
+        <source>County:   </source>
+        <translation type="vanished">Županija</translation>
+    </message>
+    <message>
+        <source>Postcode:</source>
+        <translation type="vanished">Poštanski broj</translation>
+    </message>
+    <message>
+        <source>Country:  </source>
+        <translation type="vanished">Država</translation>
+    </message>
+    <message>
+        <source>Delete Contact</source>
+        <translation type="vanished">Ukloni kontakt</translation>
+    </message>
+</context>
+<context>
+    <name>DialogPreferences</name>
+    <message>
         <source>Font Size:</source>
-        <translation>Veličina fonta</translation>
+        <translation type="vanished">Veličina fonta</translation>
     </message>
     <message>
-        <location filename="../dialogpreferences.ui" line="51"/>
         <source>Play Audio</source>
-        <translation>Pokreni audiovizualnu snimku</translation>
+        <translation type="vanished">Pokreni audiovizualnu snimku</translation>
     </message>
     <message>
-        <location filename="../dialogpreferences.ui" line="58"/>
         <source>Dark Calendar </source>
-        <translation>Tamni kalendar</translation>
+        <translation type="vanished">Tamni kalendar</translation>
     </message>
     <message>
-        <location filename="../dialogpreferences.ui" line="65"/>
         <source>Line Spacing</source>
-        <translation>Prored</translation>
+        <translation type="vanished">Prored</translation>
     </message>
 </context>
 <context>
     <name>DialogRepeatAppointment</name>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="24"/>
         <source>Appointment Start Date:</source>
-        <translation>Datum početka termina</translation>
+        <translation type="vanished">Datum početka termina</translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="37"/>
-        <source>the Date</source>
+        <source>Title:</source>
+        <translation type="vanished">Naslov</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="vanished">Mjesto</translation>
+    </message>
+    <message>
+        <source>Notes:</source>
+        <translation type="vanished">Napomene</translation>
+    </message>
+    <message>
+        <source>All Day</source>
+        <translation type="vanished">Cijeli dan</translation>
+    </message>
+    <message>
+        <source>Start Time:</source>
+        <translation type="vanished">Počinje</translation>
+    </message>
+    <message>
+        <source>End Time: </source>
+        <translation type="vanished">Završava</translation>
+    </message>
+    <message>
+        <source>Repeat Every:</source>
+        <translation type="vanished">Ponavljaj svakih</translation>
+    </message>
+    <message>
+        <source>Days</source>
+        <translation type="vanished">Dana</translation>
+    </message>
+    <message>
+        <source>Occurrences</source>
+        <translation type="vanished">Pojavljivanja</translation>
+    </message>
+</context>
+<context>
+    <name>EventDialog</name>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="20"/>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="100"/>
+        <source>Event</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="61"/>
-        <source>Title:</source>
-        <translation>Naslov</translation>
+        <location filename="../ui/dialogs/eventdialog.ui" line="29"/>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="78"/>
-        <source>Location:</source>
-        <translation>Mjesto</translation>
+        <location filename="../ui/dialogs/eventdialog.ui" line="38"/>
+        <source>&amp;Title</source>
+        <translation>&amp;Naslov</translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="95"/>
-        <source>Notes:</source>
+        <location filename="../ui/dialogs/eventdialog.ui" line="51"/>
+        <source>&amp;Location</source>
+        <translation>&amp;Mjesto</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="67"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="76"/>
+        <source>&amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="93"/>
+        <source>All &amp;day</source>
+        <translation>&amp;Cijeli dan</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="100"/>
+        <source>&amp;Start time</source>
+        <translation>&amp;Počinje</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="113"/>
+        <source>&amp;End time</source>
+        <translation>&amp;Završava</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="126"/>
+        <source>Time &amp;zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="142"/>
+        <source>Calendar</source>
+        <translation>Kalendar</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="151"/>
+        <source>&amp;Calendar</source>
+        <translation>&amp;Kalendar</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="164"/>
+        <source>Scope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="171"/>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="128"/>
+        <source>All occurrences</source>
+        <translation>Sva pojavljivanja</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="178"/>
+        <source>&amp;Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="191"/>
+        <source>&amp;Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="204"/>
+        <source>&amp;Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="214"/>
+        <source>Links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="223"/>
+        <source>&amp;Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="250"/>
+        <source>Choose attachment file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="253"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="265"/>
+        <source>&amp;URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="281"/>
+        <source>Notes</source>
         <translation>Napomene</translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="119"/>
-        <source>All Day</source>
-        <translation>Cijeli dan</translation>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="91"/>
+        <source>Empty Details</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="139"/>
-        <source>Start Time:</source>
-        <translation>Počinje</translation>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="100"/>
+        <source>Edit Event</source>
+        <translation>Uredi termin</translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="162"/>
-        <source>End Time: </source>
-        <translation>Završava</translation>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="128"/>
+        <source>This occurrence</source>
+        <translation>Ovo pojavljivanje</translation>
     </message>
     <message>
-        <location filename="../dialogrepeatappointment.ui" line="179"/>
-        <source>Repeat Every:</source>
-        <translation>Ponavljaj svakih</translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="202"/>
-        <source>Days</source>
-        <translation>Dana</translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="225"/>
-        <source>Occurrences</source>
-        <translation>Pojavljivanja</translation>
-    </message>
-</context>
-<context>
-    <name>DialogUpcomingBirthdays</name>
-    <message>
-        <location filename="../dialogupcomingbirthdays.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="150"/>
+        <source>Select Attachment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>DialogUpcomingSchedule</name>
+    <name>EventFields</name>
     <message>
-        <location filename="../dialogupcomingschedule.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../domain/calendarvalidation.cpp" line="32"/>
+        <source>Must enter a title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogupcomingschedule.ui" line="24"/>
-        <source>Upcoming  Schedule For: </source>
+        <location filename="../domain/calendarvalidation.cpp" line="36"/>
+        <source>End time must be after start time</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FindBar</name>
+    <message>
+        <location filename="../ui/widgets/findbar.ui" line="18"/>
+        <source>Close Find Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogupcomingschedule.ui" line="37"/>
-        <source>Date</source>
+        <location filename="../ui/widgets/findbar.ui" line="33"/>
+        <source>Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/findbar.ui" line="39"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/findbar.cpp" line="35"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/findbar.cpp" line="106"/>
+        <source>No more items</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HighlightComboBox</name>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="31"/>
+        <source>Always Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="32"/>
+        <source>Never Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="33"/>
+        <source>Highlight Future</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LXQtOrganizerApplication</name>
+    <message>
+        <location filename="../app/application.cpp" line="82"/>
+        <source>Open new window</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="14"/>
-        <source>MainWindow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="25"/>
-        <location filename="../mainwindow.ui" line="180"/>
-        <location filename="../mainwindow.cpp" line="67"/>
+        <location filename="../ui/shell/mainwindow.ui" line="43"/>
         <source>Calendar</source>
         <translation>Kalendar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="41"/>
-        <source>MonthYear</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="90"/>
-        <location filename="../mainwindow.ui" line="166"/>
-        <location filename="../mainwindow.cpp" line="79"/>
+        <location filename="../ui/shell/mainwindow.ui" line="48"/>
         <source>Contacts</source>
         <translation>Kontakti</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="103"/>
-        <source>Show Quick/Full View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="110"/>
-        <location filename="../mainwindow.cpp" line="102"/>
         <source>Mail To:</source>
-        <translation>E-mail za:</translation>
+        <translation type="vanished">E-mail za:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="135"/>
-        <location filename="../mainwindow.cpp" line="49"/>
+        <location filename="../ui/shell/mainwindow.ui" line="74"/>
         <source>File</source>
         <translation>Datoteka</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="147"/>
-        <location filename="../mainwindow.cpp" line="56"/>
+        <location filename="../ui/shell/mainwindow.ui" line="87"/>
+        <location filename="../ui/shell/mainwindow.ui" line="210"/>
         <source>Edit</source>
         <translation>Uredi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="157"/>
-        <location filename="../mainwindow.cpp" line="62"/>
         <source>Appointments</source>
-        <translation>Termini</translation>
+        <translation type="vanished">Termini</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="174"/>
-        <location filename="../mainwindow.cpp" line="83"/>
+        <location filename="../ui/shell/mainwindow.ui" line="123"/>
         <source>Help</source>
         <translation>Pomoć</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="212"/>
-        <location filename="../mainwindow.cpp" line="54"/>
+        <location filename="../ui/shell/mainwindow.ui" line="169"/>
         <source>Exit</source>
         <translation>Zatvori</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="217"/>
-        <location filename="../mainwindow.cpp" line="57"/>
         <source>Delete All Appointments</source>
-        <translation>Ukloni sve termine</translation>
+        <translation type="vanished">Ukloni sve termine</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="222"/>
-        <location filename="../mainwindow.cpp" line="58"/>
         <source>Delete All Contacts</source>
-        <translation>Ukloni sve kontakte</translation>
+        <translation type="vanished">Ukloni sve kontakte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="227"/>
-        <source>New Appointment (Double Click)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="232"/>
-        <location filename="../mainwindow.cpp" line="64"/>
         <source>Generate Repeat Appointments</source>
-        <translation>Izradi automatska ponavljanja termina</translation>
+        <translation type="vanished">Izradi automatska ponavljanja termina</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="142"/>
         <source>Generate Repeat Appointments</source>
         <comment>Dialog title</comment>
-        <translation>Izradi ponavljanja termina</translation>
+        <translation type="vanished">Izradi ponavljanja termina</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="237"/>
-        <location filename="../mainwindow.cpp" line="65"/>
         <source>Upcoming Schedule</source>
-        <translation>Nadolazeći termini</translation>
+        <translation type="vanished">Nadolazeći termini</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="246"/>
-        <location filename="../mainwindow.cpp" line="80"/>
+        <location filename="../ui/shell/mainwindow.ui" line="240"/>
         <source>New Contact</source>
         <translation>Novi kontakt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="251"/>
-        <location filename="../mainwindow.cpp" line="81"/>
         <source>Check For Birthdays</source>
-        <translation>Provjeri rođendane</translation>
+        <translation type="vanished">Provjeri rođendane</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="260"/>
-        <location filename="../mainwindow.cpp" line="70"/>
+        <location filename="../ui/shell/mainwindow.ui" line="14"/>
+        <location filename="../ui/shell/mainwindow.cpp" line="772"/>
+        <source>Organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="66"/>
+        <location filename="../ui/shell/mainwindow.cpp" line="282"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="100"/>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="114"/>
+        <source>Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="178"/>
+        <source>New Event</source>
+        <translation>Novi termin</translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="187"/>
+        <source>New Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="196"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="201"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="219"/>
+        <source>Delete</source>
+        <translation>Ukloni</translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="231"/>
+        <location filename="../ui/shell/mainwindow.cpp" line="523"/>
+        <source>Full View</source>
+        <translation>Potpun prikaz</translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="249"/>
+        <source>Mail To...</source>
+        <translation>E-mail za...</translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="258"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="267"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="276"/>
+        <source>Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="285"/>
         <source>Next Month</source>
         <translation>Sljedeći mjesec</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="269"/>
-        <location filename="../mainwindow.cpp" line="71"/>
+        <location filename="../ui/shell/mainwindow.ui" line="294"/>
         <source>Previous Month</source>
         <translation>Prethodni mjesec</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="278"/>
-        <location filename="../mainwindow.cpp" line="72"/>
+        <location filename="../ui/shell/mainwindow.ui" line="299"/>
+        <location filename="../ui/shell/mainwindow.cpp" line="292"/>
         <source>Today</source>
         <translation>Danas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="283"/>
-        <location filename="../mainwindow.cpp" line="84"/>
+        <location filename="../ui/shell/mainwindow.ui" line="308"/>
         <source>About</source>
         <translation>Informacije</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="288"/>
-        <location filename="../mainwindow.cpp" line="50"/>
         <source>Export Appointments</source>
-        <translation>Izvezi termine</translation>
+        <translation type="vanished">Izvezi termine</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="293"/>
-        <location filename="../mainwindow.cpp" line="51"/>
         <source>Import Appointments</source>
-        <translation>Uvezi termine</translation>
+        <translation type="vanished">Uvezi termine</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="298"/>
-        <location filename="../mainwindow.cpp" line="52"/>
         <source>Export Contacts</source>
-        <translation>Izvezi kontakte</translation>
+        <translation type="vanished">Izvezi kontakte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="303"/>
-        <location filename="../mainwindow.cpp" line="53"/>
         <source>Import Contacts</source>
-        <translation>Uvezi kontakte</translation>
+        <translation type="vanished">Uvezi kontakte</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="308"/>
-        <location filename="../mainwindow.cpp" line="59"/>
-        <location filename="../mainwindow.cpp" line="105"/>
+        <location filename="../ui/shell/mainwindow.ui" line="317"/>
         <source>Preferences</source>
         <translation>Postavke</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="317"/>
+        <location filename="../ui/shell/mainwindow.ui" line="326"/>
         <source>Increase Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Povećaj tekst</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="326"/>
+        <location filename="../ui/shell/mainwindow.ui" line="335"/>
         <source>Decrease Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Smanji tekst</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="335"/>
+        <location filename="../ui/shell/mainwindow.ui" line="344"/>
         <source>Reset Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnovi veličinu teksta</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="343"/>
-        <location filename="../mainwindow.cpp" line="69"/>
         <source>Show Birthdays</source>
-        <translation>Prikaži rođendane</translation>
+        <translation type="vanished">Prikaži rođendane</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="351"/>
-        <location filename="../mainwindow.cpp" line="68"/>
         <source>Show Holidays</source>
-        <translation>Prikaži praznike</translation>
+        <translation type="vanished">Prikaži praznike</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="36"/>
+        <location filename="../ui/shell/mainwindow.cpp" line="119"/>
+        <location filename="../ui/shell/mainwindow.cpp" line="279"/>
         <source>LXQt Organizer</source>
         <translation>LXQt Organizer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="39"/>
+        <location filename="../ui/shell/mainwindow.cpp" line="283"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.cpp" line="321"/>
+        <source>Create an event. Use the menu for tasks and contacts.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.cpp" line="772"/>
+        <source>Could not initialize calendar and contact storage.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../ui/shell/mainwindow.cpp" line="436"/>
+        <source>%n item(s) could not be loaded.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../ui/shell/mainwindow.cpp" line="437"/>
+        <source>%n item(s) could not be loaded. First error: %1</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.cpp" line="524"/>
+        <source>Show full contact view</source>
+        <translation>Prikaži potpuni prikaz kontakta</translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.cpp" line="525"/>
+        <source>Show quick contact view</source>
+        <translation>Prikaži brzi prikaz kontakta</translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.cpp" line="530"/>
+        <source>Tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.cpp" line="531"/>
+        <source>Hide tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.cpp" line="531"/>
+        <source>Show tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Christmas</source>
-        <translation>Božić</translation>
+        <translation type="vanished">Božić</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="40"/>
         <source>Boxing Day</source>
-        <translation>Boxing Day</translation>
+        <translation type="vanished">Boxing Day</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="41"/>
         <source>New Year&apos;s Day</source>
-        <translation>Nova Godina</translation>
+        <translation type="vanished">Nova Godina</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="42"/>
         <source>Easter</source>
-        <translation>Uskrs</translation>
+        <translation type="vanished">Uskrs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="43"/>
         <source>Good Friday</source>
-        <translation>Veliki petak</translation>
+        <translation type="vanished">Veliki petak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="44"/>
         <source>Easter Monday</source>
-        <translation>Uskrsni ponedjeljak</translation>
+        <translation type="vanished">Uskrsni ponedjeljak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="45"/>
         <source>May Bank Holiday</source>
-        <translation>Svibanjski praznik</translation>
+        <translation type="vanished">Svibanjski praznik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="46"/>
         <source>Spring Bank Holiday</source>
-        <translation>Proljetni praznici</translation>
+        <translation type="vanished">Proljetni praznici</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="47"/>
         <source>Summer Bank Holiday</source>
-        <translation>Ljetni praznici</translation>
+        <translation type="vanished">Ljetni praznici</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="63"/>
-        <location filename="../mainwindow.cpp" line="118"/>
         <source>New Appointment</source>
+        <translation type="vanished">Novi termin</translation>
+    </message>
+    <message>
+        <source>Increase Font Size</source>
+        <translation type="vanished">Povećaj tekst</translation>
+    </message>
+    <message>
+        <source>Decrease Font Size</source>
+        <translation type="vanished">Smanji tekst</translation>
+    </message>
+    <message>
+        <source>Reset Font Size</source>
+        <translation type="vanished">Obnovi veličinu teksta</translation>
+    </message>
+    <message>
+        <source>LXQt Organizer is a Qt lightweight personal information manager developed by Alan Crispin</source>
+        <translation type="vanished">LXQt Organizer ist ein Qt Lightweight Personal Information Manager, der von Alan Crispin (aka. Crispina) entwickelt wurde.</translation>
+    </message>
+    <message>
+        <source>First Name</source>
+        <translation type="vanished">Ime</translation>
+    </message>
+    <message>
+        <source>Mid Name</source>
+        <translation type="vanished">Drugo ime</translation>
+    </message>
+    <message>
+        <source>Last Name</source>
+        <translation type="vanished">Prezime</translation>
+    </message>
+    <message>
+        <source>Email</source>
+        <translation type="vanished">E-mail</translation>
+    </message>
+    <message>
+        <source>Street</source>
+        <translation type="vanished">Ulica</translation>
+    </message>
+    <message>
+        <source>District</source>
+        <translation type="vanished">Gradska četvrt</translation>
+    </message>
+    <message>
+        <source>City</source>
+        <translation type="vanished">Grad</translation>
+    </message>
+    <message>
+        <source>County</source>
+        <translation type="vanished">Županija</translation>
+    </message>
+    <message>
+        <source>Postcode</source>
+        <translation type="vanished">Poštanski broj</translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation type="vanished">Država</translation>
+    </message>
+    <message>
+        <source>Telephone</source>
+        <translation type="vanished">Telefon</translation>
+    </message>
+    <message>
+        <source>Birthday</source>
+        <translation type="vanished">Rođendan</translation>
+    </message>
+    <message>
+        <source>Quick/Full View</source>
+        <translation type="vanished">Brzi potpun prikaz</translation>
+    </message>
+    <message>
+        <source>Font Size</source>
+        <translation type="vanished">Veličina fonta</translation>
+    </message>
+    <message>
+        <source>Locale</source>
+        <translation type="vanished">Jezik</translation>
+    </message>
+    <message>
+        <source>Play Audio</source>
+        <translation type="vanished">Pokreni audiovizualnu snimku</translation>
+    </message>
+    <message>
+        <source>Dark Calendar</source>
+        <translation type="vanished">Tamni kalendar</translation>
+    </message>
+    <message>
+        <source>Line Spacing</source>
+        <translation type="vanished">Prored</translation>
+    </message>
+    <message>
+        <source>Upcoming Birthdays (Next Seven Days)</source>
+        <translation type="vanished">Skorašnji rođendani</translation>
+    </message>
+    <message>
+        <source>Upcoming Schedule (Next Seven Days)</source>
+        <translation type="vanished">Skorašnji termini</translation>
+    </message>
+    <message>
+        <source>Upcoming Schedule For Date: </source>
+        <translation type="vanished">Skorašnji termini na datum:</translation>
+    </message>
+    <message>
+        <source>Appointment Date: </source>
+        <translation type="vanished">Termin</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="vanished">Naslov</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="vanished">Mjesto</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="vanished">Napomene</translation>
+    </message>
+    <message>
+        <source>All Day</source>
+        <translation type="vanished">Cijeli dan</translation>
+    </message>
+    <message>
+        <source>Start Time</source>
+        <translation type="vanished">Počinje</translation>
+    </message>
+    <message>
+        <source>End Time</source>
+        <translation type="vanished">Završava</translation>
+    </message>
+    <message>
+        <source>Reminder</source>
+        <translation type="vanished">Podsjetnik</translation>
+    </message>
+    <message>
+        <source>Update Appointment</source>
+        <translation type="vanished">Aktualiziraj termin</translation>
+    </message>
+    <message>
+        <source>Delete Appointment</source>
+        <translation type="vanished">Ukloni</translation>
+    </message>
+    <message>
+        <source>5 Minutes Before Start</source>
+        <translation type="vanished">5 minuta prije</translation>
+    </message>
+    <message>
+        <source>10 Minutes Before Start</source>
+        <translation type="vanished">10 minuta prije</translation>
+    </message>
+    <message>
+        <source>30 Minutes Before Start</source>
+        <translation type="vanished">30 minuta prije</translation>
+    </message>
+    <message>
+        <source>1 Hour Before Start</source>
+        <translation type="vanished">1 sat prije</translation>
+    </message>
+    <message>
+        <source>1 Day Before Start</source>
+        <translation type="vanished">1 dan prije</translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation type="vanished">Uključeno</translation>
+    </message>
+    <message>
+        <source>Starts At</source>
+        <translation type="vanished">Počinje</translation>
+    </message>
+    <message>
+        <source>Appointment Start Date: </source>
+        <translation type="vanished">Datum početka termina</translation>
+    </message>
+    <message>
+        <source>Repeat Every</source>
+        <translation type="vanished">Ponavljaj svakih</translation>
+    </message>
+    <message>
+        <source>Days</source>
+        <translation type="vanished">Dana</translation>
+    </message>
+    <message>
+        <source>Occurrences</source>
+        <translation type="vanished">Pojavljivanja</translation>
+    </message>
+    <message>
+        <source>Born On</source>
+        <translation type="vanished">Rođendan</translation>
+    </message>
+    <message>
+        <source>Birthday Unknown</source>
+        <translation type="vanished">Rođendan nepoznat</translation>
+    </message>
+    <message>
+        <source>Add To Calendar</source>
+        <translation type="vanished">Dodaj u kalendar</translation>
+    </message>
+    <message>
+        <source>Delete Contact</source>
+        <translation type="vanished">Ukloni kontakt</translation>
+    </message>
+</context>
+<context>
+    <name>MonthChromeWidget</name>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.ui" line="36"/>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="57"/>
+        <source>Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.ui" line="47"/>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="58"/>
+        <source>Today</source>
+        <translation>Danas</translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.ui" line="58"/>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="59"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="84"/>
+        <source>New Event</source>
         <translation>Novi termin</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="73"/>
-        <source>Increase Font Size</source>
-        <translation>Povećaj tekst</translation>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="86"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesDialog</name>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="14"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="84"/>
+        <source>Preferences</source>
+        <translation>Postavke</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="74"/>
-        <source>Decrease Font Size</source>
-        <translation>Smanji tekst</translation>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="23"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="85"/>
+        <source>Display</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="75"/>
-        <source>Reset Font Size</source>
-        <translation>Obnovi veličinu teksta</translation>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="32"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="86"/>
+        <source>&amp;Calendar font size:</source>
+        <translation>&amp;Veličina fonta kalendara:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
-        <source>LXQt Organizer is a Qt lightweight personal information manager developed by Alan Crispin</source>
-        <translation>LXQt Organizer ist ein Qt Lightweight Personal Information Manager, der von Alan Crispin (aka. Crispina) entwickelt wurde.</translation>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="42"/>
+        <source> px</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="88"/>
-        <source>First Name</source>
-        <translation>Ime</translation>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="55"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="87"/>
+        <source>Day view &amp;starts:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="89"/>
-        <source>Mid Name</source>
-        <translation>Drugo ime</translation>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="65"/>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="85"/>
+        <source>h:00 AP</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="90"/>
-        <source>Last Name</source>
-        <translation>Prezime</translation>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="75"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="88"/>
+        <source>Day view &amp;ends:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PriorityComboBox</name>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="53"/>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="91"/>
-        <source>Email</source>
-        <translation>E-mail</translation>
+        <location filename="../ui/widgets/editorcombos.cpp" line="54"/>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="92"/>
-        <source>Street</source>
-        <translation>Ulica</translation>
+        <location filename="../ui/widgets/editorcombos.cpp" line="55"/>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="51"/>
+        <source>The storage item name is invalid.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="93"/>
-        <source>District</source>
-        <translation>Gradska četvrt</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="53"/>
+        <source>The item no longer exists in its collection.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="94"/>
-        <source>City</source>
-        <translation>Grad</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="55"/>
+        <source>The collection is read-only or unavailable.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="95"/>
-        <source>County</source>
-        <translation>Županija</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="57"/>
+        <source>The file was changed by another process.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
-        <source>Postcode</source>
-        <translation>Poštanski broj</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="59"/>
+        <source>The file could not be parsed.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="97"/>
-        <source>Country</source>
-        <translation>Država</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="61"/>
+        <source>The item uses an unsupported format.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="98"/>
-        <source>Telephone</source>
-        <translation>Telefon</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="63"/>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="65"/>
+        <source>The file could not be read or written.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="99"/>
-        <source>Birthday</source>
-        <translation>Rođendan</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="73"/>
+        <source>Could not %1 %2.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="101"/>
-        <source>Quick/Full View</source>
-        <translation>Brzi potpun prikaz</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="75"/>
+        <source>Could not %1 %2. %3</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="106"/>
-        <source>Font Size</source>
-        <translation>Veličina fonta</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="85"/>
+        <source>save</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="107"/>
-        <source>Locale</source>
-        <translation>Jezik</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="89"/>
+        <source>Could not save %1 in the destination collection. %2</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="108"/>
-        <source>Play Audio</source>
-        <translation>Pokreni audiovizualnu snimku</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="94"/>
+        <source>Could not remove the original %1 after copying it to the destination collection. %2</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="109"/>
-        <source>Dark Calendar</source>
-        <translation>Tamni kalendar</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="98"/>
+        <source>The destination copy was removed.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="110"/>
-        <source>Line Spacing</source>
-        <translation>Prored</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="102"/>
+        <source>Could not remove the original %1 after copying it to the destination collection. %2 The destination copy could not be removed. %3</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="113"/>
-        <source>Upcoming Birthdays (Next Seven Days)</source>
-        <translation>Skorašnji rođendani</translation>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="135"/>
+        <source>Organizer</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="114"/>
-        <source>Upcoming Schedule (Next Seven Days)</source>
-        <translation>Skorašnji termini</translation>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="33"/>
+        <source>The selected item could not be loaded.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="115"/>
-        <source>Upcoming Schedule For Date: </source>
-        <translation>Skorašnji termini na datum:</translation>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="35"/>
+        <source>The collection is no longer available.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="119"/>
-        <source>Appointment Date: </source>
-        <translation>Termin</translation>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="37"/>
+        <source>The source collection is read-only or unavailable.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="120"/>
-        <source>Title</source>
-        <translation>Naslov</translation>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="39"/>
+        <source>The destination collection is read-only or unavailable.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="121"/>
-        <source>Location</source>
-        <translation>Mjesto</translation>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="41"/>
+        <source>The item uses an unsupported format.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="122"/>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="43"/>
+        <source>This recurring series operation is not supported.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="45"/>
+        <source>This recurring occurrence operation is not supported.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="47"/>
+        <source>The item may have changed since it was loaded.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="49"/>
+        <source>The collection storage path is unavailable.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="51"/>
+        <source>The operation cannot be performed.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="65"/>
+        <source>Could not %1 %2.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="67"/>
+        <source>Could not %1 %2. %3</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="80"/>
+        <source>Organizer</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TaskDialog</name>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="20"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="29"/>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="38"/>
+        <source>&amp;Title</source>
+        <translation>&amp;Naslov</translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="54"/>
+        <source>Due</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="65"/>
+        <source>Set &amp;due date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="72"/>
+        <source>&amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="89"/>
+        <source>&amp;Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="107"/>
+        <source>Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="116"/>
+        <source>&amp;List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="129"/>
+        <source>&amp;Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="142"/>
+        <source>&amp;Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="155"/>
+        <source>&amp;Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="162"/>
+        <source>If the due date passes before completion, move it to today. Stored with the task.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="165"/>
+        <source>&amp;Roll forward when overdue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="175"/>
         <source>Notes</source>
         <translation>Napomene</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="123"/>
-        <source>All Day</source>
-        <translation>Cijeli dan</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="124"/>
-        <source>Start Time</source>
-        <translation>Počinje</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="125"/>
-        <source>End Time</source>
-        <translation>Završava</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="126"/>
-        <source>Reminder</source>
-        <translation>Podsjetnik</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="129"/>
-        <source>Update Appointment</source>
-        <translation>Aktualiziraj termin</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="130"/>
-        <source>Delete Appointment</source>
-        <translation>Ukloni</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="132"/>
-        <source>5 Minutes Before Start</source>
-        <translation>5 minuta prije</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="133"/>
-        <source>10 Minutes Before Start</source>
-        <translation>10 minuta prije</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="134"/>
-        <source>30 Minutes Before Start</source>
-        <translation>30 minuta prije</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="135"/>
-        <source>1 Hour Before Start</source>
-        <translation>1 sat prije</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="136"/>
-        <source>1 Day Before Start</source>
-        <translation>1 dan prije</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="138"/>
-        <source>On</source>
-        <translation>Uključeno</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="139"/>
-        <source>Starts At</source>
-        <translation>Počinje</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="143"/>
-        <source>Appointment Start Date: </source>
-        <translation>Datum početka termina</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="144"/>
-        <source>Repeat Every</source>
-        <translation>Ponavljaj svakih</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="145"/>
-        <source>Days</source>
-        <translation>Dana</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="146"/>
-        <source>Occurrences</source>
-        <translation>Pojavljivanja</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="150"/>
-        <location filename="../mainwindow.cpp" line="151"/>
-        <location filename="../mainwindow.cpp" line="152"/>
-        <location filename="../mainwindow.cpp" line="153"/>
-        <location filename="../mainwindow.cpp" line="154"/>
-        <location filename="../mainwindow.cpp" line="155"/>
-        <location filename="../mainwindow.cpp" line="156"/>
-        <location filename="../mainwindow.cpp" line="157"/>
-        <location filename="../mainwindow.cpp" line="158"/>
-        <location filename="../mainwindow.cpp" line="159"/>
-        <location filename="../mainwindow.cpp" line="160"/>
-        <location filename="../mainwindow.cpp" line="161"/>
-        <source>default</source>
+        <location filename="../ui/dialogs/taskdialog.cpp" line="78"/>
+        <source>Empty Details</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="163"/>
-        <source>Born On</source>
-        <translation>Rođendan</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="164"/>
-        <source>Birthday Unknown</source>
-        <translation>Rođendan nepoznat</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="165"/>
-        <source>Add To Calendar</source>
-        <translation>Dodaj u kalendar</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="166"/>
-        <source>Delete Contact</source>
-        <translation>Ukloni kontakt</translation>
     </message>
 </context>
 <context>
-    <name>LXQtOrganizerApplication</name>
+    <name>TaskFields</name>
     <message>
-        <location filename="../lxqtorganizerapplication.cpp" line="81"/>
-        <source>Open new window</source>
+        <location filename="../domain/calendarvalidation.cpp" line="45"/>
+        <source>Must enter a title</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TaskListModel</name>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="60"/>
+        <source>Untitled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="82"/>
+        <source>Collection: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="226"/>
+        <source>Task: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="229"/>
+        <source>Due: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="325"/>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="327"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="329"/>
+        <source>Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TaskListWidget</name>
+    <message>
+        <location filename="../ui/widgets/tasklistwidget.ui" line="13"/>
+        <source>Add a task. Press Enter to save.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/tasklistwidget.ui" line="14"/>
+        <source>Add task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/tasklistwidget.cpp" line="121"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/tasklistwidget.cpp" line="123"/>
+        <source>Edit Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/tasklistwidget.cpp" line="127"/>
+        <source>Mark as Not Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/tasklistwidget.cpp" line="127"/>
+        <source>Mark as Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/tasklistwidget.cpp" line="129"/>
+        <source>Delete Task</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
