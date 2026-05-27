@@ -1,0 +1,56 @@
+set(LXQT_ORGANIZER_DOMAIN_HEADERS
+    src/domain/codecs/icalcodec.h
+    src/domain/codecs/vcardcodec.h
+    src/domain/eventoccurrences.h
+    src/domain/calendardisplaysnapshot.h
+    src/domain/calendareditordata.h
+    src/domain/calendareditormapper.h
+    src/domain/calendaritem.h
+    src/domain/calendaritemmutator.h
+    src/domain/calendarvalidation.h
+    src/domain/calendarsnapshot.h
+    src/domain/eventdatetime.h
+    src/domain/contacteditordata.h
+    src/domain/contacteditormapper.h
+    src/domain/contactpatcher.h
+    src/domain/contactvalidation.h
+    src/domain/contactsnapshot.h
+    src/domain/contactutils.h
+    src/domain/collectionsummary.h
+    src/domain/collectiontypes.h
+    src/domain/collectionutils.h
+    src/domain/eventpatcher.h
+    src/domain/highlightmode.h
+    src/domain/incidencefields.h
+    src/domain/incidencelocator.h
+    src/domain/incidenceresolver.h
+    src/domain/itemidentity.h
+    src/domain/preferences.h
+    src/domain/eventtimezone.h
+    src/domain/todopatcher.h
+)
+
+set(LXQT_ORGANIZER_DOMAIN_SOURCES
+    src/domain/codecs/icalcodec.cpp
+    src/domain/codecs/vcardcodec.cpp
+    src/domain/eventoccurrences.cpp
+    src/domain/calendareditormapper.cpp
+    src/domain/calendardisplaysnapshot.cpp
+    src/domain/calendaritem.cpp
+    src/domain/calendaritemmutator.cpp
+    src/domain/calendarvalidation.cpp
+    src/domain/calendarsnapshot.cpp
+    src/domain/eventdatetime.cpp
+    src/domain/contacteditormapper.cpp
+    src/domain/contactpatcher.cpp
+    src/domain/contactvalidation.cpp
+    src/domain/contactsnapshot.cpp
+    src/domain/contactutils.cpp
+    src/domain/collectionutils.cpp
+    src/domain/eventpatcher.cpp
+    src/domain/incidencefields.cpp
+    src/domain/incidenceresolver.cpp
+    src/domain/itemidentity.cpp
+    src/domain/eventtimezone.cpp
+    src/domain/todopatcher.cpp
+)

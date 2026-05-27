@@ -5,7 +5,7 @@ Exec=lxqt-organizer
 Terminal=false
 Categories=Qt;Office;Calendar;ContactManagement;
 StartupNotify=true
-Keywords=Calendar;Contacts;Appointments;Organizer;LXQt;PIM;
+Keywords=Calendar;Contacts;Events;Organizer;LXQt;PIM;
 Actions=new-window;
 
 [Desktop Action new-window]

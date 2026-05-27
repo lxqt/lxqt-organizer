@@ -2,840 +2,1626 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
-    <name>DialogAppointment</name>
+    <name>AboutDialog</name>
     <message>
-        <location filename="../dialogappointment.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="20"/>
+        <source>About LXQt Organizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="24"/>
-        <source>Appointment Date:</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="42"/>
+        <source>&lt;center&gt;&lt;span style=&quot;font-size:16pt; font-weight:600;&quot;&gt;LXQt Organizer %1&lt;/span&gt;&lt;/center&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="37"/>
-        <source>theDate</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="55"/>
+        <source>Lightweight personal information manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="61"/>
-        <source>Title:</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="68"/>
+        <source>&lt;center&gt;&lt;a href=&quot;https://github.com/lxqt/organizer&quot;&gt;https://github.com/lxqt/organizer&lt;/a&gt;&lt;br/&gt;LXQt Project: &lt;a href=&quot;https://lxqt-project.org&quot;&gt;https://lxqt-project.org&lt;/a&gt;&lt;/center&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogappointment.ui" line="78"/>
-        <source>Location:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointment.ui" line="95"/>
-        <source>Notes:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointment.ui" line="125"/>
-        <source>All Day</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointment.ui" line="145"/>
-        <source>Start Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointment.ui" line="168"/>
-        <source>End Time: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointment.ui" line="195"/>
-        <source>Reminder: </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DialogAppointmentUpdate</name>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="24"/>
-        <source>Appointment Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="38"/>
-        <source>theDate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="62"/>
-        <source>Title:         </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="79"/>
-        <source>Location: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="96"/>
-        <source>Notes: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="120"/>
-        <source>All Day</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="140"/>
-        <source>Start Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="163"/>
-        <source>End Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="177"/>
-        <source>Reminder: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogappointmentupdate.ui" line="207"/>
-        <source>Delete Appointment</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DialogContact</name>
-    <message>
-        <location filename="../dialogcontact.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="24"/>
-        <source>First Name:     </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="41"/>
-        <source>Middle Names:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="58"/>
-        <source>Last Name:     </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="75"/>
-        <source>Email:             </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="96"/>
-        <source>Birthday Unknown </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="116"/>
-        <source>Born On:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="126"/>
-        <source>Add To Calendar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="137"/>
-        <source>Street:     </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="154"/>
-        <source>District:   </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="171"/>
-        <source>City:        </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="188"/>
-        <source>County:   </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="205"/>
-        <source>Postcode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="222"/>
-        <source>Country:  </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="239"/>
-        <source>Phone:    </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogcontact.ui" line="266"/>
-        <source>Delete Contact</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DialogPreferences</name>
-    <message>
-        <location filename="../dialogpreferences.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogpreferences.ui" line="24"/>
-        <source>Font Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogpreferences.ui" line="51"/>
-        <source>Play Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogpreferences.ui" line="58"/>
-        <source>Dark Calendar </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogpreferences.ui" line="65"/>
-        <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DialogRepeatAppointment</name>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="24"/>
-        <source>Appointment Start Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="37"/>
-        <source>the Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="61"/>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="78"/>
-        <source>Location:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="95"/>
-        <source>Notes:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="119"/>
-        <source>All Day</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="139"/>
-        <source>Start Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="162"/>
-        <source>End Time: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="179"/>
-        <source>Repeat Every:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="202"/>
-        <source>Days</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogrepeatappointment.ui" line="225"/>
-        <source>Occurrences</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DialogUpcomingBirthdays</name>
-    <message>
-        <location filename="../dialogupcomingbirthdays.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DialogUpcomingSchedule</name>
-    <message>
-        <location filename="../dialogupcomingschedule.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogupcomingschedule.ui" line="24"/>
-        <source>Upcoming  Schedule For: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogupcomingschedule.ui" line="37"/>
-        <source>Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MainWindow</name>
-    <message>
-        <location filename="../mainwindow.ui" line="14"/>
-        <source>MainWindow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="25"/>
-        <location filename="../mainwindow.ui" line="180"/>
-        <location filename="../mainwindow.cpp" line="67"/>
-        <source>Calendar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="41"/>
-        <source>MonthYear</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="90"/>
-        <location filename="../mainwindow.ui" line="166"/>
-        <location filename="../mainwindow.cpp" line="79"/>
-        <source>Contacts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="103"/>
-        <source>Show Quick/Full View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="110"/>
-        <location filename="../mainwindow.cpp" line="102"/>
-        <source>Mail To:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="135"/>
-        <location filename="../mainwindow.cpp" line="49"/>
-        <source>File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="147"/>
-        <location filename="../mainwindow.cpp" line="56"/>
-        <source>Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="157"/>
-        <location filename="../mainwindow.cpp" line="62"/>
-        <source>Appointments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="174"/>
-        <location filename="../mainwindow.cpp" line="83"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="212"/>
-        <location filename="../mainwindow.cpp" line="54"/>
-        <source>Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="217"/>
-        <location filename="../mainwindow.cpp" line="57"/>
-        <source>Delete All Appointments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="222"/>
-        <location filename="../mainwindow.cpp" line="58"/>
-        <source>Delete All Contacts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="227"/>
-        <source>New Appointment (Double Click)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="232"/>
-        <location filename="../mainwindow.cpp" line="64"/>
-        <source>Generate Repeat Appointments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="237"/>
-        <location filename="../mainwindow.cpp" line="65"/>
-        <source>Upcoming Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="246"/>
-        <location filename="../mainwindow.cpp" line="80"/>
-        <source>New Contact</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="251"/>
-        <location filename="../mainwindow.cpp" line="81"/>
-        <source>Check For Birthdays</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="260"/>
-        <location filename="../mainwindow.cpp" line="70"/>
-        <source>Next Month</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="269"/>
-        <location filename="../mainwindow.cpp" line="71"/>
-        <source>Previous Month</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="278"/>
-        <location filename="../mainwindow.cpp" line="72"/>
-        <source>Today</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="283"/>
-        <location filename="../mainwindow.cpp" line="84"/>
+        <location filename="../ui/shell/aboutdialog.ui" line="85"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="288"/>
-        <location filename="../mainwindow.cpp" line="50"/>
-        <source>Export Appointments</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="114"/>
+        <source>Authors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="293"/>
-        <location filename="../mainwindow.cpp" line="51"/>
-        <source>Import Appointments</source>
+        <location filename="../ui/shell/aboutdialog.ui" line="143"/>
+        <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="298"/>
-        <location filename="../mainwindow.cpp" line="52"/>
-        <source>Export Contacts</source>
+        <location filename="../ui/shell/aboutdialog.cpp" line="36"/>
+        <source>LXQt Organizer is a Qt lightweight personal information manager developed by Basil Crow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="303"/>
-        <location filename="../mainwindow.cpp" line="53"/>
-        <source>Import Contacts</source>
+        <location filename="../ui/shell/aboutdialog.cpp" line="38"/>
+        <source>Built with Qt and LXQt libraries.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="308"/>
-        <location filename="../mainwindow.cpp" line="59"/>
-        <location filename="../mainwindow.cpp" line="105"/>
-        <source>Preferences</source>
+        <location filename="../ui/shell/aboutdialog.cpp" line="47"/>
+        <source>Programming:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="317"/>
-        <source>Increase Font</source>
+        <location filename="../ui/shell/aboutdialog.cpp" line="47"/>
+        <source>Maintained by:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="326"/>
-        <source>Decrease Font</source>
+        <location filename="../ui/shell/aboutdialog.cpp" line="53"/>
+        <source>is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 2 or later.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="335"/>
-        <source>Reset Font</source>
+        <location filename="../ui/shell/aboutdialog.cpp" line="55"/>
+        <source>It is distributed in the hope that it will be useful, but without any warranty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CalendarPane</name>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="108"/>
+        <source>Priority: High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="343"/>
-        <location filename="../mainwindow.cpp" line="69"/>
-        <source>Show Birthdays</source>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="110"/>
+        <source>Priority: Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="351"/>
-        <location filename="../mainwindow.cpp" line="68"/>
-        <source>Show Holidays</source>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="112"/>
+        <source>Priority: Medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="36"/>
-        <source>LXQt Organizer</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="26"/>
+        <source>Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="39"/>
-        <source>Christmas</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="27"/>
+        <source>Not Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="40"/>
-        <source>Boxing Day</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="40"/>
+        <source>All day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="41"/>
-        <source>New Year&apos;s Day</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="50"/>
+        <source>Time: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="42"/>
-        <source>Easter</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="56"/>
+        <source>Time: %1 - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="43"/>
-        <source>Good Friday</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="72"/>
+        <source>Due: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="44"/>
-        <source>Easter Monday</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="246"/>
+        <source>Calendar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="45"/>
-        <source>May Bank Holiday</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="272"/>
+        <source>%1 event(s), %2 task(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="46"/>
-        <source>Spring Bank Holiday</source>
+        <location filename="../ui/panes/calendarpane.cpp" line="617"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="634"/>
+        <source>Calendar: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CalendarPaneController</name>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="350"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="356"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="387"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="398"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="411"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="428"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="441"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="467"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="476"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="499"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="508"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="536"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="559"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="633"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="644"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="655"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="661"/>
+        <source>save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="47"/>
-        <source>Summer Bank Holiday</source>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="350"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="356"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="368"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="387"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="398"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="411"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="428"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="441"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="602"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="622"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="633"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="644"/>
+        <source>event</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="63"/>
-        <location filename="../mainwindow.cpp" line="118"/>
-        <source>New Appointment</source>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="368"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="519"/>
+        <source>edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="73"/>
-        <source>Increase Font Size</source>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="467"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="476"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="499"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="508"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="519"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="536"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="547"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="559"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="570"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="591"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="655"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="661"/>
+        <source>task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="74"/>
-        <source>Decrease Font Size</source>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="547"/>
+        <source>move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="75"/>
-        <source>Reset Font Size</source>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="570"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="591"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="602"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="622"/>
+        <source>delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
-        <source>LXQt Organizer is a Qt lightweight personal information manager developed by Alan Crispin</source>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="578"/>
+        <source>selected task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="88"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="581"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="614"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="721"/>
+        <source>Organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="582"/>
+        <source>Delete task &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="610"/>
+        <source>selected event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="612"/>
+        <source>Delete event &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="721"/>
+        <source>No writable calendar collection is available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CalendarPaneUtils</name>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="156"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="204"/>
+        <source>New Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="160"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="162"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="166"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="168"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="170"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="175"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="180"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="185"/>
+        <source>Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="206"/>
+        <source>Edit Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="209"/>
+        <source>Mark as Not Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="209"/>
+        <source>Mark as Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="211"/>
+        <source>Open URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="213"/>
+        <source>Open Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="215"/>
+        <source>Delete Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="241"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="246"/>
+        <source>Organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="241"/>
+        <source>Could not open the event URL.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="246"/>
+        <source>Could not open the event attachment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactDialog</name>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="14"/>
+        <location filename="../ui/dialogs/contactdialog.ui" line="87"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="29"/>
+        <source>Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="30"/>
+        <source>Identity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="36"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="45"/>
+        <source>&amp;First name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="58"/>
+        <source>&amp;Middle names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="71"/>
+        <source>&amp;Last name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="96"/>
+        <source>&amp;Email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="109"/>
+        <source>&amp;Phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="122"/>
+        <source>&amp;Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="177"/>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="183"/>
+        <source>Postal Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="192"/>
+        <source>&amp;Street</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="205"/>
+        <source>&amp;District</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="218"/>
+        <source>&amp;City</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="231"/>
+        <source>C&amp;ounty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="244"/>
+        <source>Post&amp;code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.ui" line="257"/>
+        <source>Co&amp;untry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="30"/>
         <source>First Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="89"/>
-        <source>Mid Name</source>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="31"/>
+        <source>Middle Names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="90"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="32"/>
         <source>Last Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="91"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="33"/>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="92"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="34"/>
+        <source>Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="35"/>
         <source>Street</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="93"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="36"/>
         <source>District</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="94"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="37"/>
         <source>City</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="95"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="38"/>
         <source>County</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="39"/>
         <source>Postcode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="97"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="40"/>
         <source>Country</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="98"/>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="41"/>
+        <source>Phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/contactdialog.cpp" line="113"/>
+        <source>Empty Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactFields</name>
+    <message>
+        <location filename="../domain/contactvalidation.cpp" line="11"/>
+        <source>Must enter first and last name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactModel</name>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="209"/>
+        <source>First Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="211"/>
+        <source>Middle Names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="213"/>
+        <source>Last Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="215"/>
+        <source>Email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="217"/>
+        <source>Street</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="219"/>
+        <source>District</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="221"/>
+        <source>City</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="223"/>
+        <source>County</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="225"/>
+        <source>Postcode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="227"/>
+        <source>Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/contactmodel.cpp" line="229"/>
         <source>Telephone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="99"/>
-        <source>Birthday</source>
+        <location filename="../ui/models/contactmodel.cpp" line="231"/>
+        <source>Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactsPane</name>
+    <message>
+        <location filename="../ui/panes/contactspane.ui" line="28"/>
+        <source>Close Find Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="101"/>
-        <source>Quick/Full View</source>
+        <location filename="../ui/panes/contactspane.ui" line="43"/>
+        <location filename="../ui/panes/contactspane.cpp" line="86"/>
+        <source>Find Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="106"/>
-        <source>Font Size</source>
+        <location filename="../ui/panes/contactspane.ui" line="49"/>
+        <location filename="../ui/panes/contactspane.cpp" line="80"/>
+        <source>Find Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="107"/>
-        <source>Locale</source>
+        <location filename="../ui/panes/contactspane.cpp" line="50"/>
+        <location filename="../ui/panes/contactspane.cpp" line="331"/>
+        <source>New Contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="108"/>
-        <source>Play Audio</source>
+        <location filename="../ui/panes/contactspane.cpp" line="52"/>
+        <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="109"/>
-        <source>Dark Calendar</source>
+        <location filename="../ui/panes/contactspane.cpp" line="58"/>
+        <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="110"/>
-        <source>Line Spacing</source>
+        <location filename="../ui/panes/contactspane.cpp" line="63"/>
+        <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="113"/>
-        <source>Upcoming Birthdays (Next Seven Days)</source>
+        <location filename="../ui/panes/contactspane.cpp" line="69"/>
+        <location filename="../ui/panes/contactspane.cpp" line="334"/>
+        <source>Mail To...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="114"/>
-        <source>Upcoming Schedule (Next Seven Days)</source>
+        <location filename="../ui/panes/contactspane.cpp" line="74"/>
+        <location filename="../ui/panes/contactspane.cpp" line="308"/>
+        <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="115"/>
-        <source>Upcoming Schedule For Date: </source>
+        <location filename="../ui/panes/contactspane.cpp" line="97"/>
+        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="119"/>
-        <source>Appointment Date: </source>
+        <location filename="../ui/panes/contactspane.cpp" line="124"/>
+        <source>Address Book: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../ui/panes/contactspane.cpp" line="126"/>
+        <source>%n contact(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="252"/>
+        <location filename="../ui/panes/contactspane.cpp" line="274"/>
+        <source>No more items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="120"/>
-        <source>Title</source>
+        <location filename="../ui/panes/contactspane.cpp" line="333"/>
+        <source>Edit Contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="121"/>
-        <source>Location</source>
+        <location filename="../ui/panes/contactspane.cpp" line="336"/>
+        <source>Delete Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactsPaneController</name>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="34"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="142"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="162"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="168"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="174"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="188"/>
+        <source>Organizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="122"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="34"/>
+        <source>No writable address book collection is available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="39"/>
+        <source>New Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="50"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="58"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="95"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="117"/>
+        <source>save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="50"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="58"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="69"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="95"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="107"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="117"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="125"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="153"/>
+        <source>contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="69"/>
+        <source>edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="79"/>
+        <source>Edit Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="107"/>
+        <source>move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="125"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="153"/>
+        <source>delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="139"/>
+        <source>selected contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="143"/>
+        <source>Delete contact &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="162"/>
+        <source>Select a contact to email.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="168"/>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="174"/>
+        <source>The selected contact does not have an email address.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="182"/>
+        <source>Enter the subject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="183"/>
+        <source>Enter message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspanecontroller.cpp" line="188"/>
+        <source>Could not open the default mail application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DayTaskListWidget</name>
+    <message>
+        <location filename="../ui/widgets/daytasklistwidget.ui" line="13"/>
+        <source>Add a task for the selected day. Press Enter to save.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytasklistwidget.ui" line="14"/>
+        <source>Add task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytasklistwidget.cpp" line="104"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytasklistwidget.cpp" line="106"/>
+        <source>Edit Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytasklistwidget.cpp" line="110"/>
+        <source>Mark as Not Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytasklistwidget.cpp" line="110"/>
+        <source>Mark as Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytasklistwidget.cpp" line="112"/>
+        <source>Delete Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DayTimelineWidget</name>
+    <message>
+        <location filename="../ui/widgets/daytimelinewidget.cpp" line="530"/>
+        <source>New event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/daytimelinewidget.cpp" line="641"/>
+        <source>Untitled</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EventDialog</name>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="20"/>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="100"/>
+        <source>Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="29"/>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="38"/>
+        <source>&amp;Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="51"/>
+        <source>&amp;Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="67"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="76"/>
+        <source>&amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="93"/>
+        <source>All &amp;day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="100"/>
+        <source>&amp;Start time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="113"/>
+        <source>&amp;End time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="126"/>
+        <source>Time &amp;zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="142"/>
+        <source>Calendar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="151"/>
+        <source>&amp;Calendar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="164"/>
+        <source>Scope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="171"/>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="128"/>
+        <source>All occurrences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="178"/>
+        <source>&amp;Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="191"/>
+        <source>&amp;Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="204"/>
+        <source>&amp;Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="214"/>
+        <source>Links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="223"/>
+        <source>&amp;Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="250"/>
+        <source>Choose attachment file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="253"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="265"/>
+        <source>&amp;URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/eventdialog.ui" line="281"/>
         <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="123"/>
-        <source>All Day</source>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="91"/>
+        <source>Empty Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="124"/>
-        <source>Start Time</source>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="100"/>
+        <source>Edit Event</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="125"/>
-        <source>End Time</source>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="128"/>
+        <source>This occurrence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="126"/>
-        <source>Reminder</source>
+        <location filename="../ui/dialogs/eventdialog.cpp" line="150"/>
+        <source>Select Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EventFields</name>
+    <message>
+        <location filename="../domain/calendarvalidation.cpp" line="14"/>
+        <source>Must enter a title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="129"/>
-        <source>Update Appointment</source>
+        <location filename="../domain/calendarvalidation.cpp" line="18"/>
+        <source>End time must be after start time</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EventFindBar</name>
+    <message>
+        <location filename="../ui/widgets/eventfindbar.ui" line="18"/>
+        <source>Close Find Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="130"/>
-        <source>Delete Appointment</source>
+        <location filename="../ui/widgets/eventfindbar.ui" line="33"/>
+        <source>Find Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="132"/>
-        <source>5 Minutes Before Start</source>
+        <location filename="../ui/widgets/eventfindbar.ui" line="39"/>
+        <source>Find Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="133"/>
-        <source>10 Minutes Before Start</source>
+        <location filename="../ui/widgets/eventfindbar.cpp" line="17"/>
+        <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="134"/>
-        <source>30 Minutes Before Start</source>
+        <location filename="../ui/widgets/eventfindbar.cpp" line="86"/>
+        <source>No more items</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HighlightComboBox</name>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="13"/>
+        <source>Always Highlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
-        <source>1 Hour Before Start</source>
+        <location filename="../ui/widgets/editorcombos.cpp" line="14"/>
+        <source>Never Highlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="136"/>
-        <source>1 Day Before Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="138"/>
-        <source>On</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="139"/>
-        <source>Starts At</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="142"/>
-        <source>Generate Repeat Appointments</source>
-        <comment>Dialog title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="143"/>
-        <source>Appointment Start Date: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="144"/>
-        <source>Repeat Every</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="145"/>
-        <source>Days</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="146"/>
-        <source>Occurrences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="150"/>
-        <location filename="../mainwindow.cpp" line="151"/>
-        <location filename="../mainwindow.cpp" line="152"/>
-        <location filename="../mainwindow.cpp" line="153"/>
-        <location filename="../mainwindow.cpp" line="154"/>
-        <location filename="../mainwindow.cpp" line="155"/>
-        <location filename="../mainwindow.cpp" line="156"/>
-        <location filename="../mainwindow.cpp" line="157"/>
-        <location filename="../mainwindow.cpp" line="158"/>
-        <location filename="../mainwindow.cpp" line="159"/>
-        <location filename="../mainwindow.cpp" line="160"/>
-        <location filename="../mainwindow.cpp" line="161"/>
-        <source>default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="163"/>
-        <source>Born On</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="164"/>
-        <source>Birthday Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="165"/>
-        <source>Add To Calendar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="166"/>
-        <source>Delete Contact</source>
+        <location filename="../ui/widgets/editorcombos.cpp" line="15"/>
+        <source>Highlight Future</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LXQtOrganizerApplication</name>
     <message>
-        <location filename="../lxqtorganizerapplication.cpp" line="81"/>
+        <location filename="../app/application.cpp" line="80"/>
         <source>Open new window</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="43"/>
+        <source>Calendar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="48"/>
+        <source>Contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="74"/>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="87"/>
+        <location filename="../ui/shell/mainwindow.ui" line="210"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="123"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="169"/>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="240"/>
+        <source>New Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="14"/>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="435"/>
+        <source>Organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="66"/>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="300"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="100"/>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="114"/>
+        <source>Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="178"/>
+        <source>New Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="187"/>
+        <source>New Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="196"/>
+        <source>Close Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="201"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="219"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="231"/>
+        <source>Full View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="249"/>
+        <source>Mail To...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="258"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="267"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="276"/>
+        <source>Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="285"/>
+        <source>Next Month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="294"/>
+        <source>Previous Month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="299"/>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="310"/>
+        <source>Today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="308"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="317"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="326"/>
+        <source>Increase Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="335"/>
+        <source>Decrease Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow.ui" line="344"/>
+        <source>Reset Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="56"/>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="297"/>
+        <source>LXQt Organizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="301"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="343"/>
+        <source>Create an event. Use the menu for tasks and contacts.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindow_composition.cpp" line="436"/>
+        <source>Could not initialize calendar and contact storage.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindowActionController</name>
+    <message>
+        <location filename="../ui/shell/mainwindowactioncontroller.cpp" line="349"/>
+        <source>Full View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindowactioncontroller.cpp" line="350"/>
+        <source>Show full contact view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindowactioncontroller.cpp" line="351"/>
+        <source>Show quick contact view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindowactioncontroller.cpp" line="357"/>
+        <source>Tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindowactioncontroller.cpp" line="358"/>
+        <source>Hide tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/shell/mainwindowactioncontroller.cpp" line="358"/>
+        <source>Show tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MonthChromeWidget</name>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.ui" line="36"/>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="39"/>
+        <source>Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.ui" line="47"/>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="40"/>
+        <source>Today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.ui" line="58"/>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="41"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="66"/>
+        <source>New Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/monthchromewidget.cpp" line="68"/>
+        <source>New Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesDialog</name>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="14"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="66"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="23"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="67"/>
+        <source>Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="32"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="68"/>
+        <source>&amp;Calendar font size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="42"/>
+        <source> px</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="55"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="69"/>
+        <source>Day view &amp;starts:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="65"/>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="85"/>
+        <source>h:00 AP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/preferencesdialog.ui" line="75"/>
+        <location filename="../ui/dialogs/preferencesdialog.cpp" line="70"/>
+        <source>Day view &amp;ends:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PriorityComboBox</name>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="35"/>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="36"/>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/widgets/editorcombos.cpp" line="37"/>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="33"/>
+        <source>The storage item name is invalid.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="35"/>
+        <source>The item no longer exists in its collection.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="37"/>
+        <source>The collection is read-only or unavailable.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="39"/>
+        <source>The file was changed by another process.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="41"/>
+        <source>The file could not be parsed.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="43"/>
+        <source>The item uses an unsupported format.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="45"/>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="47"/>
+        <source>The file could not be read or written.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="55"/>
+        <source>Could not %1 %2.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="57"/>
+        <source>Could not %1 %2. %3</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="67"/>
+        <source>save</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="71"/>
+        <source>Could not save %1 in the destination collection. %2</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="76"/>
+        <source>Could not remove the original %1 after copying it to the destination collection. %2</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="80"/>
+        <source>The destination copy was removed.</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="84"/>
+        <source>Could not remove the original %1 after copying it to the destination collection. %2 The destination copy could not be removed. %3</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/storageerrormessages.cpp" line="117"/>
+        <source>Organizer</source>
+        <comment>StorageErrorMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="15"/>
+        <source>The selected item could not be loaded.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="17"/>
+        <source>The collection is no longer available.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="19"/>
+        <source>The source collection is read-only or unavailable.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="21"/>
+        <source>The destination collection is read-only or unavailable.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="23"/>
+        <source>The item uses an unsupported format.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="25"/>
+        <source>This recurring series operation is not supported.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="27"/>
+        <source>This recurring occurrence operation is not supported.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="29"/>
+        <source>The item may have changed since it was loaded.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="31"/>
+        <source>The collection storage path is unavailable.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="33"/>
+        <source>The operation cannot be performed.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="48"/>
+        <source>Could not %1 %2.</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="50"/>
+        <source>Could not %1 %2. %3</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/messages/operationcapabilitymessages.cpp" line="63"/>
+        <source>Organizer</source>
+        <comment>OperationCapabilityMessages</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StatusBarPresenter</name>
+    <message numerus="yes">
+        <location filename="../ui/shell/statusbarpresenter.cpp" line="108"/>
+        <source>%n item(s) could not be loaded.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../ui/shell/statusbarpresenter.cpp" line="109"/>
+        <source>%n item(s) could not be loaded. First error: %1</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>TaskDialog</name>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="20"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="29"/>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="38"/>
+        <source>&amp;Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="54"/>
+        <source>Due</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="65"/>
+        <source>Set &amp;due date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="72"/>
+        <source>&amp;Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="89"/>
+        <source>&amp;Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="107"/>
+        <source>Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="116"/>
+        <source>&amp;List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="129"/>
+        <source>&amp;Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="142"/>
+        <source>&amp;Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="155"/>
+        <source>&amp;Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="162"/>
+        <source>If the due date passes before completion, move it to today. Stored with the task.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="165"/>
+        <source>&amp;Roll forward when overdue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.ui" line="175"/>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialogs/taskdialog.cpp" line="60"/>
+        <source>Empty Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TaskFields</name>
+    <message>
+        <location filename="../domain/calendarvalidation.cpp" line="27"/>
+        <source>Must enter a title</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TaskListModel</name>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="42"/>
+        <source>Untitled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="64"/>
+        <source>Collection: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="208"/>
+        <source>Task: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="211"/>
+        <source>Due: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="307"/>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="309"/>
+        <source>Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/models/tasklistmodel.cpp" line="311"/>
+        <source>Collection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

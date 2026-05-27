@@ -31,10 +31,10 @@ Additional build dependencies are CMake, [lxqt-build-tools](https://github.com/l
 ## Roadmap
 
 - [ ] Vdir storage
-  - [ ] Vdir calendar storage
-  - [ ] Vdir address book storage
-  - [ ] iCalendar .ics parsing/serialization
-  - [ ] Atomic writes, etags, and locking
+  - [x] Vdir calendar storage
+  - [x] Vdir address book storage
+  - [x] iCalendar .ics parsing/serialization
+  - [x] Atomic writes, etags, and locking
   - [ ] Read-only calendars
   - [ ] Unavailable collections
   - [ ] Move between calendars

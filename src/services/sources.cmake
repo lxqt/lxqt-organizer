@@ -1,0 +1,28 @@
+set(LXQT_ORGANIZER_SERVICES_HEADERS
+    src/services/asyncsubmit.h
+    src/services/calendarmover.h
+    src/services/cancellationtoken.h
+    src/services/eventreader.h
+    src/services/eventservice.h
+    src/services/futurewatch.h
+    src/services/itemservice.h
+    src/services/completedfuture.h
+    src/services/collectioncatalog.h
+    src/services/collectionreloadsubscription.h
+    src/services/collectionservice.h
+    src/services/contactservice.h
+    src/services/moveoutcomelog.h
+    src/services/operationcapability.h
+    src/services/taskservice.h
+)
+
+set(LXQT_ORGANIZER_SERVICES_SOURCES
+    src/services/eventreader.cpp
+    src/services/eventservice.cpp
+    src/services/collectioncatalog.cpp
+    src/services/collectionreloadsubscription.cpp
+    src/services/collectionservice.cpp
+    src/services/contactservice.cpp
+    src/services/operationcapability.cpp
+    src/services/taskservice.cpp
+)

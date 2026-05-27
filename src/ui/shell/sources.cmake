@@ -1,0 +1,30 @@
+set(LXQT_ORGANIZER_UI_SHELL_HEADERS
+    src/ui/shell/aboutdialog.h
+    src/ui/shell/mainwindow.h
+    src/ui/shell/mainwindow_composition.h
+    src/ui/shell/mainwindowpresenter.h
+    src/ui/shell/mainwindowactioncontroller.h
+    src/ui/shell/mainwindowviewstate.h
+    src/ui/shell/preferencescontroller.h
+    src/ui/shell/reloadcoordinator.h
+    src/ui/shell/statusbarpresenter.h
+    src/ui/shell/windowsettingsstore.h
+)
+
+set(LXQT_ORGANIZER_UI_SHELL_SOURCES
+    src/ui/shell/aboutdialog.cpp
+    src/ui/shell/mainwindow.cpp
+    src/ui/shell/mainwindow_composition.cpp
+    src/ui/shell/mainwindowpresenter.cpp
+    src/ui/shell/mainwindowactioncontroller.cpp
+    src/ui/shell/mainwindowviewstate.cpp
+    src/ui/shell/preferencescontroller.cpp
+    src/ui/shell/reloadcoordinator.cpp
+    src/ui/shell/statusbarpresenter.cpp
+    src/ui/shell/windowsettingsstore.cpp
+)
+
+set(LXQT_ORGANIZER_UI_SHELL_FORMS
+    src/ui/shell/mainwindow.ui
+    src/ui/shell/aboutdialog.ui
+)
