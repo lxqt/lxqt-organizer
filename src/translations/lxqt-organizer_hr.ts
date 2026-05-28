@@ -127,8 +127,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpane.cpp" line="685"/>
-        <location filename="../ui/panes/calendarpane.cpp" line="702"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="679"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="696"/>
         <source>Calendar: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -215,7 +215,7 @@
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="601"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="634"/>
-        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="738"/>
         <source>Organizer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -235,7 +235,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="738"/>
         <source>No writable calendar collection is available.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,28 +309,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="235"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="234"/>
         <source>Open Attachment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="238"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="237"/>
         <source>Delete Event</source>
         <translation>Ukloni termin</translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="265"/>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="273"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="264"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="271"/>
         <source>Organizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="266"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="265"/>
         <source>Could not open the event URL.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="274"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="272"/>
         <source>Could not open the event attachment.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -563,67 +563,59 @@
 <context>
     <name>ContactsPane</name>
     <message>
-        <location filename="../ui/panes/contactspane.ui" line="28"/>
-        <source>Close Find Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/contactspane.ui" line="43"/>
-        <location filename="../ui/panes/contactspane.cpp" line="103"/>
+        <location filename="../ui/panes/contactspane.cpp" line="101"/>
         <source>Find Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.ui" line="49"/>
-        <location filename="../ui/panes/contactspane.cpp" line="97"/>
+        <location filename="../ui/panes/contactspane.cpp" line="95"/>
         <source>Find Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="67"/>
-        <location filename="../ui/panes/contactspane.cpp" line="348"/>
+        <location filename="../ui/panes/contactspane.cpp" line="65"/>
+        <location filename="../ui/panes/contactspane.cpp" line="306"/>
         <source>New Contact</source>
         <translation>Novi kontakt</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="69"/>
+        <location filename="../ui/panes/contactspane.cpp" line="67"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="75"/>
+        <location filename="../ui/panes/contactspane.cpp" line="73"/>
         <source>Edit</source>
         <translation>Uredi</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="80"/>
+        <location filename="../ui/panes/contactspane.cpp" line="78"/>
         <source>Delete</source>
         <translation>Ukloni</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="86"/>
-        <location filename="../ui/panes/contactspane.cpp" line="351"/>
+        <location filename="../ui/panes/contactspane.cpp" line="84"/>
+        <location filename="../ui/panes/contactspane.cpp" line="309"/>
         <source>Mail To...</source>
         <translation>E-mail za...</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="91"/>
-        <location filename="../ui/panes/contactspane.cpp" line="327"/>
+        <location filename="../ui/panes/contactspane.cpp" line="89"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="114"/>
+        <location filename="../ui/panes/contactspane.cpp" line="112"/>
         <source>Contacts</source>
         <translation>Kontakti</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="143"/>
+        <location filename="../ui/panes/contactspane.cpp" line="141"/>
         <source>Address Book: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../ui/panes/contactspane.cpp" line="145"/>
+        <location filename="../ui/panes/contactspane.cpp" line="143"/>
         <source>%n contact(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -632,18 +624,12 @@
         </translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="271"/>
-        <location filename="../ui/panes/contactspane.cpp" line="293"/>
-        <source>No more items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/contactspane.cpp" line="350"/>
+        <location filename="../ui/panes/contactspane.cpp" line="308"/>
         <source>Edit Contact</source>
         <translation>Uredi kontakt</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="353"/>
+        <location filename="../ui/panes/contactspane.cpp" line="311"/>
         <source>Delete Contact</source>
         <translation>Ukloni kontakt</translation>
     </message>
@@ -664,10 +650,6 @@
         <location filename="../ui/panes/contactspanecontroller.cpp" line="51"/>
         <source>No writable address book collection is available.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New Contact</source>
-        <translation type="vanished">Novi kontakt</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="64"/>
@@ -753,197 +735,6 @@
         <location filename="../ui/widgets/daytimelinewidget.cpp" line="659"/>
         <source>Untitled</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DialogAppointment</name>
-    <message>
-        <source>Appointment Date:</source>
-        <translation type="vanished">Termin</translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="vanished">Naslov</translation>
-    </message>
-    <message>
-        <source>Location:</source>
-        <translation type="vanished">Mjesto</translation>
-    </message>
-    <message>
-        <source>Notes:</source>
-        <translation type="vanished">Napomene</translation>
-    </message>
-    <message>
-        <source>All Day</source>
-        <translation type="vanished">Cijeli dan</translation>
-    </message>
-    <message>
-        <source>Start Time:</source>
-        <translation type="vanished">Počinje</translation>
-    </message>
-    <message>
-        <source>End Time: </source>
-        <translation type="vanished">Završava</translation>
-    </message>
-    <message>
-        <source>Reminder: </source>
-        <translation type="vanished">Podsjetnik</translation>
-    </message>
-</context>
-<context>
-    <name>DialogAppointmentUpdate</name>
-    <message>
-        <source>Appointment Date:</source>
-        <translation type="vanished">Termin</translation>
-    </message>
-    <message>
-        <source>Title:         </source>
-        <translation type="vanished">Naslov</translation>
-    </message>
-    <message>
-        <source>Location: </source>
-        <translation type="vanished">Mjesto</translation>
-    </message>
-    <message>
-        <source>Notes: </source>
-        <translation type="vanished">Napomene</translation>
-    </message>
-    <message>
-        <source>All Day</source>
-        <translation type="vanished">Cijeli dan</translation>
-    </message>
-    <message>
-        <source>Start Time:</source>
-        <translation type="vanished">Počinje</translation>
-    </message>
-    <message>
-        <source>End Time:</source>
-        <translation type="vanished">Završava</translation>
-    </message>
-    <message>
-        <source>Reminder: </source>
-        <translation type="vanished">Podsjetnik</translation>
-    </message>
-    <message>
-        <source>Delete Appointment</source>
-        <translation type="vanished">Ukloni</translation>
-    </message>
-</context>
-<context>
-    <name>DialogContact</name>
-    <message>
-        <source>First Name:     </source>
-        <translation type="vanished">Ime</translation>
-    </message>
-    <message>
-        <source>Last Name:     </source>
-        <translation type="vanished">Prezime</translation>
-    </message>
-    <message>
-        <source>Email:             </source>
-        <translation type="vanished">E-mail</translation>
-    </message>
-    <message>
-        <source>Birthday Unknown </source>
-        <translation type="vanished">Rođendan nepoznat</translation>
-    </message>
-    <message>
-        <source>Born On:</source>
-        <translation type="vanished">Rođendan</translation>
-    </message>
-    <message>
-        <source>Add To Calendar</source>
-        <translation type="vanished">Dodaj u kalendar</translation>
-    </message>
-    <message>
-        <source>Street:     </source>
-        <translation type="vanished">Ulica</translation>
-    </message>
-    <message>
-        <source>District:   </source>
-        <translation type="vanished">Gradska četvrt</translation>
-    </message>
-    <message>
-        <source>City:        </source>
-        <translation type="vanished">Grad</translation>
-    </message>
-    <message>
-        <source>County:   </source>
-        <translation type="vanished">Županija</translation>
-    </message>
-    <message>
-        <source>Postcode:</source>
-        <translation type="vanished">Poštanski broj</translation>
-    </message>
-    <message>
-        <source>Country:  </source>
-        <translation type="vanished">Država</translation>
-    </message>
-    <message>
-        <source>Delete Contact</source>
-        <translation type="vanished">Ukloni kontakt</translation>
-    </message>
-</context>
-<context>
-    <name>DialogPreferences</name>
-    <message>
-        <source>Font Size:</source>
-        <translation type="vanished">Veličina fonta</translation>
-    </message>
-    <message>
-        <source>Play Audio</source>
-        <translation type="vanished">Pokreni audiovizualnu snimku</translation>
-    </message>
-    <message>
-        <source>Dark Calendar </source>
-        <translation type="vanished">Tamni kalendar</translation>
-    </message>
-    <message>
-        <source>Line Spacing</source>
-        <translation type="vanished">Prored</translation>
-    </message>
-</context>
-<context>
-    <name>DialogRepeatAppointment</name>
-    <message>
-        <source>Appointment Start Date:</source>
-        <translation type="vanished">Datum početka termina</translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="vanished">Naslov</translation>
-    </message>
-    <message>
-        <source>Location:</source>
-        <translation type="vanished">Mjesto</translation>
-    </message>
-    <message>
-        <source>Notes:</source>
-        <translation type="vanished">Napomene</translation>
-    </message>
-    <message>
-        <source>All Day</source>
-        <translation type="vanished">Cijeli dan</translation>
-    </message>
-    <message>
-        <source>Start Time:</source>
-        <translation type="vanished">Počinje</translation>
-    </message>
-    <message>
-        <source>End Time: </source>
-        <translation type="vanished">Završava</translation>
-    </message>
-    <message>
-        <source>Repeat Every:</source>
-        <translation type="vanished">Ponavljaj svakih</translation>
-    </message>
-    <message>
-        <source>Days</source>
-        <translation type="vanished">Dana</translation>
-    </message>
-    <message>
-        <source>Occurrences</source>
-        <translation type="vanished">Pojavljivanja</translation>
     </message>
 </context>
 <context>
@@ -1166,10 +957,6 @@
         <translation>Kontakti</translation>
     </message>
     <message>
-        <source>Mail To:</source>
-        <translation type="vanished">E-mail za:</translation>
-    </message>
-    <message>
         <location filename="../ui/shell/mainwindow.ui" line="74"/>
         <source>File</source>
         <translation>Datoteka</translation>
@@ -1179,10 +966,6 @@
         <location filename="../ui/shell/mainwindow.ui" line="210"/>
         <source>Edit</source>
         <translation>Uredi</translation>
-    </message>
-    <message>
-        <source>Appointments</source>
-        <translation type="vanished">Termini</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="123"/>
@@ -1195,34 +978,9 @@
         <translation>Zatvori</translation>
     </message>
     <message>
-        <source>Delete All Appointments</source>
-        <translation type="vanished">Ukloni sve termine</translation>
-    </message>
-    <message>
-        <source>Delete All Contacts</source>
-        <translation type="vanished">Ukloni sve kontakte</translation>
-    </message>
-    <message>
-        <source>Generate Repeat Appointments</source>
-        <translation type="vanished">Izradi automatska ponavljanja termina</translation>
-    </message>
-    <message>
-        <source>Generate Repeat Appointments</source>
-        <comment>Dialog title</comment>
-        <translation type="vanished">Izradi ponavljanja termina</translation>
-    </message>
-    <message>
-        <source>Upcoming Schedule</source>
-        <translation type="vanished">Nadolazeći termini</translation>
-    </message>
-    <message>
         <location filename="../ui/shell/mainwindow.ui" line="240"/>
         <source>New Contact</source>
         <translation>Novi kontakt</translation>
-    </message>
-    <message>
-        <source>Check For Birthdays</source>
-        <translation type="vanished">Provjeri rođendane</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="14"/>
@@ -1319,22 +1077,6 @@
         <translation>Informacije</translation>
     </message>
     <message>
-        <source>Export Appointments</source>
-        <translation type="vanished">Izvezi termine</translation>
-    </message>
-    <message>
-        <source>Import Appointments</source>
-        <translation type="vanished">Uvezi termine</translation>
-    </message>
-    <message>
-        <source>Export Contacts</source>
-        <translation type="vanished">Izvezi kontakte</translation>
-    </message>
-    <message>
-        <source>Import Contacts</source>
-        <translation type="vanished">Uvezi kontakte</translation>
-    </message>
-    <message>
         <location filename="../ui/shell/mainwindow.ui" line="317"/>
         <source>Preferences</source>
         <translation>Postavke</translation>
@@ -1353,14 +1095,6 @@
         <location filename="../ui/shell/mainwindow.ui" line="344"/>
         <source>Reset Font</source>
         <translation>Obnovi veličinu teksta</translation>
-    </message>
-    <message>
-        <source>Show Birthdays</source>
-        <translation type="vanished">Prikaži rođendane</translation>
-    </message>
-    <message>
-        <source>Show Holidays</source>
-        <translation type="vanished">Prikaži praznike</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="119"/>
@@ -1425,246 +1159,6 @@
         <location filename="../ui/shell/mainwindow.cpp" line="531"/>
         <source>Show tasks</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Christmas</source>
-        <translation type="vanished">Božić</translation>
-    </message>
-    <message>
-        <source>Boxing Day</source>
-        <translation type="vanished">Boxing Day</translation>
-    </message>
-    <message>
-        <source>New Year&apos;s Day</source>
-        <translation type="vanished">Nova Godina</translation>
-    </message>
-    <message>
-        <source>Easter</source>
-        <translation type="vanished">Uskrs</translation>
-    </message>
-    <message>
-        <source>Good Friday</source>
-        <translation type="vanished">Veliki petak</translation>
-    </message>
-    <message>
-        <source>Easter Monday</source>
-        <translation type="vanished">Uskrsni ponedjeljak</translation>
-    </message>
-    <message>
-        <source>May Bank Holiday</source>
-        <translation type="vanished">Svibanjski praznik</translation>
-    </message>
-    <message>
-        <source>Spring Bank Holiday</source>
-        <translation type="vanished">Proljetni praznici</translation>
-    </message>
-    <message>
-        <source>Summer Bank Holiday</source>
-        <translation type="vanished">Ljetni praznici</translation>
-    </message>
-    <message>
-        <source>New Appointment</source>
-        <translation type="vanished">Novi termin</translation>
-    </message>
-    <message>
-        <source>Increase Font Size</source>
-        <translation type="vanished">Povećaj tekst</translation>
-    </message>
-    <message>
-        <source>Decrease Font Size</source>
-        <translation type="vanished">Smanji tekst</translation>
-    </message>
-    <message>
-        <source>Reset Font Size</source>
-        <translation type="vanished">Obnovi veličinu teksta</translation>
-    </message>
-    <message>
-        <source>LXQt Organizer is a Qt lightweight personal information manager developed by Alan Crispin</source>
-        <translation type="vanished">LXQt Organizer ist ein Qt Lightweight Personal Information Manager, der von Alan Crispin (aka. Crispina) entwickelt wurde.</translation>
-    </message>
-    <message>
-        <source>First Name</source>
-        <translation type="vanished">Ime</translation>
-    </message>
-    <message>
-        <source>Mid Name</source>
-        <translation type="vanished">Drugo ime</translation>
-    </message>
-    <message>
-        <source>Last Name</source>
-        <translation type="vanished">Prezime</translation>
-    </message>
-    <message>
-        <source>Email</source>
-        <translation type="vanished">E-mail</translation>
-    </message>
-    <message>
-        <source>Street</source>
-        <translation type="vanished">Ulica</translation>
-    </message>
-    <message>
-        <source>District</source>
-        <translation type="vanished">Gradska četvrt</translation>
-    </message>
-    <message>
-        <source>City</source>
-        <translation type="vanished">Grad</translation>
-    </message>
-    <message>
-        <source>County</source>
-        <translation type="vanished">Županija</translation>
-    </message>
-    <message>
-        <source>Postcode</source>
-        <translation type="vanished">Poštanski broj</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="vanished">Država</translation>
-    </message>
-    <message>
-        <source>Telephone</source>
-        <translation type="vanished">Telefon</translation>
-    </message>
-    <message>
-        <source>Birthday</source>
-        <translation type="vanished">Rođendan</translation>
-    </message>
-    <message>
-        <source>Quick/Full View</source>
-        <translation type="vanished">Brzi potpun prikaz</translation>
-    </message>
-    <message>
-        <source>Font Size</source>
-        <translation type="vanished">Veličina fonta</translation>
-    </message>
-    <message>
-        <source>Locale</source>
-        <translation type="vanished">Jezik</translation>
-    </message>
-    <message>
-        <source>Play Audio</source>
-        <translation type="vanished">Pokreni audiovizualnu snimku</translation>
-    </message>
-    <message>
-        <source>Dark Calendar</source>
-        <translation type="vanished">Tamni kalendar</translation>
-    </message>
-    <message>
-        <source>Line Spacing</source>
-        <translation type="vanished">Prored</translation>
-    </message>
-    <message>
-        <source>Upcoming Birthdays (Next Seven Days)</source>
-        <translation type="vanished">Skorašnji rođendani</translation>
-    </message>
-    <message>
-        <source>Upcoming Schedule (Next Seven Days)</source>
-        <translation type="vanished">Skorašnji termini</translation>
-    </message>
-    <message>
-        <source>Upcoming Schedule For Date: </source>
-        <translation type="vanished">Skorašnji termini na datum:</translation>
-    </message>
-    <message>
-        <source>Appointment Date: </source>
-        <translation type="vanished">Termin</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation type="vanished">Naslov</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation type="vanished">Mjesto</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation type="vanished">Napomene</translation>
-    </message>
-    <message>
-        <source>All Day</source>
-        <translation type="vanished">Cijeli dan</translation>
-    </message>
-    <message>
-        <source>Start Time</source>
-        <translation type="vanished">Počinje</translation>
-    </message>
-    <message>
-        <source>End Time</source>
-        <translation type="vanished">Završava</translation>
-    </message>
-    <message>
-        <source>Reminder</source>
-        <translation type="vanished">Podsjetnik</translation>
-    </message>
-    <message>
-        <source>Update Appointment</source>
-        <translation type="vanished">Aktualiziraj termin</translation>
-    </message>
-    <message>
-        <source>Delete Appointment</source>
-        <translation type="vanished">Ukloni</translation>
-    </message>
-    <message>
-        <source>5 Minutes Before Start</source>
-        <translation type="vanished">5 minuta prije</translation>
-    </message>
-    <message>
-        <source>10 Minutes Before Start</source>
-        <translation type="vanished">10 minuta prije</translation>
-    </message>
-    <message>
-        <source>30 Minutes Before Start</source>
-        <translation type="vanished">30 minuta prije</translation>
-    </message>
-    <message>
-        <source>1 Hour Before Start</source>
-        <translation type="vanished">1 sat prije</translation>
-    </message>
-    <message>
-        <source>1 Day Before Start</source>
-        <translation type="vanished">1 dan prije</translation>
-    </message>
-    <message>
-        <source>On</source>
-        <translation type="vanished">Uključeno</translation>
-    </message>
-    <message>
-        <source>Starts At</source>
-        <translation type="vanished">Počinje</translation>
-    </message>
-    <message>
-        <source>Appointment Start Date: </source>
-        <translation type="vanished">Datum početka termina</translation>
-    </message>
-    <message>
-        <source>Repeat Every</source>
-        <translation type="vanished">Ponavljaj svakih</translation>
-    </message>
-    <message>
-        <source>Days</source>
-        <translation type="vanished">Dana</translation>
-    </message>
-    <message>
-        <source>Occurrences</source>
-        <translation type="vanished">Pojavljivanja</translation>
-    </message>
-    <message>
-        <source>Born On</source>
-        <translation type="vanished">Rođendan</translation>
-    </message>
-    <message>
-        <source>Birthday Unknown</source>
-        <translation type="vanished">Rođendan nepoznat</translation>
-    </message>
-    <message>
-        <source>Add To Calendar</source>
-        <translation type="vanished">Dodaj u kalendar</translation>
-    </message>
-    <message>
-        <source>Delete Contact</source>
-        <translation type="vanished">Ukloni kontakt</translation>
     </message>
 </context>
 <context>
