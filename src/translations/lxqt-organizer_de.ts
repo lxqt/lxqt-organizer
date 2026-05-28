@@ -127,8 +127,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpane.cpp" line="685"/>
-        <location filename="../ui/panes/calendarpane.cpp" line="702"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="679"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="696"/>
         <source>Calendar: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -215,7 +215,7 @@
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="601"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="634"/>
-        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="738"/>
         <source>Organizer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -235,7 +235,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="738"/>
         <source>No writable calendar collection is available.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,28 +309,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="235"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="234"/>
         <source>Open Attachment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="238"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="237"/>
         <source>Delete Event</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="265"/>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="273"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="264"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="271"/>
         <source>Organizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="266"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="265"/>
         <source>Could not open the event URL.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="274"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="272"/>
         <source>Could not open the event attachment.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -563,67 +563,59 @@
 <context>
     <name>ContactsPane</name>
     <message>
-        <location filename="../ui/panes/contactspane.ui" line="28"/>
-        <source>Close Find Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/contactspane.ui" line="43"/>
-        <location filename="../ui/panes/contactspane.cpp" line="103"/>
+        <location filename="../ui/panes/contactspane.cpp" line="101"/>
         <source>Find Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.ui" line="49"/>
-        <location filename="../ui/panes/contactspane.cpp" line="97"/>
+        <location filename="../ui/panes/contactspane.cpp" line="95"/>
         <source>Find Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="67"/>
-        <location filename="../ui/panes/contactspane.cpp" line="348"/>
+        <location filename="../ui/panes/contactspane.cpp" line="65"/>
+        <location filename="../ui/panes/contactspane.cpp" line="306"/>
         <source>New Contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="69"/>
+        <location filename="../ui/panes/contactspane.cpp" line="67"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="75"/>
+        <location filename="../ui/panes/contactspane.cpp" line="73"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="80"/>
+        <location filename="../ui/panes/contactspane.cpp" line="78"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="86"/>
-        <location filename="../ui/panes/contactspane.cpp" line="351"/>
+        <location filename="../ui/panes/contactspane.cpp" line="84"/>
+        <location filename="../ui/panes/contactspane.cpp" line="309"/>
         <source>Mail To...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="91"/>
-        <location filename="../ui/panes/contactspane.cpp" line="327"/>
+        <location filename="../ui/panes/contactspane.cpp" line="89"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="114"/>
+        <location filename="../ui/panes/contactspane.cpp" line="112"/>
         <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="143"/>
+        <location filename="../ui/panes/contactspane.cpp" line="141"/>
         <source>Address Book: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../ui/panes/contactspane.cpp" line="145"/>
+        <location filename="../ui/panes/contactspane.cpp" line="143"/>
         <source>%n contact(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -631,18 +623,12 @@
         </translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="271"/>
-        <location filename="../ui/panes/contactspane.cpp" line="293"/>
-        <source>No more items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/contactspane.cpp" line="350"/>
+        <location filename="../ui/panes/contactspane.cpp" line="308"/>
         <source>Edit Contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="353"/>
+        <location filename="../ui/panes/contactspane.cpp" line="311"/>
         <source>Delete Contact</source>
         <translation type="unfinished"></translation>
     </message>
