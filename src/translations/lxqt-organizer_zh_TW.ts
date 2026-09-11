@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../ui/shell/aboutdialog.ui" line="20"/>
         <source>About LXQt Organizer</source>
-        <translation>Informazioni su LXQt Organizer</translation>
+        <translation>關於 LXQt Organizer 事務排程器</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.ui" line="42"/>
         <source>&lt;center&gt;&lt;span style=&quot;font-size:16pt; font-weight:600;&quot;&gt;LXQt Organizer %1&lt;/span&gt;&lt;/center&gt;</source>
-        <translation>&lt;center&gt;&lt;span style=&quot;font-size:16pt; font-weight:600;&quot;&gt;Organizer LXQt %1&lt;/span&gt;&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;&lt;span style=&quot;font-size:16pt; font-weight:600;&quot;&gt;LXQt Organizer 事務排程器 %1&lt;/span&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.ui" line="55"/>
         <source>Lightweight personal information manager</source>
-        <translation>Manager leggero di informazioni personali</translation>
+        <translation>輕量級個人事務資訊排程管理器</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.ui" line="68"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://github.com/lxqt/organizer&quot;&gt;https://github.com/lxqt/organizer&lt;/a&gt;&lt;br/&gt;LXQt Project: &lt;a href=&quot;https://lxqt-project.org&quot;&gt;https://lxqt-project.org&lt;/a&gt;&lt;/center&gt;</source>
-        <translation>&lt;center&gt;&lt;a href=&quot;https://github.com/lxqt/organizer&quot;&gt;https://github.com/lxqt/organizer&lt;/a&gt;&lt;br/&gt;Progetto LXQt: &lt;a href=&quot;https://lxqt-project.org&quot;&gt;https://lxqt-project.org&lt;/a&gt;&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://github.com/lxqt/organizer&quot;&gt;https://github.com/lxqt/organizer&lt;/a&gt;&lt;br/&gt;LXQt 專案： &lt;a href=&quot;https://lxqt-project.org&quot;&gt;https://lxqt-project.org&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.ui" line="85"/>
         <source>About</source>
-        <translation>Informazioni</translation>
+        <translation>關於</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.ui" line="114"/>
         <source>Authors</source>
-        <translation>Autori</translation>
+        <translation>作者</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.ui" line="143"/>
         <source>License</source>
-        <translation>Licenza</translation>
+        <translation>授權</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.cpp" line="54"/>
         <source>LXQt Organizer is a Qt lightweight personal information manager developed by Basil Crow</source>
-        <translation>Organizer LXQt è un manager di informazioni personali leggero in Qt sviluppato da Basil Crow</translation>
+        <translation>LXQt Organizer 事務排程器 是 Qt 輕量級個人資訊事務排程管理器，由 Basil Crow 開發</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.cpp" line="56"/>
         <source>Built with Qt and LXQt libraries.</source>
-        <translation>Costruito con Qt e librerie LXQt.</translation>
+        <translation>建構於 Qt 及 LXQt 程式庫。</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.cpp" line="65"/>
         <source>Programming:</source>
-        <translation>Programmazione:</translation>
+        <translation>程式編排：</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.cpp" line="65"/>
         <source>Maintained by:</source>
-        <translation>Mantenuto da:</translation>
+        <translation>維護：</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.cpp" line="71"/>
         <source>is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 2 or later.</source>
-        <translation>è software gratuito:; puoi redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, versione 2 o successiva.</translation>
+        <translation>是自由軟體；您可以根據 GNU 通用公共授權第 2 版或更新版本的條款，進行重新分發或修改。</translation>
     </message>
     <message>
         <location filename="../ui/shell/aboutdialog.cpp" line="73"/>
         <source>It is distributed in the hope that it will be useful, but without any warranty.</source>
-        <translation>Viene distribuito nella speranza che possa essere utile, ma senza alcuna garanzia.</translation>
+        <translation>其發行希望使用有所助益，但無任何保證。</translation>
     </message>
 </context>
 <context>
@@ -74,63 +74,63 @@
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="126"/>
         <source>Priority: High</source>
-        <translation>Priorità: Alta</translation>
+        <translation>優先等級：高</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="128"/>
         <source>Priority: Low</source>
-        <translation>Priorità: Bassa</translation>
+        <translation>優先等級：低</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="130"/>
         <source>Priority: Medium</source>
-        <translation>Priorità: Bassa</translation>
+        <translation>優先等級：中</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="47"/>
         <source>Completed</source>
-        <translation>Completato</translation>
+        <translation>已經完成</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="48"/>
         <source>Not Completed</source>
-        <translation>Non completato</translation>
+        <translation>尚未完成</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="61"/>
         <source>All day</source>
-        <translation>Tutto il giorno</translation>
+        <translation>全天</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="71"/>
         <source>Time: %1</source>
-        <translation>Tempo: %1</translation>
+        <translation>時間： %1</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="77"/>
         <source>Time: %1 - %2</source>
-        <translation>Tempo: %1 - %2</translation>
+        <translation>時間： %1 - %2</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="93"/>
         <source>Due: %1</source>
-        <translation>Scadenza: %1</translation>
+        <translation>限期： %1</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="275"/>
         <source>Calendar</source>
-        <translation>Calendario</translation>
+        <translation>行事曆</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpane.cpp" line="325"/>
         <source>%1 event(s), %2 task(s)</source>
-        <translation>%1 evento/i, %2 compito/i</translation>
+        <translation>%1 事件、%2 任務</translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpane.cpp" line="685"/>
-        <location filename="../ui/panes/calendarpane.cpp" line="702"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="679"/>
+        <location filename="../ui/panes/calendarpane.cpp" line="696"/>
         <source>Calendar: %1</source>
-        <translation>Calendario: %1</translation>
+        <translation>行事曆： %1</translation>
     </message>
 </context>
 <context>
@@ -154,7 +154,7 @@
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="675"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="681"/>
         <source>save</source>
-        <translation>salva</translation>
+        <translation>儲存</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="372"/>
@@ -170,13 +170,13 @@
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="653"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="664"/>
         <source>event</source>
-        <translation>evento</translation>
+        <translation>事件</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="390"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="541"/>
         <source>edit</source>
-        <translation>modifica</translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="489"/>
@@ -192,12 +192,12 @@
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="675"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="681"/>
         <source>task</source>
-        <translation>compito</translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="569"/>
         <source>move</source>
-        <translation>muovi</translation>
+        <translation>移動</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="590"/>
@@ -205,39 +205,39 @@
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="622"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="642"/>
         <source>delete</source>
-        <translation>elimina</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="598"/>
         <source>selected task</source>
-        <translation>seleziona compito</translation>
+        <translation>所選任務</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="601"/>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="634"/>
-        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="738"/>
         <source>Organizer</source>
-        <translation>Organizer</translation>
+        <translation>行事曆排程器</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="602"/>
         <source>Delete task &quot;%1&quot;?</source>
-        <translation>Vuoi eliminare il compito &quot;%1&quot;?</translation>
+        <translation>刪除任務 &quot;%1&quot; ？</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="630"/>
         <source>selected event</source>
-        <translation>evento selezionato</translation>
+        <translation>所選事件</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpanecontroller.cpp" line="632"/>
         <source>Delete event &quot;%1&quot;?</source>
-        <translation>Vuoi eliminare l&apos;evento &quot;%1&quot;?</translation>
+        <translation>刪除事件 &quot;%1&quot; ？</translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpanecontroller.cpp" line="741"/>
+        <location filename="../ui/panes/calendarpanecontroller.cpp" line="738"/>
         <source>No writable calendar collection is available.</source>
-        <translation>Nessuna collezione calendario scrivibile è disponibile.</translation>
+        <translation>無可寫入的行事曆合集可供使用。</translation>
     </message>
 </context>
 <context>
@@ -246,93 +246,93 @@
         <location filename="../ui/panes/calendarpaneutils.cpp" line="173"/>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="223"/>
         <source>New Event</source>
-        <translation>Nuovo evento</translation>
+        <translation>新建事件</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="177"/>
         <source>New</source>
-        <translation>Nuovo</translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="179"/>
         <source>New Task</source>
-        <translation>Nuovo Compito</translation>
+        <translation>新建任務</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="183"/>
         <source>Task</source>
-        <translation>Compito</translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="185"/>
         <source>Edit</source>
-        <translation>Modifica</translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="189"/>
         <source>Delete</source>
-        <translation>Elimina</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="194"/>
         <source>Find</source>
-        <translation>Trova</translation>
+        <translation>尋找</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="199"/>
         <source>Find Next</source>
-        <translation>Trova il prossimo</translation>
+        <translation>尋找下一個</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="204"/>
         <source>Find Previous</source>
-        <translation>Trova il precendente</translation>
+        <translation>尋找上一個</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="226"/>
         <source>Edit Event</source>
-        <translation>Modifica evento</translation>
+        <translation>編輯事件</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="229"/>
         <source>Mark as Not Completed</source>
-        <translation>Spunta come Non Completata</translation>
+        <translation>標記為尚未完成</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="230"/>
         <source>Mark as Completed</source>
-        <translation>Spunta come Completata</translation>
+        <translation>標記為已經完成</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="232"/>
         <source>Open URL</source>
-        <translation>Apri URL</translation>
+        <translation>開啟 URL</translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="235"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="234"/>
         <source>Open Attachment</source>
-        <translation>Apri allegato</translation>
+        <translation>開啟附件</translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="238"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="237"/>
         <source>Delete Event</source>
-        <translation>Elimina evento</translation>
+        <translation>刪除事件</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="264"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="271"/>
+        <source>Organizer</source>
+        <translation>行事曆排程器</translation>
     </message>
     <message>
         <location filename="../ui/panes/calendarpaneutils.cpp" line="265"/>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="273"/>
-        <source>Organizer</source>
-        <translation>Organizer</translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="266"/>
         <source>Could not open the event URL.</source>
-        <translation>Non è possibile aprire URL evento.</translation>
+        <translation>無法開啟事件 URL。</translation>
     </message>
     <message>
-        <location filename="../ui/panes/calendarpaneutils.cpp" line="274"/>
+        <location filename="../ui/panes/calendarpaneutils.cpp" line="272"/>
         <source>Could not open the event attachment.</source>
-        <translation>Non è possibile aprire l&apos;allegato evento.</translation>
+        <translation>無法開啟事件附件。</translation>
     </message>
 </context>
 <context>
@@ -341,152 +341,152 @@
         <location filename="../ui/dialogs/contactdialog.ui" line="14"/>
         <location filename="../ui/dialogs/contactdialog.ui" line="87"/>
         <source>Contact</source>
-        <translation>Contatta</translation>
+        <translation>聯絡</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="30"/>
         <source>Identity</source>
-        <translation>Identità</translation>
+        <translation>身分</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="36"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="45"/>
         <source>&amp;First name</source>
-        <translation>&amp;Nome</translation>
+        <translation>名(&amp;F)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="58"/>
         <source>&amp;Middle names</source>
-        <translation>&amp;Nome d&apos;arte</translation>
+        <translation>中間名(&amp;M)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="71"/>
         <source>&amp;Last name</source>
-        <translation>&amp;Cognome</translation>
+        <translation>姓(&amp;L)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="96"/>
         <source>&amp;Email</source>
-        <translation>&amp;Email</translation>
+        <translation>電子郵件(&amp;E)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="109"/>
         <source>&amp;Phone</source>
-        <translation>&amp;Telefono</translation>
+        <translation>電話(&amp;P)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="122"/>
         <source>&amp;Collection</source>
-        <translation>&amp;Collezione</translation>
+        <translation>彙集(&amp;C)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="177"/>
         <source>Address</source>
-        <translation>Indirizzo</translation>
+        <translation>地址</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="183"/>
         <source>Postal Address</source>
-        <translation>Numero postale</translation>
+        <translation>通訊地址</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="192"/>
         <source>&amp;Street</source>
-        <translation>&amp;Strada</translation>
+        <translation>街路(&amp;S)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="205"/>
         <source>&amp;District</source>
-        <translation>&amp;Distretto</translation>
+        <translation>區(&amp;D)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="218"/>
         <source>&amp;City</source>
-        <translation>&amp;Cittá</translation>
+        <translation>城市(&amp;C)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="231"/>
         <source>C&amp;ounty</source>
-        <translation>P&amp;aese</translation>
+        <translation>縣(&amp;O)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="244"/>
         <source>Post&amp;code</source>
-        <translation>Codice&amp;Postale</translation>
+        <translation>郵遞區號(&amp;C)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.ui" line="257"/>
         <source>Co&amp;untry</source>
-        <translation>Pa&amp;ese</translation>
+        <translation>國家(&amp;U)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="40"/>
         <source>First Name</source>
-        <translation>Nome</translation>
+        <translation>名</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="41"/>
         <source>Middle Names</source>
-        <translation>Nomi d&apos;arte</translation>
+        <translation>中間名</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="42"/>
         <source>Last Name</source>
-        <translation>Cognome</translation>
+        <translation>姓</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="43"/>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>電子郵件</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="44"/>
         <source>Collection</source>
-        <translation>Collezione</translation>
+        <translation>彙集</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="45"/>
         <source>Street</source>
-        <translation>Strada</translation>
+        <translation>街路</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="46"/>
         <source>District</source>
-        <translation>Distretto</translation>
+        <translation>區</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="47"/>
         <source>City</source>
-        <translation>Citta</translation>
+        <translation>城市</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="48"/>
         <source>County</source>
-        <translation>Paese</translation>
+        <translation>縣</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="49"/>
         <source>Postcode</source>
-        <translation>Codice Postale</translation>
+        <translation>郵遞區號</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="50"/>
         <source>Country</source>
-        <translation>Paese</translation>
+        <translation>國家</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="51"/>
         <source>Phone</source>
-        <translation>Telefono</translation>
+        <translation>電話</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/contactdialog.cpp" line="112"/>
         <source>Empty Details</source>
-        <translation>Dettagli vuoti</translation>
+        <translation>空白詳細資訊</translation>
     </message>
 </context>
 <context>
@@ -494,7 +494,7 @@
     <message>
         <location filename="../domain/contactvalidation.cpp" line="29"/>
         <source>Must enter first and last name</source>
-        <translation>Devi inserire nome e cognome</translation>
+        <translation>必須輸入名與姓</translation>
     </message>
 </context>
 <context>
@@ -502,149 +502,134 @@
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="209"/>
         <source>First Name</source>
-        <translation>Nome</translation>
+        <translation>名</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="211"/>
         <source>Middle Names</source>
-        <translation>Nomi d&apos;arte</translation>
+        <translation>中間名</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="213"/>
         <source>Last Name</source>
-        <translation>Cognome</translation>
+        <translation>姓</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="215"/>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>電子郵件</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="217"/>
         <source>Street</source>
-        <translation>Strada</translation>
+        <translation>街路</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="219"/>
         <source>District</source>
-        <translation>Distretto</translation>
+        <translation>區</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="221"/>
         <source>City</source>
-        <translation>Cittá</translation>
+        <translation>城市</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="223"/>
         <source>County</source>
-        <translation>Paese</translation>
+        <translation>縣</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="225"/>
         <source>Postcode</source>
-        <translation>Codice Postale</translation>
+        <translation>郵遞區號</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="227"/>
         <source>Country</source>
-        <translation>Paese</translation>
+        <translation>國家</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="229"/>
         <source>Telephone</source>
-        <translation>Telefono</translation>
+        <translation>電話</translation>
     </message>
     <message>
         <location filename="../ui/models/contactmodel.cpp" line="231"/>
         <source>Collection</source>
-        <translation>Collezione</translation>
+        <translation>彙集</translation>
     </message>
 </context>
 <context>
     <name>ContactsPane</name>
     <message>
-        <location filename="../ui/panes/contactspane.ui" line="28"/>
-        <source>Close Find Bar</source>
-        <translation>Chiudi barra di ricerca</translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/contactspane.ui" line="43"/>
-        <location filename="../ui/panes/contactspane.cpp" line="103"/>
+        <location filename="../ui/panes/contactspane.cpp" line="101"/>
         <source>Find Previous</source>
-        <translation>Trova precedente</translation>
+        <translation>尋找上一個</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.ui" line="49"/>
-        <location filename="../ui/panes/contactspane.cpp" line="97"/>
+        <location filename="../ui/panes/contactspane.cpp" line="95"/>
         <source>Find Next</source>
-        <translation>Trova successivo</translation>
+        <translation>尋找下一個</translation>
+    </message>
+    <message>
+        <location filename="../ui/panes/contactspane.cpp" line="65"/>
+        <location filename="../ui/panes/contactspane.cpp" line="306"/>
+        <source>New Contact</source>
+        <translation>新建聯絡</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspane.cpp" line="67"/>
-        <location filename="../ui/panes/contactspane.cpp" line="348"/>
-        <source>New Contact</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/contactspane.cpp" line="69"/>
         <source>New</source>
-        <translation>Nuovo</translation>
+        <translation>新建</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="75"/>
+        <location filename="../ui/panes/contactspane.cpp" line="73"/>
         <source>Edit</source>
-        <translation>Modifica</translation>
+        <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="80"/>
+        <location filename="../ui/panes/contactspane.cpp" line="78"/>
         <source>Delete</source>
-        <translation>Elimina</translation>
+        <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="86"/>
-        <location filename="../ui/panes/contactspane.cpp" line="351"/>
+        <location filename="../ui/panes/contactspane.cpp" line="84"/>
+        <location filename="../ui/panes/contactspane.cpp" line="309"/>
         <source>Mail To...</source>
-        <translation type="unfinished">Mail a...</translation>
+        <translation>郵寄至...</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="91"/>
-        <location filename="../ui/panes/contactspane.cpp" line="327"/>
+        <location filename="../ui/panes/contactspane.cpp" line="89"/>
         <source>Find</source>
-        <translation>Trova</translation>
+        <translation>尋找</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="114"/>
+        <location filename="../ui/panes/contactspane.cpp" line="112"/>
         <source>Contacts</source>
-        <translation>Contatti</translation>
+        <translation>聯絡</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="143"/>
+        <location filename="../ui/panes/contactspane.cpp" line="141"/>
         <source>Address Book: %1</source>
-        <translation>Rubrica: %1</translation>
+        <translation>通訊錄： %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ui/panes/contactspane.cpp" line="145"/>
+        <location filename="../ui/panes/contactspane.cpp" line="143"/>
         <source>%n contact(s)</source>
         <translation>
-            <numerusform>%n contatto</numerusform>
-            <numerusform>%n contatti</numerusform>
+            <numerusform>%n 個聯絡人</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="271"/>
-        <location filename="../ui/panes/contactspane.cpp" line="293"/>
-        <source>No more items</source>
-        <translation type="unfinished">Nessun altra voce</translation>
-    </message>
-    <message>
-        <location filename="../ui/panes/contactspane.cpp" line="350"/>
+        <location filename="../ui/panes/contactspane.cpp" line="308"/>
         <source>Edit Contact</source>
-        <translation>Modifica contatto</translation>
+        <translation>編輯聯絡</translation>
     </message>
     <message>
-        <location filename="../ui/panes/contactspane.cpp" line="353"/>
+        <location filename="../ui/panes/contactspane.cpp" line="311"/>
         <source>Delete Contact</source>
-        <translation>Elimina contatto</translation>
+        <translation>刪除聯絡</translation>
     </message>
 </context>
 <context>
@@ -657,12 +642,12 @@
         <location filename="../ui/panes/contactspanecontroller.cpp" line="180"/>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="194"/>
         <source>Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>行事曆排程器</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="51"/>
         <source>No writable address book collection is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>無可寫入的通訊錄合集可供使用。</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="64"/>
@@ -670,7 +655,7 @@
         <location filename="../ui/panes/contactspanecontroller.cpp" line="102"/>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="124"/>
         <source>save</source>
-        <translation type="unfinished">salva</translation>
+        <translation>儲存</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="64"/>
@@ -682,59 +667,59 @@
         <location filename="../ui/panes/contactspanecontroller.cpp" line="132"/>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="159"/>
         <source>contact</source>
-        <translation>contatto</translation>
+        <translation>聯絡</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="83"/>
         <source>edit</source>
-        <translation>modifica</translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="114"/>
         <source>move</source>
-        <translation type="unfinished">sposta</translation>
+        <translation>移動</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="132"/>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="159"/>
         <source>delete</source>
-        <translation>elimina</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="146"/>
         <source>selected contact</source>
-        <translation>contatto selezionato</translation>
+        <translation>所選聯絡人</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="150"/>
         <source>Delete contact &quot;%1&quot;?</source>
-        <translation type="unfinished">Eliminare il contatto &quot;%1&quot;?</translation>
+        <translation>刪除聯絡 &quot;%1&quot; ？</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="168"/>
         <source>Select a contact to email.</source>
-        <translation>Seleziona un contatto per inviare un&apos;email.</translation>
+        <translation>選擇一個聯絡人發送電子郵件。</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="174"/>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="180"/>
         <source>The selected contact does not have an email address.</source>
-        <translation>Il contatto selezionato non ha un indirizzo email.</translation>
+        <translation>所選的聯絡人沒有電子郵件。</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="188"/>
         <source>Enter the subject</source>
-        <translation>Inserisci l&apos;oggetto</translation>
+        <translation>輸入主旨</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="189"/>
         <source>Enter message</source>
-        <translation>Inserisci il messaggio</translation>
+        <translation>輸入訊息</translation>
     </message>
     <message>
         <location filename="../ui/panes/contactspanecontroller.cpp" line="194"/>
         <source>Could not open the default mail application.</source>
-        <translation>Impossibile aprire il programma di posta predefinito.</translation>
+        <translation>無法開啟預設的電子郵件應用挰式。</translation>
     </message>
 </context>
 <context>
@@ -742,12 +727,12 @@
     <message>
         <location filename="../ui/widgets/daytimelinewidget.cpp" line="548"/>
         <source>New event</source>
-        <translation>Nuovo evento</translation>
+        <translation>新建事件</translation>
     </message>
     <message>
         <location filename="../ui/widgets/daytimelinewidget.cpp" line="659"/>
         <source>Untitled</source>
-        <translation>Senza titolo</translation>
+        <translation>無標題</translation>
     </message>
 </context>
 <context>
@@ -756,103 +741,103 @@
         <location filename="../ui/dialogs/eventdialog.ui" line="20"/>
         <location filename="../ui/dialogs/eventdialog.cpp" line="100"/>
         <source>Event</source>
-        <translation>Evento</translation>
+        <translation>事件</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="29"/>
         <source>Details</source>
-        <translation>Dettagli</translation>
+        <translation>詳細資訊</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="38"/>
         <source>&amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>標題(&amp;T)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="51"/>
         <source>&amp;Location</source>
-        <translation type="unfinished"></translation>
+        <translation>位置(&amp;L)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="67"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>時間</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="76"/>
         <source>&amp;Date</source>
-        <translation type="unfinished"></translation>
+        <translation>日期(&amp;D)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="93"/>
         <source>All &amp;day</source>
-        <translation type="unfinished"></translation>
+        <translation>全日(&amp;D)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="100"/>
         <source>&amp;Start time</source>
-        <translation type="unfinished"></translation>
+        <translation>開始時間(&amp;S)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="113"/>
         <source>&amp;End time</source>
-        <translation type="unfinished"></translation>
+        <translation>結束時間(&amp;E)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="126"/>
         <source>Time &amp;zone</source>
-        <translation type="unfinished"></translation>
+        <translation>時區(&amp;Z)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="142"/>
         <source>Calendar</source>
-        <translation>Calendario</translation>
+        <translation>行事曆</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="151"/>
         <source>&amp;Calendar</source>
-        <translation type="unfinished"></translation>
+        <translation>行事曆(&amp;C)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="164"/>
         <source>Scope</source>
-        <translation type="unfinished"></translation>
+        <translation>範圍</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="171"/>
         <location filename="../ui/dialogs/eventdialog.cpp" line="128"/>
         <source>All occurrences</source>
-        <translation>Tutti gli eventi</translation>
+        <translation>全部狀況</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="178"/>
         <source>&amp;Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>優先等級(&amp;P)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="191"/>
         <source>&amp;Highlight</source>
-        <translation type="unfinished"></translation>
+        <translation>強調(&amp;H)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="204"/>
         <source>&amp;Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>已經完成(&amp;C)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="214"/>
         <source>Links</source>
-        <translation>Collegamenti</translation>
+        <translation>連結</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="223"/>
         <source>&amp;Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>附件(&amp;A)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="250"/>
         <source>Choose attachment file</source>
-        <translation>Scegli file allegato</translation>
+        <translation>選擇附件檔案</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="253"/>
@@ -862,32 +847,32 @@
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="265"/>
         <source>&amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;URL</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.ui" line="281"/>
         <source>Notes</source>
-        <translation>Note</translation>
+        <translation>備記</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.cpp" line="91"/>
         <source>Empty Details</source>
-        <translation type="unfinished"></translation>
+        <translation>空白詳細資訊</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.cpp" line="100"/>
         <source>Edit Event</source>
-        <translation>Modifica evento</translation>
+        <translation>編輯事件</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.cpp" line="128"/>
         <source>This occurrence</source>
-        <translation>Questo evento</translation>
+        <translation>此狀況</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/eventdialog.cpp" line="150"/>
         <source>Select Attachment</source>
-        <translation>Seleziona allegato</translation>
+        <translation>選擇附件</translation>
     </message>
 </context>
 <context>
@@ -895,12 +880,12 @@
     <message>
         <location filename="../domain/calendarvalidation.cpp" line="32"/>
         <source>Must enter a title</source>
-        <translation>Titolo necessario</translation>
+        <translation>必須輸入標題</translation>
     </message>
     <message>
         <location filename="../domain/calendarvalidation.cpp" line="36"/>
         <source>End time must be after start time</source>
-        <translation>La fine deve essere dopo l&apos;inizio</translation>
+        <translation>結束時間必須晚於開始時間</translation>
     </message>
 </context>
 <context>
@@ -908,27 +893,27 @@
     <message>
         <location filename="../ui/widgets/findbar.ui" line="18"/>
         <source>Close Find Bar</source>
-        <translation>Chiudi barra di ricerca</translation>
+        <translation>關閉尋找列</translation>
     </message>
     <message>
         <location filename="../ui/widgets/findbar.ui" line="33"/>
         <source>Find Previous</source>
-        <translation>Trova precedente</translation>
+        <translation>尋找上一個</translation>
     </message>
     <message>
         <location filename="../ui/widgets/findbar.ui" line="39"/>
         <source>Find Next</source>
-        <translation>Trova successivo</translation>
+        <translation>尋找下一個</translation>
     </message>
     <message>
         <location filename="../ui/widgets/findbar.cpp" line="35"/>
         <source>Find</source>
-        <translation>Trova</translation>
+        <translation>尋找</translation>
     </message>
     <message>
         <location filename="../ui/widgets/findbar.cpp" line="106"/>
         <source>No more items</source>
-        <translation type="unfinished">Fine</translation>
+        <translation>無符合項目</translation>
     </message>
 </context>
 <context>
@@ -936,17 +921,17 @@
     <message>
         <location filename="../ui/widgets/editorcombos.cpp" line="31"/>
         <source>Always Highlight</source>
-        <translation>Evidenzia sempre</translation>
+        <translation>總是強調</translation>
     </message>
     <message>
         <location filename="../ui/widgets/editorcombos.cpp" line="32"/>
         <source>Never Highlight</source>
-        <translation>Non evidenziare mai</translation>
+        <translation>永不強調</translation>
     </message>
     <message>
         <location filename="../ui/widgets/editorcombos.cpp" line="33"/>
         <source>Highlight Future</source>
-        <translation type="unfinished"></translation>
+        <translation>強調未來</translation>
     </message>
 </context>
 <context>
@@ -954,7 +939,7 @@
     <message>
         <location filename="../app/application.cpp" line="82"/>
         <source>Open new window</source>
-        <translation>Apri nuova finestra</translation>
+        <translation>開啟新建視窗</translation>
     </message>
 </context>
 <context>
@@ -962,214 +947,212 @@
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="43"/>
         <source>Calendar</source>
-        <translation>Calendario</translation>
+        <translation>行事曆</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="48"/>
         <source>Contacts</source>
-        <translation>Contatti</translation>
+        <translation>聯絡人</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="74"/>
         <source>File</source>
-        <translation>File</translation>
+        <translation>檔案</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="87"/>
         <location filename="../ui/shell/mainwindow.ui" line="210"/>
         <source>Edit</source>
-        <translation>Modifica</translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="123"/>
         <source>Help</source>
-        <translation>Aiuto</translation>
+        <translation>說明</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="169"/>
         <source>Exit</source>
-        <translation>Esci</translation>
+        <translation>離開</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="240"/>
         <source>New Contact</source>
-        <translation>Nuovo contatto</translation>
+        <translation>新建聯絡人</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="14"/>
         <location filename="../ui/shell/mainwindow.cpp" line="772"/>
         <source>Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>行事曆排程器</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="66"/>
         <location filename="../ui/shell/mainwindow.cpp" line="282"/>
         <source>New</source>
-        <translation>Nuovo</translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="100"/>
         <source>View</source>
-        <translation type="unfinished">Visualizza</translation>
+        <translation>檢視</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="114"/>
         <source>Actions</source>
-        <translation type="unfinished">Azioni</translation>
+        <translation>動作</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="178"/>
         <source>New Event</source>
-        <translation>Nuovo evento</translation>
+        <translation>新建事件</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="187"/>
         <source>New Window</source>
-        <translation>Nuova finestra</translation>
+        <translation>新開視窗</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="196"/>
         <source>Close Window</source>
-        <translation>Chiudi finestra</translation>
+        <translation>關閉視窗</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="201"/>
         <source>New Task</source>
-        <translation>Nuovo compito</translation>
+        <translation>新建任務</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="219"/>
         <source>Delete</source>
-        <translation>Elimina</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="231"/>
         <location filename="../ui/shell/mainwindow.cpp" line="523"/>
         <source>Full View</source>
-        <translation type="unfinished"></translation>
+        <translation>全景檢視</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="249"/>
         <source>Mail To...</source>
-        <translation type="unfinished">Mail a...</translation>
+        <translation>信件寄至...</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="258"/>
         <source>Find</source>
-        <translation>Trova</translation>
+        <translation>尋找</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="267"/>
         <source>Find Next</source>
-        <translation>Trova successivo</translation>
+        <translation>尋找下一個</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="276"/>
         <source>Find Previous</source>
-        <translation>Trova precedente</translation>
+        <translation>尋找上一個</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="285"/>
         <source>Next Month</source>
-        <translation type="unfinished">Mese successivo</translation>
+        <translation>下個月</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="294"/>
         <source>Previous Month</source>
-        <translation type="unfinished">Mese precedente</translation>
+        <translation>上個月</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="299"/>
         <location filename="../ui/shell/mainwindow.cpp" line="292"/>
         <source>Today</source>
-        <translation>Oggi</translation>
+        <translation>今日</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="308"/>
         <source>About</source>
-        <translation>Informazioni</translation>
+        <translation>關於</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="317"/>
         <source>Preferences</source>
-        <translation>Preferenze</translation>
+        <translation>偏好設定</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="326"/>
         <source>Increase Font</source>
-        <translation>Ingrandisci carattere</translation>
+        <translation>放大字型</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="335"/>
         <source>Decrease Font</source>
-        <translation>Riduci carattere</translation>
+        <translation>減小字型</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.ui" line="344"/>
         <source>Reset Font</source>
-        <translation>Ripristina carattere</translation>
+        <translation>重設字型</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="119"/>
         <location filename="../ui/shell/mainwindow.cpp" line="279"/>
         <source>LXQt Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>LXQt 行事曆排程器</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="283"/>
         <source>Task</source>
-        <translation type="unfinished">Compito</translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="321"/>
         <source>Create an event. Use the menu for tasks and contacts.</source>
-        <translation>Crea un evento. Usa il menù per compiti e contatti.</translation>
+        <translation>建立事件。使用選單用於任務和聯絡人。</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="772"/>
         <source>Could not initialize calendar and contact storage.</source>
-        <translation>Impossibile inizializzare il calendario e l&apos;archiviazione dei contatti.</translation>
+        <translation>無法初始化行事曆和聯絡人儲存空間。</translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/shell/mainwindow.cpp" line="436"/>
         <source>%n item(s) could not be loaded.</source>
         <translation>
-            <numerusform>Non è stato possibile caricare %n oggetto.</numerusform>
-            <numerusform>Non è stato possibile caricare %n oggetti.</numerusform>
+            <numerusform>%n 項目無法載入。</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/shell/mainwindow.cpp" line="437"/>
         <source>%n item(s) could not be loaded. First error: %1</source>
         <translation>
-            <numerusform>Non è stato possibile caricare %n oggetto. Primo errore: %1</numerusform>
-            <numerusform>Non è stato possibile caricare %n oggetti. Primo errore: %1</numerusform>
+            <numerusform>%n 項目無法載入。第一個錯誤： %1</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="524"/>
         <source>Show full contact view</source>
-        <translation type="unfinished">Mostra contatto completo</translation>
+        <translation>顯示全景聯絡人檢視</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="525"/>
         <source>Show quick contact view</source>
-        <translation type="unfinished">Mostra anteprima contatto</translation>
+        <translation>顯示快速聯絡人檢視</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="530"/>
         <source>Tasks</source>
-        <translation type="unfinished">Compiti</translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="531"/>
         <source>Hide tasks</source>
-        <translation type="unfinished">Nascondi compiti</translation>
+        <translation>隱藏任務</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="531"/>
         <source>Show tasks</source>
-        <translation type="unfinished">Mostra compiti</translation>
+        <translation>顯示任務</translation>
     </message>
 </context>
 <context>
@@ -1178,29 +1161,29 @@
         <location filename="../ui/widgets/monthchromewidget.ui" line="36"/>
         <location filename="../ui/widgets/monthchromewidget.cpp" line="57"/>
         <source>Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>前項</translation>
     </message>
     <message>
         <location filename="../ui/widgets/monthchromewidget.ui" line="47"/>
         <location filename="../ui/widgets/monthchromewidget.cpp" line="58"/>
         <source>Today</source>
-        <translation>Oggi</translation>
+        <translation>今日</translation>
     </message>
     <message>
         <location filename="../ui/widgets/monthchromewidget.ui" line="58"/>
         <location filename="../ui/widgets/monthchromewidget.cpp" line="59"/>
         <source>Next</source>
-        <translation>Prossimo</translation>
+        <translation>次項</translation>
     </message>
     <message>
         <location filename="../ui/widgets/monthchromewidget.cpp" line="84"/>
         <source>New Event</source>
-        <translation>Nuovo evento</translation>
+        <translation>新建事件</translation>
     </message>
     <message>
         <location filename="../ui/widgets/monthchromewidget.cpp" line="86"/>
         <source>New Task</source>
-        <translation type="unfinished">Nuovo compito</translation>
+        <translation>新建任務</translation>
     </message>
 </context>
 <context>
@@ -1209,42 +1192,42 @@
         <location filename="../ui/dialogs/preferencesdialog.ui" line="14"/>
         <location filename="../ui/dialogs/preferencesdialog.cpp" line="84"/>
         <source>Preferences</source>
-        <translation>Preferenze</translation>
+        <translation>偏好設定</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/preferencesdialog.ui" line="23"/>
         <location filename="../ui/dialogs/preferencesdialog.cpp" line="85"/>
         <source>Display</source>
-        <translation type="unfinished">Mostra</translation>
+        <translation>顯示</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/preferencesdialog.ui" line="32"/>
         <location filename="../ui/dialogs/preferencesdialog.cpp" line="86"/>
         <source>&amp;Calendar font size:</source>
-        <translation type="unfinished"></translation>
+        <translation>行事曆字型大小(&amp;C)：</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/preferencesdialog.ui" line="42"/>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation> px</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/preferencesdialog.ui" line="55"/>
         <location filename="../ui/dialogs/preferencesdialog.cpp" line="87"/>
         <source>Day view &amp;starts:</source>
-        <translation type="unfinished"></translation>
+        <translation>日期檢視開始(&amp;S)：</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/preferencesdialog.ui" line="65"/>
         <location filename="../ui/dialogs/preferencesdialog.ui" line="85"/>
         <source>h:00 AP</source>
-        <translation type="unfinished"></translation>
+        <translation>h:00 AP</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/preferencesdialog.ui" line="75"/>
         <location filename="../ui/dialogs/preferencesdialog.cpp" line="88"/>
         <source>Day view &amp;ends:</source>
-        <translation type="unfinished"></translation>
+        <translation>日期檢視結束(&amp;E)：</translation>
     </message>
 </context>
 <context>
@@ -1252,17 +1235,17 @@
     <message>
         <location filename="../ui/widgets/editorcombos.cpp" line="53"/>
         <source>Low</source>
-        <translation>Basso</translation>
+        <translation>低</translation>
     </message>
     <message>
         <location filename="../ui/widgets/editorcombos.cpp" line="54"/>
         <source>Medium</source>
-        <translation>Medio</translation>
+        <translation>中</translation>
     </message>
     <message>
         <location filename="../ui/widgets/editorcombos.cpp" line="55"/>
         <source>High</source>
-        <translation>Alto</translation>
+        <translation>高</translation>
     </message>
 </context>
 <context>
@@ -1271,170 +1254,170 @@
         <location filename="../ui/messages/storageerrormessages.cpp" line="51"/>
         <source>The storage item name is invalid.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>儲存庫項目名稱無效。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="53"/>
         <source>The item no longer exists in its collection.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">L&apos;oggetto non esiste più in questa collezione.</translation>
+        <translation>該項目不再存在於其彙集之中。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="55"/>
         <source>The collection is read-only or unavailable.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">La collezione è in sola lettura o non disponibile.</translation>
+        <translation>此彙集是唯讀的或無可供用。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="57"/>
         <source>The file was changed by another process.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">Il file è stato modificato da un altro processo.</translation>
+        <translation>此檔案已被變更，由其他程序處理。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="59"/>
         <source>The file could not be parsed.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">Non è stato possibile analizzare il file.</translation>
+        <translation>此檔案無法解析。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="61"/>
         <source>The item uses an unsupported format.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">L&apos;oggetto usa un formato non supportato.</translation>
+        <translation>此項目使用了不支援的格式。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="63"/>
         <location filename="../ui/messages/storageerrormessages.cpp" line="65"/>
         <source>The file could not be read or written.</source>
         <comment>StorageErrorMessages</comment>
-        <translation>Non è stato possibile leggere o scrivere il file.</translation>
+        <translation>此檔案無法讀取或寫入。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="73"/>
         <source>Could not %1 %2.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">Non è stato possibile %1 %2.</translation>
+        <translation>無法 %1 %2 。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="75"/>
         <source>Could not %1 %2. %3</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">Non è stato possibile %1 %2. %3</translation>
+        <translation>無法 %1 %2 。 %3</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="85"/>
         <source>save</source>
         <comment>StorageErrorMessages</comment>
-        <translation>salva</translation>
+        <translation>儲存</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="89"/>
         <source>Could not save %1 in the destination collection. %2</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">Non è stato possibile salvare %1 nella collezione di destinazione. %2</translation>
+        <translation>無法儲存 %1 於目的地彙集。 %2</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="94"/>
         <source>Could not remove the original %1 after copying it to the destination collection. %2</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished">Non è stato possibile rimuovere il %1 originale dopo averlo copiato nella collezione di destinazione. %2</translation>
+        <translation>無法移除原始的 %1 ，在複製到目的地彙集之後。 %2</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="98"/>
         <source>The destination copy was removed.</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>目的地複本已被移除。</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="102"/>
         <source>Could not remove the original %1 after copying it to the destination collection. %2 The destination copy could not be removed. %3</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>無法移除原始檔案 %1 ，在複製到目的地彙集之後。 %2 目的地複本無法被移除。 %3</translation>
     </message>
     <message>
         <location filename="../ui/messages/storageerrormessages.cpp" line="135"/>
         <source>Organizer</source>
         <comment>StorageErrorMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>行事曆排程器</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="33"/>
         <source>The selected item could not be loaded.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>所選的項目無法載入。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="35"/>
         <source>The collection is no longer available.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此彙集已不再供用。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="37"/>
         <source>The source collection is read-only or unavailable.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此來源彙集合是唯讀的或無法供用。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="39"/>
         <source>The destination collection is read-only or unavailable.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此目的地彙集是供唯讀的或無法供用。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="41"/>
         <source>The item uses an unsupported format.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此項目使用未支援的格式。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="43"/>
         <source>This recurring series operation is not supported.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此重複序列操作是不支援的。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="45"/>
         <source>This recurring occurrence operation is not supported.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此重複情況操作是不支援的。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="47"/>
         <source>The item may have changed since it was loaded.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>該項目自從載入之後可能已有變更。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="49"/>
         <source>The collection storage path is unavailable.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此彙集儲存庫路徑無可供用。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="51"/>
         <source>The operation cannot be performed.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>此操作無法被執行。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="65"/>
         <source>Could not %1 %2.</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>無法 %1 %2。</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="67"/>
         <source>Could not %1 %2. %3</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>無法 %1 %2。 %3</translation>
     </message>
     <message>
         <location filename="../ui/messages/operationcapabilitymessages.cpp" line="80"/>
         <source>Organizer</source>
         <comment>OperationCapabilityMessages</comment>
-        <translation type="unfinished"></translation>
+        <translation>行事曆排程器</translation>
     </message>
 </context>
 <context>
@@ -1442,82 +1425,82 @@
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="20"/>
         <source>Task</source>
-        <translation type="unfinished"></translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="29"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>詳細資訊</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="38"/>
         <source>&amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>標題(&amp;T)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="54"/>
         <source>Due</source>
-        <translation type="unfinished"></translation>
+        <translation>到期</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="65"/>
         <source>Set &amp;due date</source>
-        <translation type="unfinished"></translation>
+        <translation>設定到期日(&amp;D)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="72"/>
         <source>&amp;Date</source>
-        <translation type="unfinished"></translation>
+        <translation>日期(&amp;D)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="89"/>
         <source>&amp;Time</source>
-        <translation type="unfinished"></translation>
+        <translation>時間(&amp;T)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="107"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>屬性</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="116"/>
         <source>&amp;List</source>
-        <translation type="unfinished"></translation>
+        <translation>清單(&amp;L)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="129"/>
         <source>&amp;Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>優先等級(&amp;P)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="142"/>
         <source>&amp;Highlight</source>
-        <translation type="unfinished"></translation>
+        <translation>強調(&amp;H)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="155"/>
         <source>&amp;Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>已經完成(&amp;C)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="162"/>
         <source>If the due date passes before completion, move it to today. Stored with the task.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果到期日期在完成之前就過了，將日期移至今日。用這項任務來儲存。</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="165"/>
         <source>&amp;Roll forward when overdue</source>
-        <translation type="unfinished"></translation>
+        <translation>逾期時則往前推動(&amp;R)</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.ui" line="175"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>備記</translation>
     </message>
     <message>
         <location filename="../ui/dialogs/taskdialog.cpp" line="78"/>
         <source>Empty Details</source>
-        <translation type="unfinished"></translation>
+        <translation>空白詳細資訊</translation>
     </message>
 </context>
 <context>
@@ -1525,7 +1508,7 @@
     <message>
         <location filename="../domain/calendarvalidation.cpp" line="45"/>
         <source>Must enter a title</source>
-        <translation type="unfinished"></translation>
+        <translation>必須輸入標題</translation>
     </message>
 </context>
 <context>
@@ -1533,37 +1516,37 @@
     <message>
         <location filename="../ui/models/tasklistmodel.cpp" line="60"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>尚無標題</translation>
     </message>
     <message>
         <location filename="../ui/models/tasklistmodel.cpp" line="82"/>
         <source>Collection: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>彙集： %1</translation>
     </message>
     <message>
         <location filename="../ui/models/tasklistmodel.cpp" line="226"/>
         <source>Task: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>任務： %1</translation>
     </message>
     <message>
         <location filename="../ui/models/tasklistmodel.cpp" line="229"/>
         <source>Due: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>到期： %1</translation>
     </message>
     <message>
         <location filename="../ui/models/tasklistmodel.cpp" line="325"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>已經完成</translation>
     </message>
     <message>
         <location filename="../ui/models/tasklistmodel.cpp" line="327"/>
         <source>Task</source>
-        <translation type="unfinished"></translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../ui/models/tasklistmodel.cpp" line="329"/>
         <source>Collection</source>
-        <translation type="unfinished"></translation>
+        <translation>彙集</translation>
     </message>
 </context>
 <context>
@@ -1571,37 +1554,37 @@
     <message>
         <location filename="../ui/widgets/tasklistwidget.ui" line="13"/>
         <source>Add a task. Press Enter to save.</source>
-        <translation type="unfinished"></translation>
+        <translation>添加任務。請輸入以進行儲存。</translation>
     </message>
     <message>
         <location filename="../ui/widgets/tasklistwidget.ui" line="14"/>
         <source>Add task</source>
-        <translation type="unfinished"></translation>
+        <translation>添加任務</translation>
     </message>
     <message>
         <location filename="../ui/widgets/tasklistwidget.cpp" line="121"/>
         <source>New Task</source>
-        <translation type="unfinished"></translation>
+        <translation>新建任務</translation>
     </message>
     <message>
         <location filename="../ui/widgets/tasklistwidget.cpp" line="123"/>
         <source>Edit Task</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯任務</translation>
     </message>
     <message>
         <location filename="../ui/widgets/tasklistwidget.cpp" line="127"/>
         <source>Mark as Not Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>標記為尚未完成</translation>
     </message>
     <message>
         <location filename="../ui/widgets/tasklistwidget.cpp" line="127"/>
         <source>Mark as Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>標記為已經完成</translation>
     </message>
     <message>
         <location filename="../ui/widgets/tasklistwidget.cpp" line="129"/>
         <source>Delete Task</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除任務</translation>
     </message>
 </context>
 </TS>

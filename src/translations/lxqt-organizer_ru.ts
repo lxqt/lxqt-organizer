@@ -1100,7 +1100,7 @@
         <location filename="../ui/shell/mainwindow.cpp" line="119"/>
         <location filename="../ui/shell/mainwindow.cpp" line="279"/>
         <source>LXQt Organizer</source>
-        <translation>LXQt Organizer</translation>
+        <translation>LXQt Органайзер</translation>
     </message>
     <message>
         <location filename="../ui/shell/mainwindow.cpp" line="283"/>
